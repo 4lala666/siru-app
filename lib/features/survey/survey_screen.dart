@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/siru_button.dart';
 import '../../core/widgets/siru_layout.dart';
@@ -39,11 +39,11 @@ class _SurveyScreenState extends State<SurveyScreen> {
               onPressed: _next,
             ),
           7 => _FinishPage(
-              key: const ValueKey<String>('finish'),
-              text: s.surveyFinish,
-              buttonText: s.goText,
-              onPressed: () => context.go('/auth'),
-            ),
+             key: const ValueKey<String>('finish'),
+             text: s.surveyFinish,
+             buttonText: s.goText,
+             onPressed: () => _finishAndGoAuth(context),
+          ),
           _ => _QuestionPage(
               key: ValueKey<String>('question-$_step'),
               question: s.questions[_step - 2],
@@ -62,10 +62,18 @@ class _SurveyScreenState extends State<SurveyScreen> {
   }
 
   void _next() {
-    if (_step < 7) {
-      setState(() => _step++);
-    }
+  if (_step < 7) {
+    setState(() => _step++);
   }
+}
+
+Future<void> _finishAndGoAuth(BuildContext context) async {
+  final sp = await SharedPreferences.getInstance();
+  await sp.setBool('onboarding_done', true);
+
+  if (!mounted) return;
+  context.go('/auth');
+}
 }
 
 class _SurveyQuestion {
