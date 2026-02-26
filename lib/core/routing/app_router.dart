@@ -1,7 +1,7 @@
 ﻿import 'package:go_router/go_router.dart';
 
 import '../../features/app_shell/app_shell.dart';
-import '../../features/auth/auth_gate.dart';
+import '../../features/auth/start_gate.dart';
 import '../../features/auth/auth_screen.dart';
 import '../../features/auth/forgot_password_screen.dart';
 import '../../features/auth/password_changed_screen.dart';
@@ -17,7 +17,7 @@ class AppRouter {
     initialLocation: '/',
     routes: <GoRoute>[
       // ✅ Входная точка: решает куда идти (onboarding или app)
-      GoRoute(path: '/', builder: (_, __) => const AuthGate()),
+      GoRoute(path: '/', builder: (_, __) => const StartGate()),
 
       // ваши экраны как раньше
       GoRoute(path: '/onboarding', builder: (_, __) => const OnboardingScreen()),

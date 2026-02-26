@@ -11,30 +11,43 @@ class StartGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<bool>(
       future: _load(),
-      builder: (context, snap) {
+      builder: (BuildContext context, AsyncSnapshot<bool> snap) {
         if (!snap.hasData) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         }
 
-        final doneOnboarding = snap.data!;
+        final bool doneOnboarding = snap.data!;
 
-        // 1) Первый запуск: обязательно ведём на ваш flow (язык/приветствие/опрос)
+        // 1) First launch: onboarding flow.
         if (!doneOnboarding) {
-          return const LanguageScreen(); // дальше вы ведёте на welcome -> survey -> auth
+          return const LanguageScreen();
         }
 
-        // 2) Если онбординг пройден: решаем по авторизации
-        final user = FirebaseAuth.instance.currentUser;
-        if (user == null) return const AuthScreen();
-        return const AppShell();
+        // 2) Onboarding passed: react to auth session state.
+        return StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (BuildContext context, AsyncSnapshot<User?> authSnap) {
+            if (authSnap.connectionState == ConnectionState.waiting) {
+              return const Scaffold(
+                body: Center(child: CircularProgressIndicator()),
+              );
+            }
+
+            final User? user = authSnap.data;
+            if (user == null) return const AuthScreen();
+            return const AppShell();
+          },
+        );
       },
     );
   }
 
   Future<bool> _load() async {
-    final sp = await SharedPreferences.getInstance();
+    final SharedPreferences sp = await SharedPreferences.getInstance();
     return sp.getBool('onboarding_done') ?? false;
   }
 }
