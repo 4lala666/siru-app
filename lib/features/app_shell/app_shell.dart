@@ -2,6 +2,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({
@@ -35,10 +36,11 @@ class _BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const items = <({IconData icon, String label})>[
-      (icon: Icons.home_outlined, label: 'Home'),
-      (icon: Icons.view_module_outlined, label: 'Modules'),
-      (icon: Icons.person_outline, label: 'Profile'),
+    final AppLocalizations s = AppLocalizations.of(context)!;
+    final List<({IconData icon, String label})> items = <({IconData icon, String label})>[
+      (icon: Icons.home_outlined, label: s.homeTab),
+      (icon: Icons.view_module_outlined, label: s.modulesTab),
+      (icon: Icons.person_outline, label: s.profileTab),
     ];
 
     return SafeArea(
@@ -89,4 +91,3 @@ class _BottomNav extends StatelessWidget {
     );
   }
 }
-

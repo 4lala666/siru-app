@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
+import '../../../core/localization/locale_controller.dart';
+import '../../../l10n/app_localizations.dart';
 import 'edit_profile_sheet.dart';
 
 final isDarkModeProvider = StateProvider<bool>((Ref ref) => true);
@@ -16,6 +18,7 @@ class ProfileScreen extends ConsumerWidget {
     final bool isDark = ref.watch(isDarkModeProvider);
     final String username = ref.watch(profileNameProvider);
     final IconData avatar = ref.watch(profileAvatarProvider);
+    final AppLocalizations s = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: ListView(
@@ -23,7 +26,7 @@ class ProfileScreen extends ConsumerWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text('Profile', style: AppTextStyles.screenTitle),
+              Text(s.profileTab, style: AppTextStyles.screenTitle),
               const Spacer(),
               _ThemeToggle(
                 isDark: isDark,
@@ -34,24 +37,132 @@ class ProfileScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           _ProfileSummaryCard(username: username, avatar: avatar),
           const SizedBox(height: 16),
-          Text('Cyber Statistics', style: AppTextStyles.cardTitle),
+          Text(_txt(context, ru: 'Кибер статистика', kk: 'Кибер статистика', en: 'Cyber Statistics'),
+              style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
           const _StatsGrid(),
           const SizedBox(height: 16),
-          Text('Recent Badges', style: AppTextStyles.cardTitle),
+          Text(_txt(context, ru: 'Последние бейджи', kk: 'Соңғы бейдждер', en: 'Recent Badges'),
+              style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
           const _RecentBadges(),
           const SizedBox(height: 16),
-          Text('Settings', style: AppTextStyles.cardTitle),
+          Text(_txt(context, ru: 'Настройки', kk: 'Баптаулар', en: 'Settings'), style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
-          _SettingsTile(title: 'Language', onTap: () {}),
-          _SettingsTile(title: 'Privacy & Security', onTap: () {}),
           _SettingsTile(
-            title: 'Work on mistakes',
+            title: _txt(context, ru: 'Язык', kk: 'Тіл', en: 'Language'),
+            subtitle: _currentLanguageName(context, s),
+            onTap: () => _showLanguageSheet(context, ref, s),
+          ),
+          _SettingsTile(
+            title: _txt(context, ru: 'Приватность и безопасность', kk: 'Құпиялық және қауіпсіздік', en: 'Privacy & Security'),
+            onTap: () {},
+          ),
+          _SettingsTile(
+            title: _txt(context, ru: 'Работа над ошибками', kk: 'Қателермен жұмыс', en: 'Work on mistakes'),
             onTap: () => context.push('/app/profile/mistakes'),
           ),
         ],
       ),
+    );
+  }
+
+  String _currentLanguageName(BuildContext context, AppLocalizations s) {
+    final String code = Localizations.localeOf(context).languageCode;
+    switch (code) {
+      case 'kk':
+        return s.kazakh;
+      case 'en':
+        return s.english;
+      default:
+        return s.russian;
+    }
+  }
+
+  Future<void> _showLanguageSheet(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations s,
+  ) async {
+    final String code = Localizations.localeOf(context).languageCode;
+
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: AppColors.background,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(s.chooseLanguageTitle, style: AppTextStyles.cardTitle),
+                const SizedBox(height: 10),
+                _LangTile(
+                  title: s.russian,
+                  selected: code == 'ru',
+                  onTap: () async {
+                    await ref.read(localeControllerProvider.notifier).setLocale('ru');
+                    if (context.mounted) Navigator.of(context).pop();
+                  },
+                ),
+                _LangTile(
+                  title: s.kazakh,
+                  selected: code == 'kk',
+                  onTap: () async {
+                    await ref.read(localeControllerProvider.notifier).setLocale('kk');
+                    if (context.mounted) Navigator.of(context).pop();
+                  },
+                ),
+                _LangTile(
+                  title: s.english,
+                  selected: code == 'en',
+                  onTap: () async {
+                    await ref.read(localeControllerProvider.notifier).setLocale('en');
+                    if (context.mounted) Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+String _txt(BuildContext context, {required String ru, required String kk, required String en}) {
+  switch (Localizations.localeOf(context).languageCode) {
+    case 'kk':
+      return kk;
+    case 'en':
+      return en;
+    default:
+      return ru;
+  }
+}
+
+class _LangTile extends StatelessWidget {
+  const _LangTile({required this.title, required this.selected, required this.onTap});
+
+  final String title;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+      title: Text(title, style: AppTextStyles.body),
+      trailing: Icon(
+        selected ? Icons.radio_button_checked : Icons.radio_button_off,
+        color: selected ? AppColors.accent : AppColors.textSecondary,
+      ),
+      onTap: onTap,
     );
   }
 }
@@ -277,9 +388,10 @@ class _RecentBadges extends StatelessWidget {
 }
 
 class _SettingsTile extends StatelessWidget {
-  const _SettingsTile({required this.title, required this.onTap});
+  const _SettingsTile({required this.title, required this.onTap, this.subtitle});
 
   final String title;
+  final String? subtitle;
   final VoidCallback onTap;
 
   @override
@@ -292,6 +404,7 @@ class _SettingsTile extends StatelessWidget {
         child: ListTile(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: Text(title, style: AppTextStyles.body),
+          subtitle: subtitle == null ? null : Text(subtitle!, style: AppTextStyles.secondary),
           trailing: const Icon(Icons.chevron_right),
           onTap: onTap,
         ),
@@ -299,4 +412,3 @@ class _SettingsTile extends StatelessWidget {
     );
   }
 }
-
