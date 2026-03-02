@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+﻿import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app_shell/app_shell.dart';
 import 'auth_screen.dart';
 import '../language/language_screen.dart';
 
@@ -22,12 +22,10 @@ class StartGate extends StatelessWidget {
 
         final bool doneOnboarding = snap.data!;
 
-        // 1) First launch: onboarding flow.
         if (!doneOnboarding) {
           return const LanguageScreen();
         }
 
-        // 2) Onboarding passed: react to auth session state.
         return StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (BuildContext context, AsyncSnapshot<User?> authSnap) {
@@ -39,7 +37,7 @@ class StartGate extends StatelessWidget {
 
             final User? user = authSnap.data;
             if (user == null) return const AuthScreen();
-            return const AppShell();
+            return const _AppRedirect();
           },
         );
       },
@@ -51,3 +49,30 @@ class StartGate extends StatelessWidget {
     return sp.getBool('onboarding_done') ?? false;
   }
 }
+
+class _AppRedirect extends StatefulWidget {
+  const _AppRedirect();
+
+  @override
+  State<_AppRedirect> createState() => _AppRedirectState();
+}
+
+class _AppRedirectState extends State<_AppRedirect> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.go('/app/home');
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(child: CircularProgressIndicator()),
+    );
+  }
+}
+

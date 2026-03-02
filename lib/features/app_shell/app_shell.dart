@@ -1,98 +1,92 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../../features/home/home_screen.dart';
-import '../../features/modules/modules_catalog.dart';
-import '../../features/profile/profile_screen.dart';
-import '../auth/auth_controller.dart';
+import '../../core/constants/app_colors.dart';
 
-class AppShell extends ConsumerStatefulWidget {
-  const AppShell({super.key});
+class AppShell extends StatelessWidget {
+  const AppShell({
+    super.key,
+    required this.navigationShell,
+  });
 
-  @override
-  ConsumerState<AppShell> createState() => _AppShellState();
-}
-
-class _AppShellState extends ConsumerState<AppShell> {
-  int _index = 0;
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
-    final bool isLoading = ref.watch(authControllerProvider).isLoading;
-
-    final List<Widget> pages = <Widget>[
-      const HomeScreen(),
-      const ModulesCatalogView(),
-      const ProfileScreen(),
-    ];
-
     return Scaffold(
-      backgroundColor: AppColors.bg,
-      appBar: AppBar(
-        backgroundColor: AppColors.bg,
-        title: Text(_titleByIndex(_index)),
-        actions: <Widget>[
-          IconButton(
-            tooltip: 'Выйти',
-            onPressed: isLoading ? null : _handleSignOut,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(child: pages[_index]),
-          if (isLoading)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: CircularProgressIndicator(),
-            ),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: (int value) => setState(() => _index = value),
-        destinations: const <NavigationDestination>[
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Главная',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Модули',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person),
-            label: 'Профиль',
-          ),
-        ],
+      backgroundColor: AppColors.background,
+      body: navigationShell,
+      bottomNavigationBar: _BottomNav(
+        currentIndex: navigationShell.currentIndex,
+        onTap: (int index) => navigationShell.goBranch(index),
       ),
     );
   }
+}
 
-  String _titleByIndex(int index) {
-    switch (index) {
-      case 1:
-        return 'Siru • Модули';
-      case 2:
-        return 'Siru • Профиль';
-      default:
-        return 'Siru • Главная';
-    }
-  }
+class _BottomNav extends StatelessWidget {
+  const _BottomNav({
+    required this.currentIndex,
+    required this.onTap,
+  });
 
-  Future<void> _handleSignOut() async {
-    final String? error =
-        await ref.read(authControllerProvider.notifier).signOut();
-    if (!mounted) return;
+  final int currentIndex;
+  final ValueChanged<int> onTap;
 
-    if (error != null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(error)));
-    }
+  @override
+  Widget build(BuildContext context) {
+    const items = <({IconData icon, String label})>[
+      (icon: Icons.home_outlined, label: 'Home'),
+      (icon: Icons.view_module_outlined, label: 'Modules'),
+      (icon: Icons.person_outline, label: 'Profile'),
+    ];
+
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: AppColors.cardBackground,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: AppColors.softShadow,
+        ),
+        child: Row(
+          children: List<Widget>.generate(items.length, (int i) {
+            final bool active = i == currentIndex;
+            final item = items[i];
+            return Expanded(
+              child: GestureDetector(
+                onTap: () => onTap(i),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 220),
+                  curve: Curves.easeOut,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: active ? const Color(0x26FFF700) : Colors.transparent,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Icon(item.icon, color: active ? AppColors.accent : AppColors.text),
+                      const SizedBox(height: 4),
+                      Text(
+                        item.label,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: active ? AppColors.accent : AppColors.text,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
+      ),
+    );
   }
 }
+

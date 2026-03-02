@@ -1,46 +1,59 @@
-import 'package:flutter/material.dart';
-import 'app_colors.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../constants/app_colors.dart';
 
 class AppTheme {
   static ThemeData dark() {
-    final base = ThemeData.dark(useMaterial3: true);
+    final ThemeData base = ThemeData.dark(useMaterial3: true);
 
     return base.copyWith(
-      scaffoldBackgroundColor: AppColors.bg,
-      appBarTheme: const AppBarTheme(backgroundColor: AppColors.bg, elevation: 0, foregroundColor: AppColors.text),
-      textTheme: base.textTheme.apply(
-        fontFamily: 'IBMPlexSans',
-        bodyColor: AppColors.text,
-        displayColor: AppColors.text,
-      ),
+      scaffoldBackgroundColor: AppColors.background,
       colorScheme: base.colorScheme.copyWith(
         brightness: Brightness.dark,
         primary: AppColors.primaryButton,
-        surface: AppColors.card,
+        secondary: AppColors.accent,
+        surface: AppColors.cardBackground,
         onPrimary: AppColors.text,
         onSurface: AppColors.text,
+      ),
+      textTheme: GoogleFonts.ibmPlexSansTextTheme(base.textTheme).apply(
+        bodyColor: AppColors.text,
+        displayColor: AppColors.text,
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: AppColors.background,
+        foregroundColor: AppColors.text,
+        elevation: 0,
+        titleTextStyle: GoogleFonts.ibmPlexSans(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: AppColors.text,
+        ),
+      ),
+      cardTheme: CardThemeData(
+        color: AppColors.cardBackground,
+        elevation: 0,
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryButton,
           foregroundColor: AppColors.text,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          textStyle: const TextStyle(
-            fontFamily: 'IBMPlexSans',
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: const Color(0x26FFFFFF),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
       ),
     );
   }
 }
+

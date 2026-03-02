@@ -1,0 +1,87 @@
+﻿[
+  {
+    "questionId": "q1",
+    "moduleId": "governance",
+    "question": "What does CIA stand for in cybersecurity?",
+    "options": ["Control, Integrity, Access", "Confidentiality, Integrity, Availability", "Cyber, Internet, Access", "Critical, Internal, Audit"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q2",
+    "moduleId": "governance",
+    "question": "Which is an example of risk treatment?",
+    "options": ["Ignore all findings", "Mitigate with MFA", "Disable logging", "Use default passwords"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q3",
+    "moduleId": "social",
+    "question": "Main sign of phishing email?",
+    "options": ["Expected sender and context", "Urgency + suspicious link", "Signed with DKIM", "Internal ticket reference"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q4",
+    "moduleId": "social",
+    "question": "Vishing means:",
+    "options": ["SMS scam", "Phone call scam", "Physical break-in", "USB malware"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q5",
+    "moduleId": "network",
+    "question": "HTTPS primarily protects:",
+    "options": ["Disk encryption", "Data in transit", "BIOS settings", "USB devices"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q6",
+    "moduleId": "network",
+    "question": "A firewall is used to:",
+    "options": ["Sort photos", "Control network traffic", "Install apps", "Reset passwords"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q7",
+    "moduleId": "iam",
+    "question": "MFA adds security by:",
+    "options": ["Using one short password", "Adding an extra verification factor", "Disabling lockout", "Sharing credentials"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q8",
+    "moduleId": "iam",
+    "question": "RBAC means:",
+    "options": ["Role-Based Access Control", "Random Backup Access Control", "Remote Browser Access Core", "Risk Based Audit Cycle"],
+    "correctIndex": 0
+  },
+  {
+    "questionId": "q9",
+    "moduleId": "cloud",
+    "question": "Public cloud bucket misconfig can cause:",
+    "options": ["Improved encryption", "Data exposure", "Faster CPU", "Better UX"],
+    "correctIndex": 1
+  },
+  {
+    "questionId": "q10",
+    "moduleId": "cloud",
+    "question": "Shared responsibility model means:",
+    "options": ["Provider secures everything", "Customer secures everything", "Security duties are split", "No one is responsible"],
+    "correctIndex": 2
+  },
+  {
+    "questionId": "q11",
+    "moduleId": "appsec",
+    "question": "SQL Injection targets:",
+    "options": ["Database queries", "Bluetooth stack", "GPU drivers", "Email headers"],
+    "correctIndex": 0
+  },
+  {
+    "questionId": "q12",
+    "moduleId": "appsec",
+    "question": "XSS allows attacker to:",
+    "options": ["Run script in victim browser", "Encrypt server disks", "Reset MFA", "Patch kernel"],
+    "correctIndex": 0
+  }
+]
+

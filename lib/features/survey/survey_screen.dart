@@ -42,7 +42,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
              key: const ValueKey<String>('finish'),
              text: s.surveyFinish,
              buttonText: s.goText,
-             onPressed: () => _finishAndGoAuth(context),
+             onPressed: _finishAndGoAuth,
           ),
           _ => _QuestionPage(
               key: ValueKey<String>('question-$_step'),
@@ -67,7 +67,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
   }
 }
 
-Future<void> _finishAndGoAuth(BuildContext context) async {
+Future<void> _finishAndGoAuth() async {
   final sp = await SharedPreferences.getInstance();
   await sp.setBool('onboarding_done', true);
 

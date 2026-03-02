@@ -19,6 +19,7 @@ dependencies:
   shared_preferences: ^2.2.3
   flutter_svg: ^2.0.10+1
   intl: ^0.20.2
+  google_fonts: ^6.2.1
 
   # 🔥 Firebase Core
   firebase_core: ^3.6.0
@@ -45,6 +46,8 @@ flutter:
     - assets/
     - assets/fonts/
     - assets/images/
+    - assets/data/facts.json
+    - assets/data/questions.json
 
   fonts:
     - family: IBMPlexSans
