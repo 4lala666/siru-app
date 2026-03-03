@@ -1,0 +1,1902 @@
+{
+  "version": 1,
+  "defaultLocale": "ru",
+  "locales": [
+    "ru",
+    "en",
+    "kk"
+  ],
+  "modules": [
+    {
+      "id": "gov_risk",
+      "difficulty": "beginner",
+      "icon": "shield",
+      "cover": "assets/images/modules/gov_risk.png",
+      "title": {
+        "ru": "Основы, управление и риск",
+        "en": "Governance & Risk",
+        "kk": "Басқару және тәуекел"
+      },
+      "subtitle": {
+        "ru": "База ИБ: цели, риски, политики и стандарты.",
+        "en": "Security fundamentals: goals, risks, policies, and standards.",
+        "kk": "Ақпараттық қауіпсіздік негіздері: мақсаттар, тәуекелдер, саясаттар мен стандарттар."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Что такое ИБ и зачем она нужна",
+              "CIA‑триаду",
+              "Чем отличаются угроза, уязвимость и риск",
+              "Как управляют рисками",
+              "Роль политик и стандартов",
+              "Что такое комплаенс (обзор)"
+            ],
+            "en": [
+              "What InfoSec is and why it matters",
+              "CIA triad",
+              "Threat vs vulnerability vs risk",
+              "Risk management basics",
+              "Policies and standards",
+              "Compliance overview"
+            ],
+            "kk": [
+              "Ақпараттық қауіпсіздік не және не үшін керек",
+              "CIA триадасы",
+              "Қауіп, осалдық және тәуекел айырмашылығы",
+              "Тәуекелді басқару негіздері",
+              "Саясаттар мен стандарттар",
+              "Комплаенс туралы қысқаша"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Новичкам",
+              "Студентам",
+              "Начинающим специалистам"
+            ],
+            "en": [
+              "Beginners",
+              "Students",
+              "Junior specialists"
+            ],
+            "kk": [
+              "Жаңадан бастаушыларға",
+              "Студенттерге",
+              "Бастапқы мамандарға"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Короткие уроки",
+              "Чёткая терминология",
+              "Практичные примеры"
+            ],
+            "en": [
+              "Short lessons",
+              "Clear terminology",
+              "Practical examples"
+            ],
+            "kk": [
+              "Қысқа сабақтар",
+              "Түсінікті терминдер",
+              "Практикалық мысалдар"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "gov_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Что такое ИБ: цели, принципы и роль в мире",
+            "en": "What is InfoSec: goals, principles, and why it matters",
+            "kk": "Ақпараттық қауіпсіздік: мақсаттар, қағидалар және маңызы"
+          }
+        },
+        {
+          "id": "gov_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "CIA-триада и базовые свойства безопасности",
+            "en": "CIA triad and core security properties",
+            "kk": "CIA триадасы және негізгі қауіпсіздік қасиеттері"
+          }
+        },
+        {
+          "id": "gov_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Угрозы, уязвимости и риски: как отличать",
+            "en": "Threats vs vulnerabilities vs risks: how to tell apart",
+            "kk": "Қауіптер, осалдықтар және тәуекелдер: қалай ажыратуға болады"
+          }
+        },
+        {
+          "id": "gov_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Risk Management: идентификация и оценка риска",
+            "en": "Risk management: identification and assessment",
+            "kk": "Тәуекелді басқару: анықтау және бағалау"
+          }
+        },
+        {
+          "id": "gov_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Обработка рисков: mitigation, transfer, accept",
+            "en": "Risk treatment: mitigate, transfer, accept",
+            "kk": "Тәуекелді өңдеу: азайту, беру, қабылдау"
+          }
+        },
+        {
+          "id": "gov_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Политики ИБ: зачем нужны и как выглядят",
+            "en": "Security policies: why they matter and what they look like",
+            "kk": "Қауіпсіздік саясаттары: не үшін керек және қалай көрінеді"
+          }
+        },
+        {
+          "id": "gov_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Стандарты ISO 27001 / NIST / CIS: что выбрать и почему",
+            "en": "ISO 27001 / NIST / CIS: what to choose and why",
+            "kk": "ISO 27001 / NIST / CIS: нені таңдау керек және неге"
+          }
+        },
+        {
+          "id": "gov_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Комплаенс и ответственность: GDPR, PCI DSS, 152-ФЗ (обзор)",
+            "en": "Compliance and responsibility: GDPR, PCI DSS, 152-FZ (overview)",
+            "kk": "Комплаенс және жауапкершілік: GDPR, PCI DSS, 152-ФЗ (шолу)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "social_eng",
+      "difficulty": "beginner",
+      "icon": "message-circle",
+      "cover": "assets/images/modules/social_eng.png",
+      "title": {
+        "ru": "Социальная инженерия и человеческий фактор",
+        "en": "Social Engineering & Human Factor",
+        "kk": "Әлеуметтік инженерия және адам факторы"
+      },
+      "subtitle": {
+        "ru": "Фишинг, звонки, психология и защита.",
+        "en": "Phishing, calls, psychology, and defense.",
+        "kk": "Фишинг, қоңыраулар, психология және қорғаныс."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Почему люди — главная цель атак",
+              "Фишинг/вишинг/смишинг",
+              "Схемы в соцсетях и мессенджерах",
+              "CEO fraud",
+              "Защитные привычки и чеклист"
+            ],
+            "en": [
+              "Why humans are targeted",
+              "Phishing/vishing/smishing",
+              "Scams in social media & messengers",
+              "CEO fraud",
+              "Defense habits & checklist"
+            ],
+            "kk": [
+              "Неге адамдар нысана",
+              "Фишинг/вишинг/смишинг",
+              "ӘЖ/мессенджер схемалары",
+              "CEO fraud",
+              "Қорғаныс әдеттері"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Всем пользователям почты и мессенджеров",
+              "Сотрудникам компаний",
+              "Новичкам в ИБ"
+            ],
+            "en": [
+              "Anyone using email & messengers",
+              "Company staff",
+              "Beginners in security"
+            ],
+            "kk": [
+              "Пошта/мессенджер қолданатындарға",
+              "Компания қызметкерлеріне",
+              "Жаңадан бастаушыларға"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "se_01",
+          "durationMin": 6,
+          "stepsCount": 4,
+          "title": {
+            "ru": "Почему люди — главная цель атак",
+            "en": "Why humans are the main target",
+            "kk": "Неге адамдар басты нысана"
+          }
+        },
+        {
+          "id": "se_02",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Фишинг: письма, сайты-клоны, “поддержка банка”",
+            "en": "Phishing: emails, clone sites, “bank support”",
+            "kk": "Фишинг: хаттар, клон-сайттар, “банк қолдауы”"
+          }
+        },
+        {
+          "id": "se_03",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Вишинг и смишинг: звонки и SMS-мошенничество",
+            "en": "Vishing & smishing: calls and SMS scams",
+            "kk": "Вишинг және смишинг: қоңыраулар мен SMS алаяқтығы"
+          }
+        },
+        {
+          "id": "se_04",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Соцсети и мессенджеры: популярные схемы",
+            "en": "Social media & messengers: common scams",
+            "kk": "Әлеуметтік желілер: кең тараған схемалар"
+          }
+        },
+        {
+          "id": "se_05",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "CEO fraud и атаки на сотрудников компании",
+            "en": "CEO fraud and employee-targeted attacks",
+            "kk": "CEO fraud және қызметкерлерге бағытталған шабуылдар"
+          }
+        },
+        {
+          "id": "se_06",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Психология атак: страх, срочность, доверие, авторитет",
+            "en": "Attack psychology: fear, urgency, trust, authority",
+            "kk": "Шабуыл психологиясы: қорқыныш, жеделдік, сенім, бедел"
+          }
+        },
+        {
+          "id": "se_07",
+          "durationMin": 6,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Как защищаться: правила + привычки + чеклист",
+            "en": "How to defend: rules, habits, checklist",
+            "kk": "Қорғану: ережелер, әдеттер, чеклист"
+          }
+        },
+        {
+          "id": "se_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Security Awareness: обучение сотрудников и симуляции",
+            "en": "Security awareness: training and simulations",
+            "kk": "Security awareness: оқыту және симуляциялар"
+          }
+        }
+      ]
+    },
+    {
+      "id": "network_sec",
+      "difficulty": "beginner",
+      "icon": "network",
+      "cover": "assets/images/modules/network_sec.png",
+      "title": {
+        "ru": "Сети и инфраструктура",
+        "en": "Network Security",
+        "kk": "Желілер және инфрақұрылым"
+      },
+      "subtitle": {
+        "ru": "Интернет просто: угрозы, защита, Zero Trust.",
+        "en": "Internet basics, threats, defenses, Zero Trust.",
+        "kk": "Интернет негіздері, қауіптер, қорғаныс, Zero Trust."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "IP/DNS/порты простыми словами",
+              "MITM/sniffing/spoofing",
+              "Firewall и правила",
+              "IDS/IPS",
+              "VPN и TLS",
+              "Сегментация и Zero Trust"
+            ],
+            "en": [
+              "IP/DNS/ports explained",
+              "MITM/sniffing/spoofing",
+              "Firewalls and rules",
+              "IDS/IPS",
+              "VPN and TLS",
+              "Segmentation and Zero Trust"
+            ],
+            "kk": [
+              "IP/DNS/порттар",
+              "MITM/sniffing/spoofing",
+              "Firewall ережелері",
+              "IDS/IPS",
+              "VPN және TLS",
+              "Сегментация және Zero Trust"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "net_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Как работает интернет: IP, DNS, порты (очень просто)",
+            "en": "How the internet works: IP, DNS, ports (very simple)",
+            "kk": "Интернет қалай жұмыс істейді: IP, DNS, порттар (өте қарапайым)"
+          }
+        },
+        {
+          "id": "net_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Основные сетевые угрозы: MITM, sniffing, spoofing",
+            "en": "Key network threats: MITM, sniffing, spoofing",
+            "kk": "Негізгі желілік қауіптер: MITM, sniffing, spoofing"
+          }
+        },
+        {
+          "id": "net_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Firewall: принципы и типы правил",
+            "en": "Firewalls: principles and rule types",
+            "kk": "Firewall: қағидалар және ереже түрлері"
+          }
+        },
+        {
+          "id": "net_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "IDS/IPS: обнаружение и предотвращение атак",
+            "en": "IDS/IPS: detection and prevention",
+            "kk": "IDS/IPS: анықтау және алдын алу"
+          }
+        },
+        {
+          "id": "net_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "VPN: зачем нужен и от чего не спасает",
+            "en": "VPN: what it helps with (and what it doesn't)",
+            "kk": "VPN: не үшін керек және неден қорғамайды"
+          }
+        },
+        {
+          "id": "net_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "TLS/SSL и HTTPS: что реально шифруется",
+            "en": "TLS/SSL and HTTPS: what is actually encrypted",
+            "kk": "TLS/SSL және HTTPS: нақты не шифрланады"
+          }
+        },
+        {
+          "id": "net_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Сегментация сети: VLAN, DMZ, изоляция",
+            "en": "Network segmentation: VLAN, DMZ, isolation",
+            "kk": "Желі сегментациясы: VLAN, DMZ, оқшаулау"
+          }
+        },
+        {
+          "id": "net_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Zero Trust: “никому не доверяй, всегда проверяй”",
+            "en": "Zero Trust: “never trust, always verify”",
+            "kk": "Zero Trust: “ешкімге сенбе, әрдайым тексер”"
+          }
+        }
+      ]
+    },
+    {
+      "id": "endpoint_mobile",
+      "difficulty": "beginner",
+      "icon": "smartphone",
+      "cover": "assets/images/modules/endpoint_mobile.png",
+      "title": {
+        "ru": "Endpoint + Mobile Security",
+        "en": "Endpoint & Mobile Security",
+        "kk": "Endpoint және Mobile қауіпсіздігі"
+      },
+      "subtitle": {
+        "ru": "Malware, обновления, EDR и мобильные риски.",
+        "en": "Malware, patching, EDR, and mobile risks.",
+        "kk": "Malware, жаңарту, EDR және мобильді тәуекелдер."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Что такое endpoint и почему его атакуют",
+              "Malware на ПК и смартфоне",
+              "AV vs EDR/XDR",
+              "Патчи и обновления",
+              "Mobile Security и MDM",
+              "План действий при инциденте"
+            ],
+            "en": [
+              "What an endpoint is",
+              "PC & mobile malware",
+              "AV vs EDR/XDR",
+              "Patching",
+              "Mobile security & MDM",
+              "Incident action plan"
+            ],
+            "kk": [
+              "Endpoint не",
+              "ПК/мобайл malware",
+              "AV vs EDR/XDR",
+              "Жаңарту",
+              "Mobile security & MDM",
+              "Инцидент жоспары"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "end_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Что такое endpoint и почему его ломают первым",
+            "en": "What an endpoint is and why it's attacked first",
+            "kk": "Endpoint деген не және неге алдымен соны бұзады"
+          }
+        },
+        {
+          "id": "end_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Виды malware на ПК и смартфоне",
+            "en": "Types of malware on PCs and smartphones",
+            "kk": "ПК мен смартфондағы malware түрлері"
+          }
+        },
+        {
+          "id": "end_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Антивирус vs EDR/XDR: в чём разница",
+            "en": "Antivirus vs EDR/XDR: what's the difference",
+            "kk": "Антивирус vs EDR/XDR: айырмашылығы"
+          }
+        },
+        {
+          "id": "end_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Патчи и обновления: главный фактор защиты",
+            "en": "Patches and updates: the #1 defense factor",
+            "kk": "Патчтар мен жаңартулар: басты қорғаныс"
+          }
+        },
+        {
+          "id": "end_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Контроль устройств: USB, политики, права",
+            "en": "Device control: USB, policies, permissions",
+            "kk": "Құрылғыларды бақылау: USB, саясаттар, рұқсаттар"
+          }
+        },
+        {
+          "id": "end_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Mobile Security: риски Android/iOS",
+            "en": "Mobile security: Android/iOS risks",
+            "kk": "Mobile қауіпсіздігі: Android/iOS тәуекелдері"
+          }
+        },
+        {
+          "id": "end_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "MDM: управление мобильными устройствами (концепт)",
+            "en": "MDM: mobile device management (concept)",
+            "kk": "MDM: мобильді құрылғыларды басқару (концепт)"
+          }
+        },
+        {
+          "id": "end_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "План действий: что делать при заражении/краже",
+            "en": "Action plan: what to do after infection/theft",
+            "kk": "Жоспар: жұқтыру/ұрлау кезінде не істеу керек"
+          }
+        }
+      ]
+    },
+    {
+      "id": "iam",
+      "difficulty": "beginner",
+      "icon": "key",
+      "cover": "assets/images/modules/iam.png",
+      "title": {
+        "ru": "Управление доступом (IAM)",
+        "en": "Identity & Access Management (IAM)",
+        "kk": "Қолжетімділікті басқару (IAM)"
+      },
+      "subtitle": {
+        "ru": "Пароли, MFA, роли, привилегии и жизненный цикл учёток.",
+        "en": "Passwords, MFA, roles, privileges, account lifecycle.",
+        "kk": "Құпиясөз, MFA, рөлдер, артықшылықтар, аккаунт өмірлік циклі."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Идентификация/аутентификация/авторизация",
+              "Пароли и менеджеры",
+              "MFA и SSO",
+              "RBAC и ABAC",
+              "PAM",
+              "Onboarding/Offboarding"
+            ],
+            "en": [
+              "Identification/authentication/authorization",
+              "Passwords & managers",
+              "MFA & SSO",
+              "RBAC & ABAC",
+              "PAM",
+              "Onboarding/offboarding"
+            ],
+            "kk": [
+              "Идентификация/аутентификация/авторизация",
+              "Құпиясөз және менеджер",
+              "MFA және SSO",
+              "RBAC және ABAC",
+              "PAM",
+              "Onboarding/Offboarding"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "iam_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Идентификация / аутентификация / авторизация",
+            "en": "Identification / authentication / authorization",
+            "kk": "Идентификация / аутентификация / авторизация"
+          }
+        },
+        {
+          "id": "iam_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Пароли: правила, ошибки и менеджеры паролей",
+            "en": "Passwords: rules, mistakes, and managers",
+            "kk": "Құпиясөз: ереже, қате және менеджер"
+          }
+        },
+        {
+          "id": "iam_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "MFA: виды и как выбирать правильно",
+            "en": "MFA: types and how to choose",
+            "kk": "MFA: түрлері және қалай таңдау"
+          }
+        },
+        {
+          "id": "iam_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "SSO: единый вход и почему это удобно/опасно",
+            "en": "SSO: single sign-on — convenience vs risk",
+            "kk": "SSO: бір кіру — ыңғайлылық пен тәуекел"
+          }
+        },
+        {
+          "id": "iam_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "RBAC: роли и типовые примеры",
+            "en": "RBAC: roles and common examples",
+            "kk": "RBAC: рөлдер және мысалдар"
+          }
+        },
+        {
+          "id": "iam_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "ABAC: доступ по атрибутам и контексту",
+            "en": "ABAC: attribute- and context-based access",
+            "kk": "ABAC: атрибут/контекст бойынша қолжетімділік"
+          }
+        },
+        {
+          "id": "iam_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "PAM: привилегированные аккаунты и админ-доступ",
+            "en": "PAM: privileged accounts and admin access",
+            "kk": "PAM: артықшылық аккаунттар және admin қолжетімділігі"
+          }
+        },
+        {
+          "id": "iam_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Жизненный цикл учеток: onboarding/offboarding",
+            "en": "Account lifecycle: onboarding/offboarding",
+            "kk": "Аккаунт өмірлік циклі: onboarding/offboarding"
+          }
+        }
+      ]
+    },
+    {
+      "id": "crypto",
+      "difficulty": "intermediate",
+      "icon": "lock",
+      "cover": "assets/images/modules/crypto.png",
+      "title": {
+        "ru": "Криптография",
+        "en": "Cryptography",
+        "kk": "Криптография"
+      },
+      "subtitle": {
+        "ru": "Шифрование, хеши, подпись и типичные ошибки.",
+        "en": "Encryption, hashing, signatures, and common mistakes.",
+        "kk": "Шифрлау, хэш, қолтаңба және жиі қателер."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Симметричное и асимметричное шифрование",
+              "AES/RSA простыми словами",
+              "Хеширование и соли",
+              "Электронная подпись",
+              "PKI и сертификаты",
+              "Типичные крипто‑ошибки"
+            ],
+            "en": [
+              "Symmetric vs asymmetric crypto",
+              "AES/RSA basics",
+              "Hashing and salts",
+              "Digital signatures",
+              "PKI and certificates",
+              "Common crypto pitfalls"
+            ],
+            "kk": [
+              "Симметриялық/асимметриялық",
+              "AES/RSA негіздері",
+              "Хэш және salt",
+              "ЭЦҚ",
+              "PKI/сертификаттар",
+              "Крипто қателер"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "cr_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Зачем нужна криптография (и где она вокруг нас)",
+            "en": "Why cryptography matters (and where you see it)",
+            "kk": "Криптография не үшін керек (және қайда кездеседі)"
+          }
+        },
+        {
+          "id": "cr_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Симметричное шифрование (AES) простыми словами",
+            "en": "Symmetric encryption (AES) in simple terms",
+            "kk": "Симметриялық шифрлау (AES) қарапайым"
+          }
+        },
+        {
+          "id": "cr_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Ассиметричное шифрование (RSA) простыми словами",
+            "en": "Asymmetric encryption (RSA) in simple terms",
+            "kk": "Асимметриялық шифрлау (RSA) қарапайым"
+          }
+        },
+        {
+          "id": "cr_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Хеширование: SHA-256 и отличие от шифрования",
+            "en": "Hashing: SHA-256 and how it's different from encryption",
+            "kk": "Хэш: SHA-256 және шифрлаудан айырмашылығы"
+          }
+        },
+        {
+          "id": "cr_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Пароли: salt, pepper, bcrypt/argon2 (концепт)",
+            "en": "Passwords: salt, pepper, bcrypt/argon2 (concept)",
+            "kk": "Құпиясөз: salt, pepper, bcrypt/argon2 (концепт)"
+          }
+        },
+        {
+          "id": "cr_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Электронная подпись и её применение",
+            "en": "Digital signatures and where they’re used",
+            "kk": "Электронды қолтаңба және қолданылуы"
+          }
+        },
+        {
+          "id": "cr_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "PKI: сертификаты и центры сертификации",
+            "en": "PKI: certificates and certificate authorities",
+            "kk": "PKI: сертификаттар және CA"
+          }
+        },
+        {
+          "id": "cr_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Ошибки криптографии: где всё ломают чаще всего",
+            "en": "Crypto mistakes: where things break most often",
+            "kk": "Криптография қателері: жиі қайда бұзылады"
+          }
+        }
+      ]
+    },
+    {
+      "id": "data_privacy",
+      "difficulty": "beginner",
+      "icon": "database",
+      "cover": "assets/images/modules/data_privacy.png",
+      "title": {
+        "ru": "Защита данных и приватность",
+        "en": "Data Security & Privacy (DLP)",
+        "kk": "Деректер қауіпсіздігі және құпиялық"
+      },
+      "subtitle": {
+        "ru": "Классификация, DLP, права, шифрование и бэкапы.",
+        "en": "Classification, DLP, access, encryption, and backups.",
+        "kk": "Жіктеу, DLP, қолжетім, шифрлау және бэкап."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Данные как актив",
+              "Классификация данных",
+              "DLP и предотвращение утечек",
+              "Права доступа к файлам",
+              "Шифрование дисков/файлов",
+              "Бэкапы 3-2-1"
+            ],
+            "en": [
+              "Data as an asset",
+              "Data classification",
+              "DLP basics",
+              "File permissions",
+              "Disk/file encryption",
+              "3-2-1 backups"
+            ],
+            "kk": [
+              "Дерек актив ретінде",
+              "Дерек жіктеу",
+              "DLP негіздері",
+              "Файл рұқсаттары",
+              "Шифрлау",
+              "3-2-1 бэкап"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "ds_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Данные как актив: что защищаем на самом деле",
+            "en": "Data as an asset: what we really protect",
+            "kk": "Дерек актив: нақты нені қорғаймыз"
+          }
+        },
+        {
+          "id": "ds_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Классификация данных (Public/Internal/Confidential)",
+            "en": "Data classification (Public/Internal/Confidential)",
+            "kk": "Деректерді жіктеу (Public/Internal/Confidential)"
+          }
+        },
+        {
+          "id": "ds_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "DLP: как предотвращают утечки в компаниях",
+            "en": "DLP: how companies prevent data leaks",
+            "kk": "DLP: компаниялар қалай тоқтатады"
+          }
+        },
+        {
+          "id": "ds_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Контроль доступа к файлам: права, уровни, наследование",
+            "en": "File access control: permissions and inheritance",
+            "kk": "Файл қолжетімі: рұқсаттар және мұралау"
+          }
+        },
+        {
+          "id": "ds_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Шифрование дисков и файлов (обзор)",
+            "en": "Disk and file encryption (overview)",
+            "kk": "Диск/файл шифрлау (шолу)"
+          }
+        },
+        {
+          "id": "ds_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Бэкапы: правило 3-2-1 и типовые ошибки",
+            "en": "Backups: the 3-2-1 rule and common mistakes",
+            "kk": "Бэкап: 3-2-1 ережесі және қателер"
+          }
+        },
+        {
+          "id": "ds_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Утечки данных: сценарии и как они происходят",
+            "en": "Data leaks: scenarios and how they happen",
+            "kk": "Дерек ағуы: сценарийлер және қалай болады"
+          }
+        },
+        {
+          "id": "ds_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Privacy: персональные данные и минимизация риска",
+            "en": "Privacy: personal data and risk minimization",
+            "kk": "Құпиялық: жеке дерек және тәуекелді азайту"
+          }
+        }
+      ]
+    },
+    {
+      "id": "appsec_devsecops",
+      "difficulty": "intermediate",
+      "icon": "code",
+      "cover": "assets/images/modules/appsec.png",
+      "title": {
+        "ru": "AppSec & DevSecOps",
+        "en": "AppSec & DevSecOps",
+        "kk": "AppSec және DevSecOps"
+      },
+      "subtitle": {
+        "ru": "OWASP, уязвимости веба и безопасность в CI/CD.",
+        "en": "OWASP, web vulnerabilities, security in CI/CD.",
+        "kk": "OWASP, веб осалдықтары және CI/CD қауіпсіздігі."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Почему приложения ломают",
+              "OWASP Top 10",
+              "SQLi, XSS, CSRF (концепт)",
+              "Auth & sessions",
+              "SAST/DAST/SCA",
+              "API и контейнеры (обзор)"
+            ],
+            "en": [
+              "Why apps get hacked",
+              "OWASP Top 10",
+              "SQLi/XSS/CSRF (concept)",
+              "Auth & sessions",
+              "SAST/DAST/SCA",
+              "API & containers (overview)"
+            ],
+            "kk": [
+              "Неге қосымшалар бұзылады",
+              "OWASP Top 10",
+              "SQLi/XSS/CSRF",
+              "Auth/session",
+              "SAST/DAST/SCA",
+              "API/контейнер (шолу)"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "as_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Почему приложения ломают чаще всего",
+            "en": "Why applications are hacked so often",
+            "kk": "Неге қосымшаларды жиі бұзады"
+          }
+        },
+        {
+          "id": "as_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "OWASP Top 10: карта главных проблем",
+            "en": "OWASP Top 10: the map of key risks",
+            "kk": "OWASP Top 10: негізгі қауіп картасы"
+          }
+        },
+        {
+          "id": "as_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "SQL Injection: идея, примеры, защита",
+            "en": "SQL Injection: idea, examples, defense",
+            "kk": "SQL Injection: идея, мысал, қорғаныс"
+          }
+        },
+        {
+          "id": "as_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "XSS и CSRF: как работает и чем опасно",
+            "en": "XSS and CSRF: how it works and why it’s dangerous",
+            "kk": "XSS және CSRF: қалай жұмыс істейді және қаупі"
+          }
+        },
+        {
+          "id": "as_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Auth & Session: токены, куки, ошибки логина",
+            "en": "Auth & sessions: tokens, cookies, login pitfalls",
+            "kk": "Auth & session: токен, cookie, login қателері"
+          }
+        },
+        {
+          "id": "as_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "DevSecOps: безопасность в CI/CD",
+            "en": "DevSecOps: security in CI/CD",
+            "kk": "DevSecOps: CI/CD қауіпсіздігі"
+          }
+        },
+        {
+          "id": "as_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "SAST/DAST/SCA: анализ кода и зависимостей",
+            "en": "SAST/DAST/SCA: code and dependency analysis",
+            "kk": "SAST/DAST/SCA: код/тәуелділік талдауы"
+          }
+        },
+        {
+          "id": "as_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "API + контейнеры: безопасность REST, Docker, K8s (обзор)",
+            "en": "API + containers: REST, Docker, K8s security (overview)",
+            "kk": "API және контейнер: REST, Docker, K8s қауіпсіздігі (шолу)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "secops_ir",
+      "difficulty": "intermediate",
+      "icon": "activity",
+      "cover": "assets/images/modules/secops.png",
+      "title": {
+        "ru": "SecOps: мониторинг и реагирование",
+        "en": "SecOps: Monitoring & Incident Response",
+        "kk": "SecOps: мониторинг және әрекет ету"
+      },
+      "subtitle": {
+        "ru": "Логи, SIEM, детекты, IR и пост‑инцидентный разбор.",
+        "en": "Logs, SIEM, detections, IR, and post-incident reviews.",
+        "kk": "Логтар, SIEM, детект, IR және талдау."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Что такое SOC",
+              "Логи и события",
+              "SIEM и корреляция",
+              "Threat Intelligence",
+              "Incident Response этапы",
+              "SOAR и пост‑разбор"
+            ],
+            "en": [
+              "What a SOC is",
+              "Logs and events",
+              "SIEM correlation",
+              "Threat intelligence",
+              "IR phases",
+              "SOAR & postmortems"
+            ],
+            "kk": [
+              "SOC деген не",
+              "Логтар",
+              "SIEM",
+              "Threat intel",
+              "IR кезеңдері",
+              "SOAR және postmortem"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "so_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Что такое SOC и как он работает",
+            "en": "What a SOC is and how it works",
+            "kk": "SOC деген не және қалай жұмыс істейді"
+          }
+        },
+        {
+          "id": "so_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Логи: какие бывают и зачем они нужны",
+            "en": "Logs: types and why they matter",
+            "kk": "Логтар: түрлері және не үшін керек"
+          }
+        },
+        {
+          "id": "so_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "SIEM: сбор, нормализация, корреляция событий",
+            "en": "SIEM: collection, normalization, correlation",
+            "kk": "SIEM: жинау, нормалау, корреляция"
+          }
+        },
+        {
+          "id": "so_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Detection Engineering: правила детекта (концепт)",
+            "en": "Detection engineering: detection rules (concept)",
+            "kk": "Detection engineering: детект ережелері (концепт)"
+          }
+        },
+        {
+          "id": "so_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Threat Intelligence: источники и применение",
+            "en": "Threat intelligence: sources and use",
+            "kk": "Threat intelligence: дереккөз және қолдану"
+          }
+        },
+        {
+          "id": "so_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Incident Response: этапы (prepare → contain → recover)",
+            "en": "Incident response: phases (prepare → contain → recover)",
+            "kk": "Incident response: кезеңдер (prepare → contain → recover)"
+          }
+        },
+        {
+          "id": "so_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "SOAR: автоматизация реагирования",
+            "en": "SOAR: response automation",
+            "kk": "SOAR: әрекет етуді автоматтандыру"
+          }
+        },
+        {
+          "id": "so_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Пост-инцидентный разбор: отчёт, уроки, улучшения",
+            "en": "Post-incident review: report, lessons, improvements",
+            "kk": "Оқиғадан кейін талдау: есеп, сабақ, жақсарту"
+          }
+        }
+      ]
+    },
+    {
+      "id": "offsec",
+      "difficulty": "intermediate",
+      "icon": "target",
+      "cover": "assets/images/modules/offsec.png",
+      "title": {
+        "ru": "Offensive Security (Pentest & Red Team)",
+        "en": "Offensive Security (Pentest & Red Team)",
+        "kk": "Offensive Security (Pentest & Red Team)"
+      },
+      "subtitle": {
+        "ru": "Пентест легально: этапы, этика и отчётность.",
+        "en": "Pentesting legally: phases, ethics, reporting.",
+        "kk": "Заңды пентест: кезеңдер, этика, есеп."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Чем пентест отличается от взлома",
+              "Этапы: recon→scan→exploit→report",
+              "OSINT и сканирование (концепт)",
+              "Мисконфигурации",
+              "Red Team vs Pentest",
+              "Bug Bounty и этика"
+            ],
+            "en": [
+              "Pentest vs hacking",
+              "Phases: recon→scan→exploit→report",
+              "OSINT & scanning (concept)",
+              "Misconfigurations",
+              "Red team vs pentest",
+              "Bug bounty ethics"
+            ],
+            "kk": [
+              "Пентест vs бұзу",
+              "Кезеңдер",
+              "OSINT/скан",
+              "Мисконфигурация",
+              "Red Team vs Pentest",
+              "Bug Bounty этика"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "of_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Пентест: зачем нужен и чем отличается от взлома",
+            "en": "Pentest: why it exists and how it differs from hacking",
+            "kk": "Пентест: не үшін керек және бұзудан айырмасы"
+          }
+        },
+        {
+          "id": "of_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Этапы pentest: recon → scan → exploit → report",
+            "en": "Pentest phases: recon → scan → exploit → report",
+            "kk": "Pentest кезеңдері: recon → scan → exploit → report"
+          }
+        },
+        {
+          "id": "of_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "OSINT: сбор информации из открытых источников",
+            "en": "OSINT: gathering from open sources",
+            "kk": "OSINT: ашық дереккөзден жинау"
+          }
+        },
+        {
+          "id": "of_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Сканирование: порты, сервисы, версии (концепт)",
+            "en": "Scanning: ports, services, versions (concept)",
+            "kk": "Скан: порттар, сервистер, версиялар (концепт)"
+          }
+        },
+        {
+          "id": "of_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Мисконфигурации: самая частая причина взлома",
+            "en": "Misconfigurations: the most common root cause",
+            "kk": "Мисконфигурация: ең жиі себеп"
+          }
+        },
+        {
+          "id": "of_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Exploitation: что это (без опасных деталей)",
+            "en": "Exploitation: what it is (no dangerous details)",
+            "kk": "Exploitation: не (қауіпті детальсіз)"
+          }
+        },
+        {
+          "id": "of_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Red Team vs Pentest: различия по цели",
+            "en": "Red team vs pentest: differences in goals",
+            "kk": "Red Team vs Pentest: мақсат айырмасы"
+          }
+        },
+        {
+          "id": "of_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Bug Bounty: правила, этика и подход",
+            "en": "Bug bounty: rules, ethics, approach",
+            "kk": "Bug bounty: ереже, этика, тәсіл"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cloud_sec",
+      "difficulty": "intermediate",
+      "icon": "cloud",
+      "cover": "assets/images/modules/cloud_sec.png",
+      "title": {
+        "ru": "Cloud Security",
+        "en": "Cloud Security",
+        "kk": "Cloud қауіпсіздігі"
+      },
+      "subtitle": {
+        "ru": "Shared responsibility, IAM, хранение и мониторинг в облаке.",
+        "en": "Shared responsibility, IAM, storage, and monitoring in cloud.",
+        "kk": "Shared responsibility, IAM, сақтау және мониторинг."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "IaaS/PaaS/SaaS",
+              "Shared Responsibility Model",
+              "Cloud IAM",
+              "Безопасность хранения",
+              "Логи и мониторинг",
+              "Мисконфигурации и CASB"
+            ],
+            "en": [
+              "IaaS/PaaS/SaaS",
+              "Shared responsibility model",
+              "Cloud IAM",
+              "Secure storage",
+              "Logging & monitoring",
+              "Misconfigs & CASB"
+            ],
+            "kk": [
+              "IaaS/PaaS/SaaS",
+              "Shared responsibility",
+              "Cloud IAM",
+              "Сақтау қауіпсіздігі",
+              "Лог/мониторинг",
+              "Мисконфигурация/CASB"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "cl_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Облако: IaaS/PaaS/SaaS и чем они отличаются",
+            "en": "Cloud: IaaS/PaaS/SaaS and how they differ",
+            "kk": "Бұлт: IaaS/PaaS/SaaS айырмашылығы"
+          }
+        },
+        {
+          "id": "cl_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Shared Responsibility Model",
+            "en": "Shared responsibility model",
+            "kk": "Shared responsibility моделі"
+          }
+        },
+        {
+          "id": "cl_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Cloud IAM: роли, политики, ключи доступа",
+            "en": "Cloud IAM: roles, policies, access keys",
+            "kk": "Cloud IAM: рөл, саясат, access key"
+          }
+        },
+        {
+          "id": "cl_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Безопасность хранения (объектное хранилище, базы)",
+            "en": "Storage security (object storage, databases)",
+            "kk": "Сақтау қауіпсіздігі (object storage, DB)"
+          }
+        },
+        {
+          "id": "cl_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Логи и мониторинг в облаке",
+            "en": "Cloud logging and monitoring",
+            "kk": "Бұлттағы лог және мониторинг"
+          }
+        },
+        {
+          "id": "cl_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Мисконфигурации: типовые ошибки (public bucket и т.д.)",
+            "en": "Misconfigurations: common mistakes (public buckets, etc.)",
+            "kk": "Мисконфигурация: жиі қателер (public bucket, т.б.)"
+          }
+        },
+        {
+          "id": "cl_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "CASB и контроль облачных сервисов",
+            "en": "CASB and cloud service control",
+            "kk": "CASB және бұлт сервистерін бақылау"
+          }
+        },
+        {
+          "id": "cl_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Serverless и микросервисы: риски и защита (обзор)",
+            "en": "Serverless and microservices: risks and defenses (overview)",
+            "kk": "Serverless және микросервис: тәуекел және қорғаныс (шолу)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys_forensics_resilience",
+      "difficulty": "beginner",
+      "icon": "shield-alert",
+      "cover": "assets/images/modules/phys_forensics.png",
+      "title": {
+        "ru": "Физическая безопасность, Forensics и устойчивость",
+        "en": "Physical Security, Forensics & Resilience (DR/BCP)",
+        "kk": "Физикалық қауіпсіздік, Forensics және тұрақтылық"
+      },
+      "subtitle": {
+        "ru": "Доступы, доказательства, DRP/BCP и непрерывность бизнеса.",
+        "en": "Access control, evidence, DR/BCP and business continuity.",
+        "kk": "Қолжетім, дәлел, DR/BCP және бизнес үздіксіздігі."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Физическая защита",
+              "СКУД и зоны доступа",
+              "Инсайдеры",
+              "Forensics и chain of custody",
+              "Артефакты после атаки",
+              "DRP и BCP"
+            ],
+            "en": [
+              "Physical protection",
+              "Access control systems",
+              "Insiders",
+              "Forensics and chain of custody",
+              "Post-attack artifacts",
+              "DR and BCP"
+            ],
+            "kk": [
+              "Физикалық қорғаныс",
+              "Қолжетім жүйелері",
+              "Insider тәуекелі",
+              "Forensics және chain of custody",
+              "Артефакттар",
+              "DRP және BCP"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "pf_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Физическая безопасность: зачем она в ИБ",
+            "en": "Physical security: why it matters in security",
+            "kk": "Физикалық қауіпсіздік: не үшін маңызды"
+          }
+        },
+        {
+          "id": "pf_02",
+          "durationMin": 5,
+          "stepsCount": 6,
+          "title": {
+            "ru": "СКУД, камеры, зоны доступа и периметр",
+            "en": "Access control, cameras, zones, perimeter",
+            "kk": "СКУД, камера, аймақтар және периметр"
+          }
+        },
+        {
+          "id": "pf_03",
+          "durationMin": 5,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Инсайдеры: риск внутри компании",
+            "en": "Insiders: risk inside the organization",
+            "kk": "Инсайдер: компания ішіндегі тәуекел"
+          }
+        },
+        {
+          "id": "pf_04",
+          "durationMin": 8,
+          "stepsCount": 8,
+          "title": {
+            "ru": "Forensics: что это и зачем нужно",
+            "en": "Forensics: what it is and why it matters",
+            "kk": "Forensics: не және не үшін керек"
+          }
+        },
+        {
+          "id": "pf_05",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Сбор доказательств и chain of custody",
+            "en": "Evidence collection and chain of custody",
+            "kk": "Дәлел жинау және chain of custody"
+          }
+        },
+        {
+          "id": "pf_06",
+          "durationMin": 6,
+          "stepsCount": 5,
+          "title": {
+            "ru": "Артефакты: что ищут после атаки (лог, диск, память)",
+            "en": "Artifacts: what investigators look for after an attack",
+            "kk": "Артефакт: шабуылдан кейін не іздейді"
+          }
+        },
+        {
+          "id": "pf_07",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "DRP: восстановление после катастроф",
+            "en": "DRP: disaster recovery planning",
+            "kk": "DRP: апаттан кейін қалпына келу"
+          }
+        },
+        {
+          "id": "pf_08",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "BCP: непрерывность бизнеса + учения",
+            "en": "BCP: business continuity + drills",
+            "kk": "BCP: бизнес үздіксіздігі + жаттығу"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ai_llm_sec",
+      "difficulty": "intermediate",
+      "icon": "sparkles",
+      "cover": "assets/images/modules/ai_llm.png",
+      "title": {
+        "ru": "Искусственный интеллект в ИБ",
+        "en": "AI & LLM Security",
+        "kk": "ИБ‑дағы жасанды интеллект"
+      },
+      "subtitle": {
+        "ru": "Как ИИ защищает и как его атакуют (концепты).",
+        "en": "How AI defends and how it's attacked (concepts).",
+        "kk": "AI қорғаныста және AI‑ға шабуыл (концепт)."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Использование ИИ в ИБ",
+              "UEBA и аномалии",
+              "SOAR + AI",
+              "Атаки на ML (концепт)",
+              "LLM Security: prompt injection",
+              "Дипфейки и AI‑фишинг"
+            ],
+            "en": [
+              "AI in security",
+              "UEBA/anomalies",
+              "SOAR + AI",
+              "ML attacks (concept)",
+              "LLM security: prompt injection",
+              "Deepfakes and AI phishing"
+            ],
+            "kk": [
+              "ИБ‑да AI қолдану",
+              "UEBA/аномалия",
+              "SOAR + AI",
+              "ML шабуыл",
+              "LLM: prompt injection",
+              "Дипфейк және AI фишинг"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "ai_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Как ИИ используется в кибербезопасности сегодня",
+            "en": "How AI is used in cybersecurity today",
+            "kk": "AI қазір киберқауіпсіздікте қалай қолданылады"
+          }
+        },
+        {
+          "id": "ai_02",
+          "durationMin": 6,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Defensive AI: поиск аномалий и UEBA",
+            "en": "Defensive AI: anomaly detection and UEBA",
+            "kk": "Defensive AI: аномалия және UEBA"
+          }
+        },
+        {
+          "id": "ai_03",
+          "durationMin": 6,
+          "stepsCount": 7,
+          "title": {
+            "ru": "SOAR + AI: автоматический ответ на инциденты",
+            "en": "SOAR + AI: automated incident response",
+            "kk": "SOAR + AI: инцидентке авто жауап"
+          }
+        },
+        {
+          "id": "ai_04",
+          "durationMin": 7,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Атаки на ML: evasion и data poisoning",
+            "en": "Attacks on ML: evasion and data poisoning",
+            "kk": "ML‑ға шабуыл: evasion және data poisoning"
+          }
+        },
+        {
+          "id": "ai_05",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "LLM Security: prompt injection, утечки, jailbreak",
+            "en": "LLM security: prompt injection, leaks, jailbreaks",
+            "kk": "LLM қауіпсіздігі: prompt injection, ағу, jailbreak"
+          }
+        },
+        {
+          "id": "ai_06",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "AI для атак: дипфейки, фишинг, генерация вредоноса",
+            "en": "AI for attacks: deepfakes, phishing, malware generation",
+            "kk": "Шабуылға AI: дипфейк, фишинг, зиянды генерация"
+          }
+        }
+      ]
+    },
+    {
+      "id": "iot_sec",
+      "difficulty": "intermediate",
+      "icon": "cpu",
+      "cover": "assets/images/modules/iot.png",
+      "title": {
+        "ru": "Безопасность интернета вещей",
+        "en": "IoT Security",
+        "kk": "IoT қауіпсіздігі"
+      },
+      "subtitle": {
+        "ru": "Дефолтные пароли, прошивки, протоколы и сегментация.",
+        "en": "Default passwords, firmware, protocols, segmentation.",
+        "kk": "Дефолт құпиясөз, firmware, протокол және сегментация."
+      },
+      "descriptionSections": [
+        {
+          "title": {
+            "ru": "Что я узнаю?",
+            "en": "What will I learn?",
+            "kk": "Не үйренемін?"
+          },
+          "bullets": {
+            "ru": [
+              "Почему IoT опасен",
+              "Дефолтные пароли",
+              "Прошивки и OTA",
+              "Протоколы Zigbee/MQTT/BLE (обзор)",
+              "Сегментация IoT",
+              "Риски в бизнесе"
+            ],
+            "en": [
+              "Why IoT is risky",
+              "Default passwords",
+              "Firmware/OTA",
+              "Zigbee/MQTT/BLE (overview)",
+              "IoT segmentation",
+              "Business IoT risks"
+            ],
+            "kk": [
+              "Неге IoT қауіпті",
+              "Дефолт пароль",
+              "Firmware/OTA",
+              "Zigbee/MQTT/BLE (шолу)",
+              "IoT сегментациясы",
+              "Бизнес тәуекелі"
+            ]
+          }
+        }
+      ],
+      "lessons": [
+        {
+          "id": "iot_01",
+          "durationMin": 6,
+          "stepsCount": 3,
+          "title": {
+            "ru": "Что такое IoT и почему это опасно",
+            "en": "What IoT is and why it can be dangerous",
+            "kk": "IoT не және неге қауіпті"
+          }
+        },
+        {
+          "id": "iot_02",
+          "durationMin": 6,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Дефолтные пароли и слабая аутентификация",
+            "en": "Default passwords and weak authentication",
+            "kk": "Дефолт пароль және әлсіз аутентификация"
+          }
+        },
+        {
+          "id": "iot_03",
+          "durationMin": 7,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Прошивки, OTA-обновления и secure boot",
+            "en": "Firmware, OTA updates, and secure boot",
+            "kk": "Firmware, OTA жаңарту және secure boot"
+          }
+        },
+        {
+          "id": "iot_04",
+          "durationMin": 7,
+          "stepsCount": 7,
+          "title": {
+            "ru": "Протоколы IoT: Zigbee, MQTT, BLE (обзор)",
+            "en": "IoT protocols: Zigbee, MQTT, BLE (overview)",
+            "kk": "IoT протоколдары: Zigbee, MQTT, BLE (шолу)"
+          }
+        },
+        {
+          "id": "iot_05",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "Сегментация IoT: отдельная сеть и правила доступа",
+            "en": "IoT segmentation: separate network and access rules",
+            "kk": "IoT сегментациясы: бөлек желі және ережелер"
+          }
+        },
+        {
+          "id": "iot_06",
+          "durationMin": 7,
+          "stepsCount": 6,
+          "title": {
+            "ru": "IoT в бизнесе: риски камер, датчиков, умных устройств",
+            "en": "IoT in business: risks of cameras, sensors, smart devices",
+            "kk": "Бизнес IoT: камера, датчик, smart құрылғы тәуекелі"
+          }
+        }
+      ]
+    }
+  ]
+}
