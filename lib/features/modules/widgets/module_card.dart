@@ -14,9 +14,21 @@ class ModuleCard extends StatelessWidget {
   });
 
   final Module module;
-  final String lang;
+  final String lang; // 'ru' | 'en' | 'kk'
   final VoidCallback onTap;
   final double progress;
+
+  String _getText(Object? field) {
+    if (field is Map<String, String>) {
+      return field[lang] ?? field['ru'] ?? '';
+    }
+    if (field is Map) {
+      final Object? fallback = field.isNotEmpty ? field.values.first : null;
+      final Object? value = field[lang] ?? field['ru'] ?? fallback;
+      return value?.toString() ?? '';
+    }
+    return field?.toString() ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +43,7 @@ class ModuleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: Container(
           height: 210,
+          margin: EdgeInsets.zero,
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(16),
@@ -73,7 +86,7 @@ class ModuleCard extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              tr(module.title, lang),
+                              _getText(module.title),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyles.cardTitle,
@@ -84,7 +97,7 @@ class ModuleCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        tr(module.subtitle, lang),
+                        _getText(module.subtitle),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.secondary,
@@ -125,6 +138,10 @@ class ModuleCard extends StatelessWidget {
   }
 
   Widget _difficultyChip(String difficulty) {
+    final String label = difficulty.isNotEmpty
+        ? '${difficulty[0].toUpperCase()}${difficulty.substring(1)}'
+        : '';
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -132,7 +149,7 @@ class ModuleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        difficulty,
+        label,
         style: AppTextStyles.chip,
       ),
     );
