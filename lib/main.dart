@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-import 'core/localization/locale_controller.dart';
+import 'core/localization/language_provider.dart';
 import 'core/routing/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
@@ -25,7 +25,8 @@ class SiruApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Locale locale = ref.watch(localeControllerProvider);
+    final String language = ref.watch(languageProvider);
+    final Locale locale = Locale(language);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

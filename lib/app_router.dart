@@ -15,6 +15,7 @@ import 'features/mistakes/presentation/quiz/question_screen.dart';
 import 'features/mistakes/presentation/quiz/result_screen.dart';
 import 'features/mistakes/work_on_mistakes_screen.dart';
 import 'features/modules/modules_catalog.dart';
+import 'features/modules/presentation/module_detail_screen.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/profile/profile_screen.dart';
 import 'features/survey/survey_screen.dart';
@@ -34,6 +35,12 @@ class AppRouter {
       GoRoute(path: '/auth/verify', builder: (_, __) => const VerifyCodeScreen()),
       GoRoute(path: '/auth/reset', builder: (_, __) => const ResetPasswordScreen()),
       GoRoute(path: '/auth/success', builder: (_, __) => const PasswordChangedScreen()),
+      GoRoute(
+        path: '/module/:id',
+        builder: (_, GoRouterState state) => ModuleDetailScreen(
+          moduleId: state.pathParameters['id'] ?? '',
+        ),
+      ),
       GoRoute(path: '/app', redirect: (_, __) => '/app/home'),
       StatefulShellRoute.indexedStack(
         builder: (BuildContext context, GoRouterState state, StatefulNavigationShell shell) {

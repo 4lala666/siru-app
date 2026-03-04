@@ -46,7 +46,9 @@ flutter:
     - assets/
     - assets/fonts/
     - assets/images/
+    - assets/images/modules/
     - assets/data/facts.json
+    - assets/data/modules.json
     - assets/data/questions.json
 
   fonts:

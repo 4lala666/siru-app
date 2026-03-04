@@ -2,93 +2,154 @@
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
-import 'module_data.dart';
+import '../domain/module_models.dart';
 
 class ModuleCard extends StatelessWidget {
-  const ModuleCard({super.key, required this.module});
+  const ModuleCard({
+    super.key,
+    required this.module,
+    required this.lang,
+    required this.onTap,
+    required this.progress,
+  });
 
-  final ModuleItem module;
+  final Module module;
+  final String lang;
+  final VoidCallback onTap;
+  final double progress;
 
   @override
   Widget build(BuildContext context) {
-    final bool completed = module.status == 'Completed';
-    final bool locked = module.status == 'Locked';
+    final int lessonsCount = module.lessons.length;
+    final int totalMinutes = module.lessons.fold<int>(0, (int sum, Lesson l) => sum + l.durationMin);
+    final int xp = lessonsCount * 25;
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: AppColors.softShadow,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
+        child: Container(
+          height: 210,
+          decoration: BoxDecoration(
+            color: AppColors.cardBackground,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: AppColors.softShadow,
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Stack(
             children: <Widget>[
-              Icon(
-                locked ? Icons.lock_outline : Icons.shield_outlined,
-                color: locked ? AppColors.textSecondary : AppColors.accent,
+              Positioned.fill(
+                child: Image.asset(
+                  module.cover,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Container(color: const Color(0xFF123A82)),
+                ),
               ),
-              const SizedBox(width: 10),
-              Expanded(child: Text(module.title, style: AppTextStyles.cardTitle)),
-              _DifficultyBadge(text: module.difficulty),
-              const SizedBox(width: 8),
-              Icon(
-                completed
-                    ? Icons.check_circle_outline
-                    : (locked ? Icons.lock_outline : Icons.timelapse_outlined),
-                color: completed ? AppColors.accent : AppColors.textSecondary,
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: <Color>[
+                        Colors.black.withValues(alpha: 0.65),
+                        Colors.black.withValues(alpha: 0.25),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          _iconFor(module.icon),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              tr(module.title, lang),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.cardTitle,
+                            ),
+                          ),
+                          _difficultyChip(module.difficulty),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        tr(module.subtitle, lang),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.secondary,
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: <Widget>[
+                          const Icon(Icons.menu_book_outlined, size: 16, color: AppColors.text),
+                          const SizedBox(width: 4),
+                          Text('$lessonsCount lessons', style: AppTextStyles.chip),
+                          const SizedBox(width: 12),
+                          const Icon(Icons.schedule_outlined, size: 16, color: AppColors.text),
+                          const SizedBox(width: 4),
+                          Text('$totalMinutes min', style: AppTextStyles.chip),
+                          const Spacer(),
+                          Text('$xp XP', style: AppTextStyles.chip),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: LinearProgressIndicator(
+                          value: progress,
+                          minHeight: 8,
+                          backgroundColor: Colors.white.withValues(alpha: 0.28),
+                          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          Text(module.description, style: AppTextStyles.body),
-          const SizedBox(height: 10),
-          Row(
-            children: <Widget>[
-              const Icon(Icons.menu_book_outlined, size: 18),
-              const SizedBox(width: 4),
-              Text('${module.lessons} lessons', style: AppTextStyles.secondary),
-              const SizedBox(width: 12),
-              const Icon(Icons.schedule_outlined, size: 18),
-              const SizedBox(width: 4),
-              Text('${module.minutes} min', style: AppTextStyles.secondary),
-              const Spacer(),
-              Text('${module.xp} XP', style: AppTextStyles.chip),
-            ],
-          ),
-          const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: LinearProgressIndicator(
-              value: module.progress,
-              minHeight: 8,
-              backgroundColor: const Color(0x33FFFFFF),
-              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
-}
 
-class _DifficultyBadge extends StatelessWidget {
-  const _DifficultyBadge({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _difficultyChip(String difficulty) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color(0x26FFFFFF),
+        color: Colors.black.withValues(alpha: 0.35),
         borderRadius: BorderRadius.circular(999),
       ),
-      child: Text(text, style: AppTextStyles.chip),
+      child: Text(
+        difficulty,
+        style: AppTextStyles.chip,
+      ),
     );
   }
-}
 
+  Widget _iconFor(String icon) {
+    switch (icon) {
+      case 'shield':
+        return const Icon(Icons.shield_outlined, color: AppColors.accent);
+      case 'users':
+        return const Icon(Icons.groups_outlined, color: AppColors.accent);
+      case 'network':
+        return const Icon(Icons.hub_outlined, color: AppColors.accent);
+      case 'lock':
+        return const Icon(Icons.lock_outline, color: AppColors.accent);
+      default:
+        return const Icon(Icons.extension_outlined, color: AppColors.accent);
+    }
+  }
+}

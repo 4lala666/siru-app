@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
-import '../../../core/localization/locale_controller.dart';
+import '../../../core/localization/language_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import 'edit_profile_sheet.dart';
 
@@ -106,7 +106,7 @@ class ProfileScreen extends ConsumerWidget {
                   title: s.russian,
                   selected: code == 'ru',
                   onTap: () async {
-                    await ref.read(localeControllerProvider.notifier).setLocale('ru');
+                    await ref.read(languageProvider.notifier).setLanguage('ru');
                     if (context.mounted) Navigator.of(context).pop();
                   },
                 ),
@@ -114,7 +114,7 @@ class ProfileScreen extends ConsumerWidget {
                   title: s.kazakh,
                   selected: code == 'kk',
                   onTap: () async {
-                    await ref.read(localeControllerProvider.notifier).setLocale('kk');
+                    await ref.read(languageProvider.notifier).setLanguage('kk');
                     if (context.mounted) Navigator.of(context).pop();
                   },
                 ),
@@ -122,7 +122,7 @@ class ProfileScreen extends ConsumerWidget {
                   title: s.english,
                   selected: code == 'en',
                   onTap: () async {
-                    await ref.read(localeControllerProvider.notifier).setLocale('en');
+                    await ref.read(languageProvider.notifier).setLanguage('en');
                     if (context.mounted) Navigator.of(context).pop();
                   },
                 ),

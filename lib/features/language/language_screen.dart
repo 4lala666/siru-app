@@ -2,7 +2,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/localization/locale_controller.dart';
+import '../../core/localization/language_provider.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/siru_layout.dart';
 import '../../l10n/app_localizations.dart';
@@ -56,7 +56,7 @@ class LanguageScreen extends ConsumerWidget {
     WidgetRef ref,
     String code,
   ) async {
-    await ref.read(localeControllerProvider.notifier).setLocale(code);
+    await ref.read(languageProvider.notifier).setLanguage(code);
     if (context.mounted) {
       context.go('/welcome');
     }
