@@ -21,6 +21,7 @@ class AuthController extends StateNotifier<AuthUiState> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future<String?> signUpEmail(String email, String password) async {
     return _runGuarded(() async {
@@ -44,8 +45,9 @@ class AuthController extends StateNotifier<AuthUiState> {
 
   Future<String?> signOut() async {
     return _runGuarded(() async {
-      // если хотите — можно ещё GoogleSignIn().signOut()
       await _auth.signOut();
+      // Also clear cached Google account to force chooser next time.
+      await _googleSignIn.signOut();
     });
   }
 
@@ -57,7 +59,15 @@ class AuthController extends StateNotifier<AuthUiState> {
 
   Future<String?> signInWithGoogle() async {
     return _runGuarded(() async {
-      final googleUser = await GoogleSignIn().signIn();
+      // Force account chooser instead of auto-using last signed account.
+      try {
+        await _googleSignIn.disconnect();
+      } catch (_) {
+        // ignore: disconnect throws when there is no active Google session
+      }
+      await _googleSignIn.signOut();
+
+      final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
         throw Exception('Google sign-in cancelled');
       }
