@@ -8,12 +8,14 @@ class ModuleCard extends StatelessWidget {
   const ModuleCard({
     super.key,
     required this.module,
+    required this.moduleNumber,
     required this.lang,
     required this.onTap,
     required this.progress,
   });
 
   final Module module;
+  final int moduleNumber;
   final String lang; // 'ru' | 'en' | 'kk'
   final VoidCallback onTap;
   final double progress;
@@ -33,7 +35,6 @@ class ModuleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int lessonsCount = module.lessons.length;
-    final int totalMinutes = module.lessons.fold<int>(0, (int sum, Lesson l) => sum + l.durationMin);
     final int xp = lessonsCount * 25;
 
     return Material(
@@ -92,7 +93,7 @@ class ModuleCard extends StatelessWidget {
                               style: AppTextStyles.cardTitle,
                             ),
                           ),
-                          _difficultyChip(module.difficulty),
+                          _moduleChip(),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -107,11 +108,7 @@ class ModuleCard extends StatelessWidget {
                         children: <Widget>[
                           const Icon(Icons.menu_book_outlined, size: 16, color: AppColors.text),
                           const SizedBox(width: 4),
-                          Text('$lessonsCount lessons', style: AppTextStyles.chip),
-                          const SizedBox(width: 12),
-                          const Icon(Icons.schedule_outlined, size: 16, color: AppColors.text),
-                          const SizedBox(width: 4),
-                          Text('$totalMinutes min', style: AppTextStyles.chip),
+                          Text(_lessonsText(lessonsCount), style: AppTextStyles.chip),
                           const Spacer(),
                           Text('$xp XP', style: AppTextStyles.chip),
                         ],
@@ -137,11 +134,7 @@ class ModuleCard extends StatelessWidget {
     );
   }
 
-  Widget _difficultyChip(String difficulty) {
-    final String label = difficulty.isNotEmpty
-        ? '${difficulty[0].toUpperCase()}${difficulty.substring(1)}'
-        : '';
-
+  Widget _moduleChip() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -149,10 +142,34 @@ class ModuleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        label,
+        _moduleLabel(moduleNumber),
         style: AppTextStyles.chip,
       ),
     );
+  }
+
+  String _moduleLabel(int number) {
+    switch (lang) {
+      case 'en':
+        return 'Module $number';
+      case 'kk':
+        return '$number-модуль';
+      case 'ru':
+      default:
+        return 'Модуль $number';
+    }
+  }
+
+  String _lessonsText(int count) {
+    switch (lang) {
+      case 'en':
+        return '$count lessons';
+      case 'kk':
+        return '$count сабақ';
+      case 'ru':
+      default:
+        return '$count уроков';
+    }
   }
 
   Widget _iconFor(String icon) {

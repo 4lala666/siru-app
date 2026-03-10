@@ -26,7 +26,7 @@ class ModuleDetailScreen extends ConsumerWidget {
         if (module == null) {
           return Scaffold(
             appBar: AppBar(),
-            body: Center(child: Text('Module not found', style: AppTextStyles.body)),
+            body: Center(child: Text(_t(lang, 'moduleNotFound'), style: AppTextStyles.body)),
           );
         }
 
@@ -68,10 +68,10 @@ class ModuleDetailScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  bottom: const TabBar(
+                  bottom: TabBar(
                     tabs: <Tab>[
-                      Tab(text: 'Index'),
-                      Tab(text: 'Description'),
+                      Tab(text: _t(lang, 'index')),
+                      Tab(text: _t(lang, 'description')),
                     ],
                   ),
                 ),
@@ -89,9 +89,36 @@ class ModuleDetailScreen extends ConsumerWidget {
       loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (Object e, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text('Failed to load module: $e', style: AppTextStyles.body)),
+        body: Center(child: Text('${_t(lang, 'failedToLoadModule')}: $e', style: AppTextStyles.body)),
       ),
     );
+  }
+
+  String _t(String lang, String key) {
+    const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
+      'moduleNotFound': <String, String>{
+        'ru': 'Модуль не найден',
+        'en': 'Module not found',
+        'kk': 'Модуль табылмады',
+      },
+      'failedToLoadModule': <String, String>{
+        'ru': 'Не удалось загрузить модуль',
+        'en': 'Failed to load module',
+        'kk': 'Модульді жүктеу мүмкін болмады',
+      },
+      'index': <String, String>{
+        'ru': 'Индекс',
+        'en': 'Index',
+        'kk': 'Индекс',
+      },
+      'description': <String, String>{
+        'ru': 'Описание',
+        'en': 'Description',
+        'kk': 'Сипаттама',
+      },
+    };
+
+    return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
 }
 
@@ -121,12 +148,24 @@ class _IndexTab extends StatelessWidget {
             children: <Widget>[
               Text('${i + 1}. ${tr(lesson.title, lang)}', style: AppTextStyles.body),
               const SizedBox(height: 8),
-              Text('${lesson.durationMin} min • ${lesson.stepsCount} steps', style: AppTextStyles.secondary),
+              Text(_lessonMeta(lesson), style: AppTextStyles.secondary),
             ],
           ),
         );
       },
     );
+  }
+
+  String _lessonMeta(Lesson lesson) {
+    switch (lang) {
+      case 'en':
+        return '${lesson.durationMin} min • ${lesson.stepsCount} steps';
+      case 'kk':
+        return '${lesson.durationMin} мин • ${lesson.stepsCount} қадам';
+      case 'ru':
+      default:
+        return '${lesson.durationMin} мин • ${lesson.stepsCount} шагов';
+    }
   }
 }
 
