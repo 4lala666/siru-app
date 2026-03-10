@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
+import '../../auth/auth_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import 'edit_profile_sheet.dart';
 
@@ -18,6 +19,7 @@ class ProfileScreen extends ConsumerWidget {
     final bool isDark = ref.watch(isDarkModeProvider);
     final String username = ref.watch(profileNameProvider);
     final IconData avatar = ref.watch(profileAvatarProvider);
+    final bool authLoading = ref.watch(authControllerProvider).isLoading;
     final AppLocalizations s = AppLocalizations.of(context)!;
 
     return SafeArea(
@@ -61,6 +63,28 @@ class ProfileScreen extends ConsumerWidget {
           _SettingsTile(
             title: _txt(context, ru: 'Работа над ошибками', kk: 'Қателермен жұмыс', en: 'Work on mistakes'),
             onTap: () => context.push('/app/profile/mistakes'),
+          ),
+          _SettingsTile(
+            title: _txt(context, ru: 'Выйти из аккаунта', kk: 'Аккаунттан шығу', en: 'Sign out'),
+            trailing: authLoading
+                ? const SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Icon(Icons.logout),
+            onTap: authLoading
+                ? () {}
+                : () async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    final String? err = await ref.read(authControllerProvider.notifier).signOut();
+                    if (!context.mounted) return;
+                    if (err != null) {
+                      messenger.showSnackBar(SnackBar(content: Text(err)));
+                      return;
+                    }
+                    context.go('/auth');
+                  },
           ),
         ],
       ),
@@ -388,11 +412,12 @@ class _RecentBadges extends StatelessWidget {
 }
 
 class _SettingsTile extends StatelessWidget {
-  const _SettingsTile({required this.title, required this.onTap, this.subtitle});
+  const _SettingsTile({required this.title, required this.onTap, this.subtitle, this.trailing});
 
   final String title;
   final String? subtitle;
   final VoidCallback onTap;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -405,7 +430,7 @@ class _SettingsTile extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: Text(title, style: AppTextStyles.body),
           subtitle: subtitle == null ? null : Text(subtitle!, style: AppTextStyles.secondary),
-          trailing: const Icon(Icons.chevron_right),
+          trailing: trailing ?? const Icon(Icons.chevron_right),
           onTap: onTap,
         ),
       ),
