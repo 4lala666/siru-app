@@ -1,11 +1,11 @@
-﻿import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
-
-final profileNameProvider = StateProvider<String>((Ref ref) => 'Bushiridzo');
-final profileAvatarProvider = StateProvider<IconData>((Ref ref) => Icons.person);
+import '../profile_state.dart';
 
 class EditProfileSheet extends ConsumerStatefulWidget {
   const EditProfileSheet({super.key});
@@ -84,10 +84,22 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                ref.read(profileNameProvider.notifier).state =
-                    _controller.text.trim().isEmpty ? 'Bushiridzo' : _controller.text.trim();
+              onPressed: () async {
+                final String nextName = _controller.text.trim().isEmpty
+                    ? deriveNameFromEmail(FirebaseAuth.instance.currentUser?.email)
+                    : _controller.text.trim();
+                ref.read(profileNameProvider.notifier).state = nextName;
                 ref.read(profileAvatarProvider.notifier).state = _selectedAvatar;
+
+                final User? user = FirebaseAuth.instance.currentUser;
+                if (user != null) {
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(user.uid)
+                      .set(<String, dynamic>{'displayName': nextName}, SetOptions(merge: true));
+                }
+
+                if (!context.mounted) return;
                 Navigator.of(context).pop();
               },
               child: const Text('Save'),
@@ -98,4 +110,3 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
     );
   }
 }
-

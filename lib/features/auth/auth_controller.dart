@@ -151,11 +151,14 @@ class AuthController extends StateNotifier<AuthUiState> {
     final provider = user.providerData.isNotEmpty
         ? user.providerData.first.providerId
         : 'password';
+    final String fallbackName = _nameFromEmail(user.email);
+    final String displayName =
+        (user.displayName ?? '').trim().isNotEmpty ? user.displayName!.trim() : fallbackName;
 
     await ref.set({
       'uid': user.uid,
       'email': user.email,
-      'displayName': user.displayName ?? '',
+      'displayName': displayName,
       'provider': provider, // password / google.com / apple.com
       'createdAt': FieldValue.serverTimestamp(),
     });
@@ -195,4 +198,10 @@ String _sha256ofString(String input) {
   final bytes = utf8.encode(input);
   final digest = sha256.convert(bytes);
   return digest.toString();
+}
+
+String _nameFromEmail(String? email) {
+  final String localPart = (email ?? '').split('@').first.trim();
+  if (localPart.isEmpty) return 'User';
+  return '${localPart[0].toUpperCase()}${localPart.substring(1)}';
 }

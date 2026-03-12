@@ -7,6 +7,7 @@ import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
 import '../../auth/auth_controller.dart';
 import '../../../l10n/app_localizations.dart';
+import '../profile_state.dart';
 import 'edit_profile_sheet.dart';
 
 final isDarkModeProvider = StateProvider<bool>((Ref ref) => true);
@@ -16,8 +17,9 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(profileBootstrapProvider);
     final bool isDark = ref.watch(isDarkModeProvider);
-    final String username = ref.watch(profileNameProvider);
+    final String username = ref.watch(effectiveProfileNameProvider);
     final IconData avatar = ref.watch(profileAvatarProvider);
     final bool authLoading = ref.watch(authControllerProvider).isLoading;
     final AppLocalizations s = AppLocalizations.of(context)!;

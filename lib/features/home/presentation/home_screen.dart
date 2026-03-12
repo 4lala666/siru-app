@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
+import '../../profile/profile_state.dart';
 import '../data/fact_service.dart';
 import '../widgets/continue_learning_card.dart';
 import '../widgets/fact_card.dart';
@@ -12,6 +13,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(profileBootstrapProvider);
+    final String username = ref.watch(effectiveProfileNameProvider);
     final AsyncValue<String> factAsync = ref.watch(factOfTheDayProvider);
 
     return SafeArea(
@@ -24,7 +27,7 @@ class HomeScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Hello, Bushiridzo', style: AppTextStyles.screenTitle),
+                    Text('Hello, $username', style: AppTextStyles.screenTitle),
                     const SizedBox(height: 4),
                     Text('Stay sharp today.', style: AppTextStyles.secondary),
                   ],
