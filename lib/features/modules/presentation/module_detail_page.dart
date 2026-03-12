@@ -145,7 +145,7 @@ class _IndexTab extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             onTap: () {
               context.push(
-                '/module/topic',
+                '/module-topic',
                 extra: ModuleTopicArgs(
                   title: title,
                   description: _topicDescription(title),
@@ -247,4 +247,5 @@ class _DescriptionTab extends StatelessWidget {
 extension _FirstOrNullExt<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
 }
+
 

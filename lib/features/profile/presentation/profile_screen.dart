@@ -60,7 +60,7 @@ class ProfileScreen extends ConsumerWidget {
           ),
           _SettingsTile(
             title: _txt(context, ru: 'Приватность и безопасность', kk: 'Құпиялық және қауіпсіздік', en: 'Privacy & Security'),
-            onTap: () {},
+            onTap: () => context.push('/privacy-security'),
           ),
           _SettingsTile(
             title: _txt(context, ru: 'Работа над ошибками', kk: 'Қателермен жұмыс', en: 'Work on mistakes'),

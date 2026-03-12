@@ -16,9 +16,10 @@ import 'features/mistakes/presentation/quiz/result_screen.dart';
 import 'features/mistakes/work_on_mistakes_screen.dart';
 import 'features/modules/modules_catalog.dart';
 import 'features/modules/presentation/module_detail_page.dart';
-import 'package:flutter_1/features/modules/presentation/module_topic_page.dart';
+import 'features/modules/presentation/module_topic_page.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/profile/profile_screen.dart';
+import 'features/profile/presentation/privacy_security_page.dart';
 import 'features/survey/survey_screen.dart';
 import 'features/welcome/welcome_screen.dart';
 
@@ -36,6 +37,7 @@ class AppRouter {
       GoRoute(path: '/auth/verify', builder: (_, __) => const VerifyCodeScreen()),
       GoRoute(path: '/auth/reset', builder: (_, __) => const ResetPasswordScreen()),
       GoRoute(path: '/auth/success', builder: (_, __) => const PasswordChangedScreen()),
+      GoRoute(path: '/privacy-security', builder: (_, __) => const PrivacySecurityPage()),
       GoRoute(
         path: '/module/:id',
         builder: (_, GoRouterState state) => ModuleDetailScreen(
@@ -43,7 +45,7 @@ class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/module/topic',
+        path: '/module-topic',
         builder: (_, GoRouterState state) {
           final Object? extra = state.extra;
           final ModuleTopicArgs args = extra is ModuleTopicArgs
