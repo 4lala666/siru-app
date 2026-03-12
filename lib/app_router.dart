@@ -15,7 +15,8 @@ import 'features/mistakes/presentation/quiz/question_screen.dart';
 import 'features/mistakes/presentation/quiz/result_screen.dart';
 import 'features/mistakes/work_on_mistakes_screen.dart';
 import 'features/modules/modules_catalog.dart';
-import 'features/modules/presentation/module_detail_screen.dart';
+import 'features/modules/presentation/module_detail_page.dart';
+import 'package:flutter_1/features/modules/presentation/module_topic_page.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/profile/profile_screen.dart';
 import 'features/survey/survey_screen.dart';
@@ -40,6 +41,16 @@ class AppRouter {
         builder: (_, GoRouterState state) => ModuleDetailScreen(
           moduleId: state.pathParameters['id'] ?? '',
         ),
+      ),
+      GoRoute(
+        path: '/module/topic',
+        builder: (_, GoRouterState state) {
+          final Object? extra = state.extra;
+          final ModuleTopicArgs args = extra is ModuleTopicArgs
+              ? extra
+              : const ModuleTopicArgs(title: 'Topic', description: 'Coming soon.');
+          return ModuleTopicPage(args: args);
+        },
       ),
       GoRoute(path: '/app', redirect: (_, __) => '/app/home'),
       StatefulShellRoute.indexedStack(

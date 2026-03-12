@@ -1,11 +1,13 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
 import '../data/modules_provider.dart';
 import '../domain/module_models.dart';
+import 'module_topic_page.dart';
 
 class ModuleDetailScreen extends ConsumerWidget {
   const ModuleDetailScreen({
@@ -134,22 +136,45 @@ class _IndexTab extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       itemCount: module.lessons.length,
       separatorBuilder: (_, __) => const SizedBox(height: 10),
-      itemBuilder: (_, int i) {
-        final lesson = module.lessons[i];
-        return Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: AppColors.cardBackground,
+      itemBuilder: (BuildContext context, int i) {
+        final Lesson lesson = module.lessons[i];
+        final String title = tr(lesson.title, lang);
+        return Material(
+          color: Colors.transparent,
+          child: InkWell(
             borderRadius: BorderRadius.circular(16),
-            boxShadow: AppColors.softShadow,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('${i + 1}. ${tr(lesson.title, lang)}', style: AppTextStyles.body),
-              const SizedBox(height: 8),
-              Text(_lessonMeta(lesson), style: AppTextStyles.secondary),
-            ],
+            onTap: () {
+              context.push(
+                '/module/topic',
+                extra: ModuleTopicArgs(
+                  title: title,
+                  description: _topicDescription(title),
+                ),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: AppColors.cardBackground,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: AppColors.softShadow,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text('${i + 1}. $title', style: AppTextStyles.body),
+                      ),
+                      const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(_lessonMeta(lesson), style: AppTextStyles.secondary),
+                ],
+              ),
+            ),
           ),
         );
       },
@@ -165,6 +190,18 @@ class _IndexTab extends StatelessWidget {
       case 'ru':
       default:
         return '${lesson.durationMin} мин • ${lesson.stepsCount} шагов';
+    }
+  }
+
+  String _topicDescription(String title) {
+    switch (lang) {
+      case 'en':
+        return 'A short practical introduction to "$title".';
+      case 'kk':
+        return '"$title" тақырыбына қысқаша практикалық кіріспе.';
+      case 'ru':
+      default:
+        return 'Краткое практическое введение в тему "$title".';
     }
   }
 }
@@ -210,3 +247,4 @@ class _DescriptionTab extends StatelessWidget {
 extension _FirstOrNullExt<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
 }
+
