@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,8 +41,9 @@ class HomeScreen extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined, color: AppColors.text),
+                  onPressed: () => context.push('/app/notifications'),
+                  icon: const Icon(Icons.notifications_outlined,
+                      color: AppColors.text),
                 ),
               ),
             ],
@@ -72,7 +73,7 @@ class HomeScreen extends ConsumerWidget {
             title: _t(lang, 'dailyTipTitle'),
             text: _t(lang, 'dailyTipText'),
             actionText: _t(lang, 'learnMore'),
-            onAction: () {},
+            onAction: () => context.push('/app/daily-tip'),
           ),
           const SizedBox(height: 16),
           _ProgressCard(
@@ -86,7 +87,7 @@ class HomeScreen extends ConsumerWidget {
             title: _t(lang, 'threatOfDayTitle'),
             text: _t(lang, 'threatOfDayText'),
             actionText: _t(lang, 'explore'),
-            onAction: () {},
+            onAction: () => context.push('/app/threat-of-day'),
           ),
           const SizedBox(height: 16),
           _QuickActions(
@@ -105,7 +106,7 @@ class HomeScreen extends ConsumerWidget {
               _QuickActionData(
                 label: _t(lang, 'securityTips'),
                 icon: Icons.tips_and_updates_outlined,
-                onTap: () {},
+                onTap: () => context.push('/app/security-tips'),
               ),
             ],
           ),
@@ -127,9 +128,12 @@ class HomeScreen extends ConsumerWidget {
         'kk': 'Күннің қызықты дерегі',
       },
       'factFallback': <String, String>{
-        'ru': 'Кибербезопасность начинается с привычек: обновляйте приложения, используйте MFA и проверяйте ссылки.',
-        'en': 'Cybersecurity starts with habits: update apps, use MFA, and verify links before opening.',
-        'kk': 'Киберқауіпсіздік әдеттен басталады: қолданбаларды жаңартыңыз, MFA қолданыңыз және сілтемелерді тексеріңіз.',
+        'ru':
+            'Кибербезопасность начинается с привычек: обновляйте приложения, используйте MFA и проверяйте ссылки.',
+        'en':
+            'Cybersecurity starts with habits: update apps, use MFA, and verify links before opening.',
+        'kk':
+            'Киберқауіпсіздік әдеттен басталады: қолданбаларды жаңартыңыз, MFA қолданыңыз және сілтемелерді тексеріңіз.',
       },
       'continueCourseTitle': <String, String>{
         'ru': 'Социальная инженерия и человеческий фактор',
@@ -147,7 +151,8 @@ class HomeScreen extends ConsumerWidget {
         'kk': 'Күнделікті киберкеңес',
       },
       'dailyTipText': <String, String>{
-        'ru': 'Никогда не используйте один и тот же пароль для разных сервисов.',
+        'ru':
+            'Никогда не используйте один и тот же пароль для разных сервисов.',
         'en': 'Never reuse the same password across multiple services.',
         'kk': 'Бір парольді бірнеше сервисте ешқашан қайта қолданбаңыз.',
       },
@@ -173,8 +178,10 @@ class HomeScreen extends ConsumerWidget {
       },
       'threatOfDayText': <String, String>{
         'ru': 'Фишинговые атаки ответственны более чем за 80% утечек данных.',
-        'en': 'Phishing attacks are responsible for more than 80% of data breaches.',
-        'kk': 'Фишинг шабуылдары деректер бұзылуының 80%-дан астамына себеп болады.',
+        'en':
+            'Phishing attacks are responsible for more than 80% of data breaches.',
+        'kk':
+            'Фишинг шабуылдары деректер бұзылуының 80%-дан астамына себеп болады.',
       },
       'explore': <String, String>{
         'ru': 'Изучить',

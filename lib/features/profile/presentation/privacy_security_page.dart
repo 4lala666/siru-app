@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
@@ -24,17 +24,45 @@ class PrivacySecurityPage extends StatelessWidget {
             title: _t(lang, 'changePassword'),
             onTap: () => context.push('/change-password'),
           ),
-          _SettingTile(icon: Icons.alternate_email, title: _t(lang, 'manageEmail'), onTap: () {}),
+          _SettingTile(
+            icon: Icons.alternate_email,
+            title: _t(lang, 'manageEmail'),
+            onTap: () => _showComingSoon(context, _t(lang, 'manageEmail')),
+          ),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'security')),
-          _SettingTile(icon: Icons.verified_user_outlined, title: _t(lang, 'twoFactor'), onTap: () {}),
-          _SettingTile(icon: Icons.devices_outlined, title: _t(lang, 'activeSessions'), onTap: () {}),
-          _SettingTile(icon: Icons.history, title: _t(lang, 'loginHistory'), onTap: () {}),
+          _SettingTile(
+            icon: Icons.verified_user_outlined,
+            title: _t(lang, 'twoFactor'),
+            onTap: () => _showComingSoon(context, _t(lang, 'twoFactor')),
+          ),
+          _SettingTile(
+            icon: Icons.devices_outlined,
+            title: _t(lang, 'activeSessions'),
+            onTap: () => _showComingSoon(context, _t(lang, 'activeSessions')),
+          ),
+          _SettingTile(
+            icon: Icons.history,
+            title: _t(lang, 'loginHistory'),
+            onTap: () => _showComingSoon(context, _t(lang, 'loginHistory')),
+          ),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'privacy')),
-          _SettingTile(icon: Icons.data_usage_outlined, title: _t(lang, 'dataUsage'), onTap: () {}),
-          _SettingTile(icon: Icons.app_settings_alt_outlined, title: _t(lang, 'appPermissions'), onTap: () {}),
-          _SettingTile(icon: Icons.delete_outline, title: _t(lang, 'deleteAccount'), onTap: () {}),
+          _SettingTile(
+            icon: Icons.data_usage_outlined,
+            title: _t(lang, 'dataUsage'),
+            onTap: () => _showComingSoon(context, _t(lang, 'dataUsage')),
+          ),
+          _SettingTile(
+            icon: Icons.app_settings_alt_outlined,
+            title: _t(lang, 'appPermissions'),
+            onTap: () => _showComingSoon(context, _t(lang, 'appPermissions')),
+          ),
+          _SettingTile(
+            icon: Icons.delete_outline,
+            title: _t(lang, 'deleteAccount'),
+            onTap: () => _showDeleteAccountDialog(context, lang),
+          ),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'about')),
           _SettingTile(
@@ -133,6 +161,39 @@ class PrivacySecurityPage extends StatelessWidget {
 
     return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
+
+  void _showComingSoon(BuildContext context, String title) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(title),
+        content: const Text('Раздел готов к подключению логики.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteAccountDialog(BuildContext context, String lang) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(_t(lang, 'deleteAccount')),
+        content: const Text(
+            'Функция удаления аккаунта будет доступна после подтверждения политики безопасности.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Понятно'),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _SectionTitle extends StatelessWidget {
@@ -168,10 +229,12 @@ class _SettingTile extends StatelessWidget {
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         child: ListTile(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           leading: Icon(icon, color: AppColors.text),
           title: Text(title, style: AppTextStyles.body),
-          trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+          trailing:
+              const Icon(Icons.chevron_right, color: AppColors.textSecondary),
           onTap: onTap,
         ),
       ),
