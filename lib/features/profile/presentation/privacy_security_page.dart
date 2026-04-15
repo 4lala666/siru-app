@@ -10,67 +10,76 @@ class PrivacySecurityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String lang = Localizations.localeOf(context).languageCode;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_t(lang, 'title')),
-      ),
+      appBar: AppBar(title: Text(_t(lang, 'title'))),
       backgroundColor: AppColors.background,
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
           _SectionTitle(title: _t(lang, 'account')),
           _SettingTile(
+            tileKey: const Key('ps.changePassword'),
             icon: Icons.lock_outline,
             title: _t(lang, 'changePassword'),
             onTap: () => context.push('/change-password'),
           ),
           _SettingTile(
+            tileKey: const Key('ps.manageEmail'),
             icon: Icons.alternate_email,
             title: _t(lang, 'manageEmail'),
-            onTap: () => _showComingSoon(context, _t(lang, 'manageEmail')),
+            onTap: () => context.push('/privacy-security/email'),
           ),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'security')),
           _SettingTile(
+            tileKey: const Key('ps.twoFactor'),
             icon: Icons.verified_user_outlined,
             title: _t(lang, 'twoFactor'),
-            onTap: () => _showComingSoon(context, _t(lang, 'twoFactor')),
+            onTap: () => context.push('/privacy-security/2fa'),
           ),
           _SettingTile(
+            tileKey: const Key('ps.activeSessions'),
             icon: Icons.devices_outlined,
             title: _t(lang, 'activeSessions'),
-            onTap: () => _showComingSoon(context, _t(lang, 'activeSessions')),
+            onTap: () => context.push('/privacy-security/sessions'),
           ),
           _SettingTile(
+            tileKey: const Key('ps.loginHistory'),
             icon: Icons.history,
             title: _t(lang, 'loginHistory'),
-            onTap: () => _showComingSoon(context, _t(lang, 'loginHistory')),
+            onTap: () => context.push('/privacy-security/login-history'),
           ),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'privacy')),
           _SettingTile(
+            tileKey: const Key('ps.dataUsage'),
             icon: Icons.data_usage_outlined,
             title: _t(lang, 'dataUsage'),
-            onTap: () => _showComingSoon(context, _t(lang, 'dataUsage')),
+            onTap: () => context.push('/privacy-security/data-usage'),
           ),
           _SettingTile(
+            tileKey: const Key('ps.appPermissions'),
             icon: Icons.app_settings_alt_outlined,
             title: _t(lang, 'appPermissions'),
-            onTap: () => _showComingSoon(context, _t(lang, 'appPermissions')),
+            onTap: () => _showAppPermissionsSheet(context, lang),
           ),
           _SettingTile(
+            tileKey: const Key('ps.deleteAccount'),
             icon: Icons.delete_outline,
             title: _t(lang, 'deleteAccount'),
-            onTap: () => _showDeleteAccountDialog(context, lang),
+            onTap: () => context.push('/privacy-security/delete-account'),
           ),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'about')),
           _SettingTile(
+            tileKey: const Key('ps.terms'),
             icon: Icons.description_outlined,
             title: _t(lang, 'terms'),
             onTap: () => context.push('/terms-of-service'),
           ),
           _SettingTile(
+            tileKey: const Key('ps.privacyPolicy'),
             icon: Icons.privacy_tip_outlined,
             title: _t(lang, 'privacyPolicy'),
             onTap: () => context.push('/privacy-policy'),
@@ -162,35 +171,32 @@ class PrivacySecurityPage extends StatelessWidget {
     return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
 
-  void _showComingSoon(BuildContext context, String title) {
-    showDialog<void>(
+  void _showAppPermissionsSheet(BuildContext context, String lang) {
+    showModalBottomSheet<void>(
       context: context,
-      builder: (_) => AlertDialog(
-        title: Text(title),
-        content: const Text('Раздел готов к подключению логики.'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showDeleteAccountDialog(BuildContext context, String lang) {
-    showDialog<void>(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: Text(_t(lang, 'deleteAccount')),
-        content: const Text(
-            'Функция удаления аккаунта будет доступна после подтверждения политики безопасности.'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Понятно'),
-          ),
-        ],
+      builder: (_) => Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(_t(lang, 'appPermissions'), style: AppTextStyles.cardTitle),
+            const SizedBox(height: 8),
+            Text(
+              'Open OS Settings -> Apps -> Siru -> Permissions.',
+              style: AppTextStyles.body,
+            ),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                key: const Key('ps.appPermissions.close'),
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Close'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -215,11 +221,13 @@ class _SettingTile extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onTap,
+    this.tileKey,
   });
 
   final IconData icon;
   final String title;
   final VoidCallback onTap;
+  final Key? tileKey;
 
   @override
   Widget build(BuildContext context) {
@@ -229,6 +237,7 @@ class _SettingTile extends StatelessWidget {
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         child: ListTile(
+          key: tileKey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           leading: Icon(icon, color: AppColors.text),

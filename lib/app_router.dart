@@ -20,6 +20,12 @@ import 'features/modules/presentation/module_topic_page.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/profile/profile_screen.dart';
 import 'features/profile/presentation/change_password_page.dart';
+import 'features/profile/presentation/privacy_security/active_sessions_page.dart';
+import 'features/profile/presentation/privacy_security/data_usage_page.dart';
+import 'features/profile/presentation/privacy_security/delete_account_page.dart';
+import 'features/profile/presentation/privacy_security/login_history_page.dart';
+import 'features/profile/presentation/privacy_security/manage_email_page.dart';
+import 'features/profile/presentation/privacy_security/two_factor_page.dart';
 import 'features/profile/presentation/privacy_security_page.dart';
 import 'features/profile/presentation/privacy_policy_page.dart';
 import 'features/profile/presentation/terms_of_service_page.dart';
@@ -55,8 +61,23 @@ class AppRouter {
           path: '/change-password',
           builder: (_, __) => const ChangePasswordPage()),
       GoRoute(
-          path: '/privacy-security',
-          builder: (_, __) => const PrivacySecurityPage()),
+        path: '/privacy-security',
+        builder: (_, __) => const PrivacySecurityPage(),
+        routes: <RouteBase>[
+          GoRoute(path: 'email', builder: (_, __) => const ManageEmailPage()),
+          GoRoute(path: '2fa', builder: (_, __) => const TwoFactorPage()),
+          GoRoute(
+              path: 'sessions', builder: (_, __) => const ActiveSessionsPage()),
+          GoRoute(
+              path: 'login-history',
+              builder: (_, __) => const LoginHistoryPage()),
+          GoRoute(
+              path: 'data-usage', builder: (_, __) => const DataUsagePage()),
+          GoRoute(
+              path: 'delete-account',
+              builder: (_, __) => const DeleteAccountPage()),
+        ],
+      ),
       GoRoute(
           path: '/privacy-policy',
           builder: (_, __) => const PrivacyPolicyPage()),
