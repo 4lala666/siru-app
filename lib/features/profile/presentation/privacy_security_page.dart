@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
@@ -18,22 +19,34 @@ class PrivacySecurityPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: <Widget>[
           _SectionTitle(title: _t(lang, 'account')),
-          _SettingTile(icon: Icons.lock_outline, title: _t(lang, 'changePassword')),
-          _SettingTile(icon: Icons.alternate_email, title: _t(lang, 'manageEmail')),
+          _SettingTile(
+            icon: Icons.lock_outline,
+            title: _t(lang, 'changePassword'),
+            onTap: () => context.push('/change-password'),
+          ),
+          _SettingTile(icon: Icons.alternate_email, title: _t(lang, 'manageEmail'), onTap: () {}),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'security')),
-          _SettingTile(icon: Icons.verified_user_outlined, title: _t(lang, 'twoFactor')),
-          _SettingTile(icon: Icons.devices_outlined, title: _t(lang, 'activeSessions')),
-          _SettingTile(icon: Icons.history, title: _t(lang, 'loginHistory')),
+          _SettingTile(icon: Icons.verified_user_outlined, title: _t(lang, 'twoFactor'), onTap: () {}),
+          _SettingTile(icon: Icons.devices_outlined, title: _t(lang, 'activeSessions'), onTap: () {}),
+          _SettingTile(icon: Icons.history, title: _t(lang, 'loginHistory'), onTap: () {}),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'privacy')),
-          _SettingTile(icon: Icons.data_usage_outlined, title: _t(lang, 'dataUsage')),
-          _SettingTile(icon: Icons.app_settings_alt_outlined, title: _t(lang, 'appPermissions')),
-          _SettingTile(icon: Icons.delete_outline, title: _t(lang, 'deleteAccount')),
+          _SettingTile(icon: Icons.data_usage_outlined, title: _t(lang, 'dataUsage'), onTap: () {}),
+          _SettingTile(icon: Icons.app_settings_alt_outlined, title: _t(lang, 'appPermissions'), onTap: () {}),
+          _SettingTile(icon: Icons.delete_outline, title: _t(lang, 'deleteAccount'), onTap: () {}),
           const SizedBox(height: 12),
           _SectionTitle(title: _t(lang, 'about')),
-          _SettingTile(icon: Icons.description_outlined, title: _t(lang, 'terms')),
-          _SettingTile(icon: Icons.privacy_tip_outlined, title: _t(lang, 'privacyPolicy')),
+          _SettingTile(
+            icon: Icons.description_outlined,
+            title: _t(lang, 'terms'),
+            onTap: () => context.push('/terms-of-service'),
+          ),
+          _SettingTile(
+            icon: Icons.privacy_tip_outlined,
+            title: _t(lang, 'privacyPolicy'),
+            onTap: () => context.push('/privacy-policy'),
+          ),
         ],
       ),
     );
@@ -140,10 +153,12 @@ class _SettingTile extends StatelessWidget {
   const _SettingTile({
     required this.icon,
     required this.title,
+    required this.onTap,
   });
 
   final IconData icon;
   final String title;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -157,10 +172,9 @@ class _SettingTile extends StatelessWidget {
           leading: Icon(icon, color: AppColors.text),
           title: Text(title, style: AppTextStyles.body),
           trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
-          onTap: () {},
+          onTap: onTap,
         ),
       ),
     );
   }
 }
-

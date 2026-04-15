@@ -57,6 +57,37 @@ class AuthController extends StateNotifier<AuthUiState> {
     });
   }
 
+  Future<String?> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    return _runGuarded(() async {
+      final User? user = _auth.currentUser;
+      if (user == null) {
+        throw FirebaseAuthException(code: 'no-current-user');
+      }
+
+      final bool isPasswordProvider =
+          user.providerData.any((UserInfo p) => p.providerId == 'password');
+      if (!isPasswordProvider) {
+        throw FirebaseAuthException(code: 'password-provider-not-linked');
+      }
+
+      final String? email = user.email;
+      if (email == null || email.isEmpty) {
+        throw FirebaseAuthException(code: 'missing-email');
+      }
+
+      final AuthCredential credential = EmailAuthProvider.credential(
+        email: email,
+        password: currentPassword,
+      );
+
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword);
+    });
+  }
+
   Future<String?> signInWithGoogle() async {
     return _runGuarded(() async {
       // Force account chooser instead of auto-using last signed account.
@@ -174,6 +205,14 @@ class AuthController extends StateNotifier<AuthUiState> {
         return 'Пользователь не найден';
       case 'wrong-password':
         return 'Неверный пароль';
+      case 'password-provider-not-linked':
+        return 'Смена пароля доступна только для email/пароль аккаунтов';
+      case 'missing-email':
+        return 'Не удалось определить email аккаунта';
+      case 'no-current-user':
+        return 'Пользователь не авторизован';
+      case 'requires-recent-login':
+        return 'Для смены пароля войдите в аккаунт повторно';
       case 'email-already-in-use':
         return 'Этот email уже зарегистрирован';
       case 'weak-password':

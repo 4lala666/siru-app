@@ -19,7 +19,10 @@ import 'features/modules/presentation/module_detail_page.dart';
 import 'features/modules/presentation/module_topic_page.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/profile/profile_screen.dart';
+import 'features/profile/presentation/change_password_page.dart';
 import 'features/profile/presentation/privacy_security_page.dart';
+import 'features/profile/presentation/privacy_policy_page.dart';
+import 'features/profile/presentation/terms_of_service_page.dart';
 import 'features/survey/survey_screen.dart';
 import 'features/welcome/welcome_screen.dart';
 
@@ -37,7 +40,10 @@ class AppRouter {
       GoRoute(path: '/auth/verify', builder: (_, __) => const VerifyCodeScreen()),
       GoRoute(path: '/auth/reset', builder: (_, __) => const ResetPasswordScreen()),
       GoRoute(path: '/auth/success', builder: (_, __) => const PasswordChangedScreen()),
+      GoRoute(path: '/change-password', builder: (_, __) => const ChangePasswordPage()),
       GoRoute(path: '/privacy-security', builder: (_, __) => const PrivacySecurityPage()),
+      GoRoute(path: '/privacy-policy', builder: (_, __) => const PrivacyPolicyPage()),
+      GoRoute(path: '/terms-of-service', builder: (_, __) => const TermsOfServicePage()),
       GoRoute(
         path: '/module/:id',
         builder: (_, GoRouterState state) => ModuleDetailScreen(
