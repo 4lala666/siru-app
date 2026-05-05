@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,7 +24,8 @@ class ModuleDetailScreen extends ConsumerWidget {
 
     return modulesAsync.when(
       data: (List<Module> modules) {
-        final Module? module = modules.where((Module m) => m.id == moduleId).cast<Module?>().firstOrNull;
+        final Module? module =
+            modules.where((Module m) => m.id == moduleId).cast<Module?>().firstOrNull;
         if (module == null) {
           return Scaffold(
             appBar: AppBar(),
@@ -147,8 +148,8 @@ class _IndexTab extends StatelessWidget {
               context.push(
                 '/module-topic',
                 extra: ModuleTopicArgs(
-                  title: title,
-                  description: _topicDescription(title),
+                  moduleTitle: tr(module.title, lang),
+                  lesson: lesson,
                 ),
               );
             },
@@ -192,18 +193,6 @@ class _IndexTab extends StatelessWidget {
         return '${lesson.durationMin} мин • ${lesson.stepsCount} шагов';
     }
   }
-
-  String _topicDescription(String title) {
-    switch (lang) {
-      case 'en':
-        return 'A short practical introduction to "$title".';
-      case 'kk':
-        return '"$title" тақырыбына қысқаша практикалық кіріспе.';
-      case 'ru':
-      default:
-        return 'Краткое практическое введение в тему "$title".';
-    }
-  }
 }
 
 class _DescriptionTab extends StatelessWidget {
@@ -232,10 +221,12 @@ class _DescriptionTab extends StatelessWidget {
             children: <Widget>[
               Text(tr(section.title, lang), style: AppTextStyles.cardTitle),
               const SizedBox(height: 8),
-              ...bullets.map((String b) => Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Text('• $b', style: AppTextStyles.body),
-                  )),
+              ...bullets.map(
+                (String bullet) => Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text('• $bullet', style: AppTextStyles.body),
+                ),
+              ),
             ],
           ),
         );
@@ -247,5 +238,3 @@ class _DescriptionTab extends StatelessWidget {
 extension _FirstOrNullExt<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
 }
-
-

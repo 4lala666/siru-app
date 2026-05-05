@@ -1,16 +1,17 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
+import '../domain/module_models.dart';
 
 class ModuleTopicArgs {
   const ModuleTopicArgs({
-    required this.title,
-    required this.description,
+    required this.moduleTitle,
+    required this.lesson,
   });
 
-  final String title;
-  final String description;
+  final String moduleTitle;
+  final Lesson lesson;
 }
 
 class ModuleTopicPage extends StatelessWidget {
@@ -24,41 +25,93 @@ class ModuleTopicPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String lang = Localizations.localeOf(context).languageCode;
+    final String lessonTitle = tr(args.lesson.title, lang);
+    final String summary = tr(args.lesson.summary, lang);
+    final List<String> whatYouWillLearn =
+        args.lesson.whatYouWillLearn[lang] ?? args.lesson.whatYouWillLearn['ru'] ?? const <String>[];
+    final List<String> keyFacts =
+        args.lesson.keyFacts[lang] ?? args.lesson.keyFacts['ru'] ?? const <String>[];
+    final List<String> examples =
+        args.lesson.examples[lang] ?? args.lesson.examples['ru'] ?? const <String>[];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_t(lang, 'topic')),
+        title: Text(_t(lang, 'lesson')),
       ),
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: <Widget>[
-            Text(args.title, style: AppTextStyles.screenTitle),
+            Text(
+              args.moduleTitle,
+              style: AppTextStyles.secondary,
+            ),
+            const SizedBox(height: 6),
+            Text(lessonTitle, style: AppTextStyles.screenTitle),
             const SizedBox(height: 12),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppColors.cardBackground,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: AppColors.softShadow,
+            _SectionCard(
+              title: _t(lang, 'description'),
+              child: Text(
+                summary.isNotEmpty ? summary : _t(lang, 'comingSoonDescription'),
+                style: AppTextStyles.body,
               ),
+            ),
+            const SizedBox(height: 16),
+            _SectionCard(
+              title: _t(lang, 'whatYouWillLearn'),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(_t(lang, 'description'), style: AppTextStyles.cardTitle),
-                  const SizedBox(height: 8),
-                  Text(args.description, style: AppTextStyles.body),
-                  const SizedBox(height: 18),
-                  Text(_t(lang, 'whatYouWillLearn'), style: AppTextStyles.cardTitle),
-                  const SizedBox(height: 10),
-                  Text('• ${_t(lang, 'bullet1')}', style: AppTextStyles.body),
-                  const SizedBox(height: 6),
-                  Text('• ${_t(lang, 'bullet2')}', style: AppTextStyles.body),
-                  const SizedBox(height: 6),
-                  Text('• ${_t(lang, 'bullet3')}', style: AppTextStyles.body),
-                ],
+                children: _buildBulletList(
+                  whatYouWillLearn.isNotEmpty
+                      ? whatYouWillLearn
+                      : <String>[_t(lang, 'comingSoonBullet')],
+                ),
               ),
+            ),
+            const SizedBox(height: 16),
+            _SectionCard(
+              title: _t(lang, 'keyFacts'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _buildBulletList(
+                  keyFacts.isNotEmpty ? keyFacts : <String>[_t(lang, 'comingSoonFacts')],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            _SectionCard(
+              title: _t(lang, 'examples'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _buildBulletList(
+                  examples.isNotEmpty ? examples : <String>[_t(lang, 'comingSoonExamples')],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            _SectionCard(
+              title: _t(lang, 'sources'),
+              child: args.lesson.sources.isEmpty
+                  ? Text(_t(lang, 'comingSoonSources'), style: AppTextStyles.body)
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: args.lesson.sources
+                          .map(
+                            (LessonSource source) => Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text('• ${tr(source.title, lang)}', style: AppTextStyles.body),
+                                  const SizedBox(height: 4),
+                                  Text(source.url, style: AppTextStyles.secondary),
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
             ),
             const SizedBox(height: 20),
             SizedBox(
@@ -66,7 +119,7 @@ class ModuleTopicPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(_t(lang, 'lessonWillBeAvailable'))),
+                    SnackBar(content: Text(_t(lang, 'interactiveLessonSoon'))),
                   );
                 },
                 child: Text(_t(lang, 'startLesson')),
@@ -80,10 +133,10 @@ class ModuleTopicPage extends StatelessWidget {
 
   String _t(String lang, String key) {
     const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
-      'topic': <String, String>{
-        'ru': 'Тема',
-        'en': 'Topic',
-        'kk': 'Тақырып',
+      'lesson': <String, String>{
+        'ru': 'Урок',
+        'en': 'Lesson',
+        'kk': 'Сабақ',
       },
       'description': <String, String>{
         'ru': 'Описание',
@@ -91,38 +144,103 @@ class ModuleTopicPage extends StatelessWidget {
         'kk': 'Сипаттама',
       },
       'whatYouWillLearn': <String, String>{
-        'ru': 'What you will learn:',
-        'en': 'What you will learn:',
-        'kk': 'What you will learn:',
+        'ru': 'Что вы изучите',
+        'en': 'What you will learn',
+        'kk': 'Нені үйренесіз',
       },
-      'bullet1': <String, String>{
-        'ru': 'Что такое фишинг',
-        'en': 'What phishing is',
-        'kk': 'Фишинг деген не',
+      'keyFacts': <String, String>{
+        'ru': 'Ключевые факты',
+        'en': 'Key facts',
+        'kk': 'Негізгі фактілер',
       },
-      'bullet2': <String, String>{
-        'ru': 'Как злоумышленники крадут учетные данные',
-        'en': 'How attackers steal credentials',
-        'kk': 'Шабуылдаушылар аккаунт деректерін қалай ұрлайды',
+      'examples': <String, String>{
+        'ru': 'Примеры',
+        'en': 'Examples',
+        'kk': 'Мысалдар',
       },
-      'bullet3': <String, String>{
-        'ru': 'Как распознавать фишинговые письма',
-        'en': 'How to detect phishing emails',
-        'kk': 'Фишинг хаттарды қалай анықтау керек',
+      'sources': <String, String>{
+        'ru': 'Источники',
+        'en': 'Sources',
+        'kk': 'Дереккөздер',
       },
       'startLesson': <String, String>{
         'ru': 'Начать урок',
         'en': 'Start Lesson',
         'kk': 'Сабақты бастау',
       },
-      'lessonWillBeAvailable': <String, String>{
-        'ru': 'Скоро здесь будет полный урок.',
-        'en': 'The full lesson will be available soon.',
-        'kk': 'Толық сабақ жақында қосылады.',
+      'interactiveLessonSoon': <String, String>{
+        'ru': 'Интерактивный сценарий для этого урока скоро появится.',
+        'en': 'An interactive scenario for this lesson is coming soon.',
+        'kk': 'Бұл сабаққа арналған интерактивті сценарий жақында қосылады.',
+      },
+      'comingSoonDescription': <String, String>{
+        'ru': 'Подробное описание урока скоро будет добавлено.',
+        'en': 'A detailed lesson description will be added soon.',
+        'kk': 'Сабақтың толық сипаттамасы жақында қосылады.',
+      },
+      'comingSoonBullet': <String, String>{
+        'ru': 'Цели обучения для этого урока будут добавлены следующим этапом.',
+        'en': 'Learning goals for this lesson will be added in the next iteration.',
+        'kk': 'Бұл сабақтың оқу мақсаттары келесі кезеңде қосылады.',
+      },
+      'comingSoonFacts': <String, String>{
+        'ru': 'Ключевые факты для этого урока будут добавлены следующим этапом.',
+        'en': 'Key facts for this lesson will be added in the next iteration.',
+        'kk': 'Бұл сабақтың негізгі фактілері келесі кезеңде қосылады.',
+      },
+      'comingSoonExamples': <String, String>{
+        'ru': 'Практические примеры для этого урока будут добавлены следующим этапом.',
+        'en': 'Practical examples for this lesson will be added in the next iteration.',
+        'kk': 'Бұл сабақтың практикалық мысалдары келесі кезеңде қосылады.',
+      },
+      'comingSoonSources': <String, String>{
+        'ru': 'Источники для этого урока будут добавлены следующим этапом.',
+        'en': 'Sources for this lesson will be added in the next iteration.',
+        'kk': 'Бұл сабақтың дереккөздері келесі кезеңде қосылады.',
       },
     };
 
     return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
+
+  List<Widget> _buildBulletList(List<String> items) {
+    return items
+        .map(
+          (String item) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text('• $item', style: AppTextStyles.body),
+          ),
+        )
+        .toList();
+  }
 }
 
+class _SectionCard extends StatelessWidget {
+  const _SectionCard({
+    required this.title,
+    required this.child,
+  });
+
+  final String title;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: AppColors.softShadow,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(title, style: AppTextStyles.cardTitle),
+          const SizedBox(height: 10),
+          child,
+        ],
+      ),
+    );
+  }
+}
