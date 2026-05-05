@@ -21,19 +21,56 @@ class Lesson {
     required this.durationMin,
     required this.stepsCount,
     required this.title,
+    required this.summary,
+    required this.whatYouWillLearn,
+    required this.keyFacts,
+    required this.examples,
+    required this.sources,
   });
 
   final String id;
   final int durationMin;
   final int stepsCount;
   final Map<String, String> title;
+  final Map<String, String> summary;
+  final Map<String, List<String>> whatYouWillLearn;
+  final Map<String, List<String>> keyFacts;
+  final Map<String, List<String>> examples;
+  final List<LessonSource> sources;
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
+    final List<dynamic> rawSources = (json['sources'] as List<dynamic>?) ?? <dynamic>[];
+
     return Lesson(
       id: (json['id'] ?? '').toString(),
       durationMin: _asInt(json['durationMin']),
       stepsCount: _asInt(json['stepsCount']),
       title: _stringMap(json['title']),
+      summary: _stringMap(json['summary']),
+      whatYouWillLearn: _stringListMap(json['whatYouWillLearn']),
+      keyFacts: _stringListMap(json['keyFacts']),
+      examples: _stringListMap(json['examples']),
+      sources: rawSources
+          .whereType<Map>()
+          .map((Map source) => LessonSource.fromJson(Map<String, dynamic>.from(source)))
+          .toList(),
+    );
+  }
+}
+
+class LessonSource {
+  const LessonSource({
+    required this.title,
+    required this.url,
+  });
+
+  final Map<String, String> title;
+  final String url;
+
+  factory LessonSource.fromJson(Map<String, dynamic> json) {
+    return LessonSource(
+      title: _stringMap(json['title']),
+      url: (json['url'] ?? '').toString(),
     );
   }
 }

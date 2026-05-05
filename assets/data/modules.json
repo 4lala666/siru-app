@@ -114,7 +114,70 @@
             "ru": "Что такое ИБ: цели, принципы и роль в мире",
             "en": "What is InfoSec: goals, principles, and why it matters",
             "kk": "Ақпараттық қауіпсіздік: мақсаттар, қағидалар және маңызы"
-          }
+          },
+          "summary": {
+            "ru": "Вводный урок о том, зачем существует информационная безопасность, какие задачи она решает и почему сегодня она важна для людей, компаний и государства.",
+            "en": "An introductory lesson on why information security exists, what problems it solves, and why it matters for people, companies, and governments.",
+            "kk": "Ақпараттық қауіпсіздік не үшін керек екенін, қандай міндеттерді шешетінін және бүгінгі күні адамдар, компаниялар мен мемлекет үшін неге маңызды екенін түсіндіретін кіріспе сабақ."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Что такое информационная безопасность",
+              "Какие цели у ИБ: защищать данные, процессы и доступ",
+              "Почему ИБ важна не только для компаний, но и для обычных пользователей"
+            ],
+            "en": [
+              "What information security is",
+              "Core security goals: protect data, processes, and access",
+              "Why InfoSec matters for both companies and regular users"
+            ],
+            "kk": [
+              "Ақпараттық қауіпсіздік деген не",
+              "ИБ-ның негізгі мақсаттары: деректерді, процестерді және қолжетімділікті қорғау",
+              "Ақпараттық қауіпсіздік неге компаниялар үшін де, қарапайым пайдаланушылар үшін де маңызды"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "ИБ защищает не только файлы, но и сервисы, репутацию и доверие.",
+              "Даже простая ошибка пользователя может привести к утечке, потере денег или остановке работы.",
+              "Современная ИБ сочетает технологии, процессы и поведение людей."
+            ],
+            "en": [
+              "InfoSec protects not only files, but also services, reputation, and trust.",
+              "Even a simple user mistake can lead to data leaks, financial loss, or downtime.",
+              "Modern security combines technology, processes, and human behavior."
+            ],
+            "kk": [
+              "Ақпараттық қауіпсіздік тек файлдарды емес, сервистерді, беделді және сенімді де қорғайды.",
+              "Пайдаланушының қарапайым қатесінің өзі дерек ағып кетуіне, қаржылық шығынға немесе жұмыстың тоқтауына әкелуі мүмкін.",
+              "Заманауи қауіпсіздік технологиялар, процестер және адамның мінез-құлқын біріктіреді."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Компания не обновила сервер и потеряла доступ к CRM после атаки шифровальщика.",
+              "Пользователь повторно использовал пароль и потерял доступ сразу к нескольким сервисам."
+            ],
+            "en": [
+              "A company failed to patch a server and lost access to its CRM after ransomware hit.",
+              "A user reused one password and lost access to several services at once."
+            ],
+            "kk": [
+              "Компания серверді жаңартпады да, ransomware шабуылынан кейін CRM жүйесіне қолжетімділікті жоғалтты.",
+              "Пайдаланушы бір парольді бірнеше жерде қолданғандықтан, бірнеше сервиске бірдей қолжетімділігін жоғалтты."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "TechTarget: что такое CIA triad",
+                "en": "TechTarget: what the CIA triad is",
+                "kk": "TechTarget: CIA triad туралы"
+              },
+              "url": "https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA"
+            }
+          ]
         },
         {
           "id": "gov_02",
@@ -124,7 +187,70 @@
             "ru": "CIA-триада и базовые свойства безопасности",
             "en": "CIA triad and core security properties",
             "kk": "CIA триадасы және негізгі қауіпсіздік қасиеттері"
-          }
+          },
+          "summary": {
+            "ru": "Урок о трёх базовых свойствах безопасности: конфиденциальности, целостности и доступности. Это основа почти любого разговора об ИБ.",
+            "en": "A lesson on the three core properties of security: confidentiality, integrity, and availability. This is the basis of almost every InfoSec discussion.",
+            "kk": "Қауіпсіздіктің үш негізгі қасиеті — құпиялылық, тұтастық және қолжетімділік туралы сабақ. Бұл ақпараттық қауіпсіздік тақырыптарының іргетасы."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Что означает каждый элемент CIA-триады",
+              "Как свойства безопасности проявляются в реальных системах",
+              "Почему нельзя усиливать только один аспект безопасности"
+            ],
+            "en": [
+              "What each CIA element means",
+              "How security properties appear in real systems",
+              "Why focusing on only one security aspect is risky"
+            ],
+            "kk": [
+              "CIA триадасының әр элементі нені білдіреді",
+              "Қауіпсіздік қасиеттері нақты жүйелерде қалай көрінеді",
+              "Неге қауіпсіздіктің тек бір жағын ғана күшейту қауіпті"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "Конфиденциальность ограничивает доступ к данным.",
+              "Целостность означает, что данным можно доверять и они не были незаметно изменены.",
+              "Доступность означает, что нужный сервис доступен в нужное время нужным пользователям."
+            ],
+            "en": [
+              "Confidentiality limits access to data.",
+              "Integrity means data can be trusted and was not silently altered.",
+              "Availability means the right service is reachable by the right users at the right time."
+            ],
+            "kk": [
+              "Құпиялылық деректерге қолжетімділікті шектейді.",
+              "Тұтастық деректерге сенуге болатынын және олардың жасырын өзгермегенін білдіреді.",
+              "Қолжетімділік қажетті сервистің қажетті уақытта тиісті пайдаланушыларға ашық болуын білдіреді."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Шифрование файла — это про конфиденциальность.",
+              "Резервирование сервера и защита от DDoS — это про доступность."
+            ],
+            "en": [
+              "File encryption is about confidentiality.",
+              "Server redundancy and DDoS protection are about availability."
+            ],
+            "kk": [
+              "Файлды шифрлау — құпиялылыққа қатысты.",
+              "Серверді резервтеу және DDoS-тен қорғау — қолжетімділікке қатысты."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "TechTarget: CIA triad",
+                "en": "TechTarget: CIA triad",
+                "kk": "TechTarget: CIA triad"
+              },
+              "url": "https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA"
+            }
+          ]
         },
         {
           "id": "gov_03",
@@ -134,7 +260,70 @@
             "ru": "Угрозы, уязвимости и риски: как отличать",
             "en": "Threats vs vulnerabilities vs risks: how to tell apart",
             "kk": "Қауіптер, осалдықтар және тәуекелдер: қалай ажыратуға болады"
-          }
+          },
+          "summary": {
+            "ru": "В этом уроке разбирается разница между угрозой, уязвимостью и риском — тремя понятиями, которые часто путают новички.",
+            "en": "This lesson explains the difference between threat, vulnerability, and risk — three terms that beginners often mix up.",
+            "kk": "Бұл сабақта қауіп, осалдық және тәуекел ұғымдарының айырмашылығы түсіндіріледі. Жаңадан бастаушылар оларды жиі шатастырады."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Что такое угроза",
+              "Что такое уязвимость",
+              "Как из сочетания угрозы и уязвимости возникает риск"
+            ],
+            "en": [
+              "What a threat is",
+              "What a vulnerability is",
+              "How risk emerges when a threat can exploit a vulnerability"
+            ],
+            "kk": [
+              "Қауіп деген не",
+              "Осалдық деген не",
+              "Қауіп осалдықты пайдалана алғанда тәуекел қалай пайда болады"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "Угроза — это потенциальное вредоносное действие или событие.",
+              "Уязвимость — это слабое место в системе или процессе.",
+              "Риск показывает возможный ущерб, если угроза воспользуется уязвимостью."
+            ],
+            "en": [
+              "A threat is a potentially harmful action or event.",
+              "A vulnerability is a weakness in a system or process.",
+              "Risk represents the possible damage if a threat exploits a vulnerability."
+            ],
+            "kk": [
+              "Қауіп — зиян келтіруі мүмкін әрекет немесе оқиға.",
+              "Осалдық — жүйедегі немесе процестегі әлсіз жер.",
+              "Тәуекел — қауіп осалдықты пайдаланған жағдайда келуі мүмкін зиян."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Фишинговое письмо — угроза, отсутствие MFA — уязвимость, захват почты сотрудника — риск.",
+              "Необновлённый сервер — уязвимость, exploit из интернета — угроза, простой бизнеса — риск."
+            ],
+            "en": [
+              "A phishing email is a threat, missing MFA is a vulnerability, and a compromised mailbox is the resulting risk.",
+              "An unpatched server is a vulnerability, an internet exploit is the threat, and business downtime is the risk."
+            ],
+            "kk": [
+              "Фишинг хаты — қауіп, MFA-ның болмауы — осалдық, қызметкер поштасының бұзылуы — тәуекел.",
+              "Жаңартылмаған сервер — осалдық, интернеттегі exploit — қауіп, бизнестің тоқтауы — тәуекел."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "GeeksforGeeks: threat, vulnerability, risk",
+                "en": "GeeksforGeeks: threat, vulnerability, risk",
+                "kk": "GeeksforGeeks: threat, vulnerability, risk"
+              },
+              "url": "https://www.geeksforgeeks.org/computer-networks/difference-between-threat-vulnerability-and-risk-in-computer-network/"
+            }
+          ]
         },
         {
           "id": "gov_04",
@@ -144,7 +333,70 @@
             "ru": "Risk Management: идентификация и оценка риска",
             "en": "Risk management: identification and assessment",
             "kk": "Тәуекелді басқару: анықтау және бағалау"
-          }
+          },
+          "summary": {
+            "ru": "Урок вводит в управление рисками: как замечать риски заранее, как их оценивать и почему это важнее, чем просто реагировать постфактум.",
+            "en": "This lesson introduces risk management: how to identify risks early, assess them, and why that is better than only reacting after incidents happen.",
+            "kk": "Бұл сабақ тәуекелдерді басқаруға кіріспе береді: тәуекелдерді алдын ала қалай анықтау, бағалау және неге бұл тек оқиғадан кейін әрекет етуден тиімді екені түсіндіріледі."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Из каких шагов состоит оценка риска",
+              "Какие факторы влияют на приоритет риска",
+              "Почему риски оценивают регулярно, а не один раз"
+            ],
+            "en": [
+              "What steps risk assessment includes",
+              "Which factors affect risk priority",
+              "Why risks must be reviewed regularly, not just once"
+            ],
+            "kk": [
+              "Тәуекелді бағалау қандай қадамдардан тұрады",
+              "Тәуекел басымдығына қандай факторлар әсер етеді",
+              "Неге тәуекелдер бір рет емес, тұрақты бағалануы керек"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "Обычно оценивают вероятность и влияние.",
+              "Высокий риск не всегда самый громкий — иногда его видно только при анализе процессов.",
+              "Risk management работает как непрерывный цикл, а не как разовая задача."
+            ],
+            "en": [
+              "Risk is usually assessed through likelihood and impact.",
+              "The highest risk is not always the loudest one; some risks appear only through process analysis.",
+              "Risk management is a continuous cycle, not a one-time task."
+            ],
+            "kk": [
+              "Тәуекел әдетте ықтималдық пен әсер арқылы бағаланады.",
+              "Ең үлкен тәуекел әрқашан ең көзге түсетіні емес — кейде ол процестерді талдағанда ғана көрінеді.",
+              "Тәуекелдерді басқару бір реттік емес, үздіксіз цикл болып табылады."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Организация хранит резервные копии, но ни разу не проверяла восстановление — риск высокий из-за возможного провала при инциденте.",
+              "Сервис доступен из интернета, но защищён MFA и мониторингом — вероятность ниже, хотя уязвимость всё ещё есть."
+            ],
+            "en": [
+              "An organization stores backups but never tests restore — that is a high risk during a real incident.",
+              "A public-facing service protected by MFA and monitoring still has risk, but its likelihood is lower."
+            ],
+            "kk": [
+              "Ұйым бэкап сақтайды, бірақ қалпына келтіруді тексермеген — нақты инцидент кезінде бұл жоғары тәуекел.",
+              "Интернетке ашық сервис MFA және мониторингпен қорғалған болса да, тәуекел бар, бірақ ықтималдығы төменірек."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "SentinelOne: основы cyber risk management",
+                "en": "SentinelOne: cyber risk management basics",
+                "kk": "SentinelOne: cyber risk management негіздері"
+              },
+              "url": "https://www.sentinelone.com/cybersecurity-101/cybersecurity/cyber-security-risk-management/"
+            }
+          ]
         },
         {
           "id": "gov_05",
@@ -154,7 +406,70 @@
             "ru": "Обработка рисков: mitigation, transfer, accept",
             "en": "Risk treatment: mitigate, transfer, accept",
             "kk": "Тәуекелді өңдеу: азайту, беру, қабылдау"
-          }
+          },
+          "summary": {
+            "ru": "После оценки риска нужно выбрать стратегию обработки: снизить, передать, принять или избегать. Этот урок помогает различать эти подходы.",
+            "en": "After assessing risk, you need a treatment strategy: mitigate, transfer, accept, or avoid it. This lesson helps distinguish those approaches.",
+            "kk": "Тәуекелді бағалағаннан кейін оны өңдеу стратегиясын таңдау керек: азайту, беру, қабылдау немесе болдырмау. Бұл сабақ сол тәсілдерді ажыратуға көмектеседі."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Какие есть варианты обработки риска",
+              "Когда риск лучше принять, а не снижать любой ценой",
+              "Как меры защиты связаны с бизнес-стоимостью"
+            ],
+            "en": [
+              "Which risk treatment options exist",
+              "When acceptance is more reasonable than expensive mitigation",
+              "How security controls relate to business value"
+            ],
+            "kk": [
+              "Тәуекелді өңдеудің қандай нұсқалары бар",
+              "Қашан тәуекелді қымбат азайтудан гөрі қабылдаған дұрыс",
+              "Қорғаныс шаралары бизнес құндылығымен қалай байланысатыны"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "Mitigation снижает вероятность или ущерб.",
+              "Transfer переносит часть последствий на третью сторону, например через страхование или аутсорсинг.",
+              "Accept означает осознанное принятие риска, а не его игнорирование."
+            ],
+            "en": [
+              "Mitigation reduces likelihood or impact.",
+              "Transfer shifts part of the consequence to a third party, for example through insurance or outsourcing.",
+              "Accept means consciously accepting a risk, not ignoring it."
+            ],
+            "kk": [
+              "Mitigation ықтималдықты немесе залалды азайтады.",
+              "Transfer салдардың бір бөлігін үшінші тарапқа береді, мысалы сақтандыру немесе аутсорсинг арқылы.",
+              "Accept — тәуекелді елемеу емес, оны саналы түрде қабылдау."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Компания страхует киберриски — это transfer.",
+              "Невысокий риск для внутреннего тестового стенда можно принять, если стоимость защиты будет выше пользы."
+            ],
+            "en": [
+              "A company buys cyber insurance — that is transfer.",
+              "A low-impact risk in an internal test environment may be accepted if controls cost more than the benefit."
+            ],
+            "kk": [
+              "Компания кибертәуекелдерді сақтандырады — бұл transfer.",
+              "Ішкі тесттік ортадағы аз әсер ететін тәуекелді, егер қорғаныс құны пайдасынан жоғары болса, қабылдауға болады."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "SentinelOne: стратегии обработки риска",
+                "en": "SentinelOne: risk treatment strategies",
+                "kk": "SentinelOne: тәуекелді өңдеу стратегиялары"
+              },
+              "url": "https://www.sentinelone.com/cybersecurity-101/cybersecurity/cyber-security-risk-management/"
+            }
+          ]
         },
         {
           "id": "gov_06",
@@ -164,7 +479,70 @@
             "ru": "Политики ИБ: зачем нужны и как выглядят",
             "en": "Security policies: why they matter and what they look like",
             "kk": "Қауіпсіздік саясаттары: не үшін керек және қалай көрінеді"
-          }
+          },
+          "summary": {
+            "ru": "Урок показывает, зачем компании пишут политики информационной безопасности и как эти документы помогают переводить общие принципы в конкретные правила.",
+            "en": "This lesson explains why organizations write security policies and how those documents turn general principles into concrete rules.",
+            "kk": "Бұл сабақ компаниялардың не үшін ақпараттық қауіпсіздік саясаттарын жазатынын және бұл құжаттардың жалпы қағидаларды нақты ережелерге қалай айналдыратынын көрсетеді."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Что такое security policy и чем она отличается от инструкции",
+              "Почему политика должна быть понятной и применимой",
+              "Как политики связаны с аудитом и ответственностью"
+            ],
+            "en": [
+              "What a security policy is and how it differs from an instruction",
+              "Why a policy must be clear and enforceable",
+              "How policies connect to audits and accountability"
+            ],
+            "kk": [
+              "Security policy деген не және оның нұсқаулықтан айырмашылығы",
+              "Неге саясат түсінікті және қолдануға ыңғайлы болуы керек",
+              "Саясаттар аудитпен және жауапкершілікпен қалай байланысатыны"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "Политика отвечает на вопрос “что должно быть”, а процедура — “как именно это делать”.",
+              "Хорошая политика короткая, однозначная и подкреплена владельцем процесса.",
+              "Без политик трудно масштабировать единые правила безопасности в компании."
+            ],
+            "en": [
+              "A policy describes what must exist, while a procedure explains how to do it.",
+              "A good policy is short, unambiguous, and backed by a process owner.",
+              "Without policies, it is hard to scale consistent security practices across a company."
+            ],
+            "kk": [
+              "Саясат “не болуы керек” деген сұраққа жауап береді, ал процедура “оны қалай жасау керек” дегенді түсіндіреді.",
+              "Жақсы саясат қысқа, бірмәнді және процесс иесімен бекітілген болуы керек.",
+              "Саясаттарсыз компанияда бірыңғай қауіпсіздік ережелерін масштабтау қиын."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Политика паролей может требовать MFA и минимальную длину, а инструкция описывает, где это включить.",
+              "Политика работы с данными определяет, какие документы можно отправлять наружу."
+            ],
+            "en": [
+              "A password policy may require MFA and minimum length, while an instruction explains where to configure it.",
+              "A data handling policy can define which documents may be sent outside the organization."
+            ],
+            "kk": [
+              "Пароль саясаты MFA мен ең аз ұзындықты талап етуі мүмкін, ал нұсқаулық оны қай жерде қосу керегін көрсетеді.",
+              "Деректермен жұмыс істеу саясаты қандай құжаттарды сыртқа жіберуге болатынын анықтайды."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "NIST/ISO практики по политикам безопасности",
+                "en": "NIST/ISO practices for security policies",
+                "kk": "Қауіпсіздік саясаттары бойынша NIST/ISO тәжірибелері"
+              },
+              "url": "https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA"
+            }
+          ]
         },
         {
           "id": "gov_07",
@@ -174,7 +552,70 @@
             "ru": "Стандарты ISO 27001 / NIST / CIS: что выбрать и почему",
             "en": "ISO 27001 / NIST / CIS: what to choose and why",
             "kk": "ISO 27001 / NIST / CIS: нені таңдау керек және неге"
-          }
+          },
+          "summary": {
+            "ru": "В этом уроке мы сравниваем популярные фреймворки и стандарты: ISO 27001, NIST и CIS. Задача — понять, когда какой подход полезен.",
+            "en": "In this lesson, we compare common frameworks and standards: ISO 27001, NIST, and CIS. The goal is to understand when each one is useful.",
+            "kk": "Бұл сабақта ISO 27001, NIST және CIS сияқты кең таралған стандарттар мен фреймворктар салыстырылады. Мақсат — қай тәсіл қай кезде пайдалы екенін түсіну."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Чем отличается стандарт от фреймворка или бенчмарка",
+              "Когда ISO 27001 полезен для сертификации и управления",
+              "Почему NIST и CIS часто выбирают как практическую основу"
+            ],
+            "en": [
+              "How a standard differs from a framework or benchmark",
+              "When ISO 27001 helps with certification and governance",
+              "Why NIST and CIS are often chosen as practical foundations"
+            ],
+            "kk": [
+              "Стандарттың фреймворк немесе benchmark-тен айырмашылығы",
+              "ISO 27001 қашан сертификаттау мен басқару үшін пайдалы",
+              "Неге NIST пен CIS жиі практикалық негіз ретінде таңдалады"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "ISO 27001 часто выбирают для формализации ISMS и внешнего подтверждения зрелости.",
+              "NIST хорошо подходит как гибкая модель для построения процессов.",
+              "CIS Controls и CIS Benchmarks полезны для прикладных технических мер."
+            ],
+            "en": [
+              "ISO 27001 is often chosen to formalize an ISMS and demonstrate maturity externally.",
+              "NIST works well as a flexible model for process design.",
+              "CIS Controls and Benchmarks are useful for practical technical controls."
+            ],
+            "kk": [
+              "ISO 27001 жиі ISMS-ті формализациялау және жетілу деңгейін сырттай көрсету үшін таңдалады.",
+              "NIST процестерді құруға арналған икемді модель ретінде ыңғайлы.",
+              "CIS Controls және CIS Benchmarks практикалық техникалық шараларға пайдалы."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Компания готовится к аудиту заказчика — ей может пригодиться ISO 27001.",
+              "Небольшая команда хочет быстро усилить защиту endpoints — ей подойдут CIS Controls."
+            ],
+            "en": [
+              "A company preparing for a customer audit may benefit from ISO 27001.",
+              "A small team that wants to improve endpoint security quickly may start with CIS Controls."
+            ],
+            "kk": [
+              "Тапсырыс беруші аудитіне дайындалып жатқан компанияға ISO 27001 пайдалы болуы мүмкін.",
+              "Endpoints қорғанысын тез күшейткісі келетін шағын команда CIS Controls-пен бастай алады."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "Вводные материалы по ISO/NIST/CIS",
+                "en": "Introductory ISO/NIST/CIS materials",
+                "kk": "ISO/NIST/CIS бойынша кіріспе материалдар"
+              },
+              "url": "https://owasp.org/www-project-top-ten/"
+            }
+          ]
         },
         {
           "id": "gov_08",
@@ -184,7 +625,70 @@
             "ru": "Комплаенс и ответственность: GDPR, PCI DSS, 152-ФЗ (обзор)",
             "en": "Compliance and responsibility: GDPR, PCI DSS, 152-FZ (overview)",
             "kk": "Комплаенс және жауапкершілік: GDPR, PCI DSS, 152-ФЗ (шолу)"
-          }
+          },
+          "summary": {
+            "ru": "Финальный урок модуля знакомит с комплаенсом и ответственностью: почему законы, стандарты и договорные требования влияют на безопасность бизнеса.",
+            "en": "The final lesson introduces compliance and accountability: why laws, standards, and contractual requirements influence business security.",
+            "kk": "Модульдің соңғы сабағы комплаенс пен жауапкершілікке арналған: заңдар, стандарттар және келісімшарт талаптары бизнестің қауіпсіздігіне қалай әсер ететінін түсіндіреді."
+          },
+          "whatYouWillLearn": {
+            "ru": [
+              "Что такое комплаенс простыми словами",
+              "Почему требования GDPR, PCI DSS и локальных законов нельзя игнорировать",
+              "Как ответственность распределяется между людьми, процессами и организацией"
+            ],
+            "en": [
+              "What compliance means in simple terms",
+              "Why GDPR, PCI DSS, and local regulations cannot be ignored",
+              "How accountability is distributed across people, processes, and the organization"
+            ],
+            "kk": [
+              "Комплаенс қарапайым тілмен нені білдіреді",
+              "Неге GDPR, PCI DSS және жергілікті заң талаптарын елемеуге болмайды",
+              "Жауапкершілік адамдар, процестер және ұйым арасында қалай бөлінетіні"
+            ]
+          },
+          "keyFacts": {
+            "ru": [
+              "Комплаенс не заменяет безопасность, но заставляет оформлять её системно.",
+              "Нарушение требований может привести к штрафам, потерям клиентов и репутационному ущербу.",
+              "Ответственность за безопасность почти никогда не лежит только на одной ИБ-команде."
+            ],
+            "en": [
+              "Compliance does not replace security, but it pushes organizations to structure it systematically.",
+              "Violations can lead to fines, customer loss, and reputational damage.",
+              "Security responsibility almost never belongs to only one security team."
+            ],
+            "kk": [
+              "Комплаенс қауіпсіздіктің орнын баспайды, бірақ оны жүйелі түрде ұйымдастыруға мәжбүр етеді.",
+              "Талаптарды бұзу айыппұлға, клиент жоғалтуға және беделге нұқсан келтіруге әкелуі мүмкін.",
+              "Қауіпсіздікке жауапкершілік көбіне тек бір ИБ тобына ғана жүктелмейді."
+            ]
+          },
+          "examples": {
+            "ru": [
+              "Интернет-магазин принимает карты — значит, ему нужно учитывать требования PCI DSS.",
+              "Компания хранит персональные данные клиентов и обязана продумать доступ, хранение и уведомление об инцидентах."
+            ],
+            "en": [
+              "An online store that processes payment cards must consider PCI DSS requirements.",
+              "A company storing personal data must think about access, storage, and incident notification obligations."
+            ],
+            "kk": [
+              "Банк карталарын қабылдайтын интернет-дүкен PCI DSS талаптарын ескеруі тиіс.",
+              "Клиенттердің жеке деректерін сақтайтын компания қолжетімділік, сақтау және инциденттер туралы хабарлау міндеттерін ойластыруы керек."
+            ]
+          },
+          "sources": [
+            {
+              "title": {
+                "ru": "Обзор комплаенса и ответственности",
+                "en": "Compliance and accountability overview",
+                "kk": "Комплаенс пен жауапкершілікке шолу"
+              },
+              "url": "https://www.fortinet.com/resources/cyberglossary/data-classification"
+            }
+          ]
         }
       ]
     },
