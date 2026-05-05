@@ -13,6 +13,10 @@ class WorkOnMistakesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Mistake> mistakes = ref.watch(mistakesServiceProvider);
+    final int uniqueLessons = mistakes.map((Mistake m) => m.lessonId).toSet().length;
+    final int hardOrMedium = mistakes
+        .where((Mistake m) => m.difficulty == 'medium' || m.difficulty == 'hard')
+        .length;
 
     return Scaffold(
       appBar: AppBar(title: Text('Work on mistakes', style: AppTextStyles.cardTitle)),
@@ -31,8 +35,18 @@ class WorkOnMistakesScreen extends ConsumerWidget {
                 Text('Mistake pool: ${mistakes.length}', style: AppTextStyles.cardTitle),
                 const SizedBox(height: 8),
                 Text(
-                  'Start a 10-question adaptive quiz from your wrong answers.',
+                  'Start an adaptive quiz built from your wrong answers, related lessons, and current difficulty level.',
                   style: AppTextStyles.body,
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: <Widget>[
+                    _StatChip(label: 'Lessons', value: uniqueLessons.toString()),
+                    _StatChip(label: 'Medium/Hard', value: hardOrMedium.toString()),
+                    const _StatChip(label: 'Feedback', value: 'On'),
+                  ],
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
@@ -75,7 +89,7 @@ class WorkOnMistakesScreen extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '${m.moduleId} • ${m.questionId}',
+                      '${m.moduleId} • ${m.lessonId} • ${_difficultyLabel(m.difficulty)}',
                       style: AppTextStyles.body,
                     ),
                   ),
@@ -84,6 +98,46 @@ class WorkOnMistakesScreen extends ConsumerWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  String _difficultyLabel(String difficulty) {
+    switch (difficulty) {
+      case 'hard':
+        return 'Hard';
+      case 'medium':
+        return 'Medium';
+      case 'easy':
+      default:
+        return 'Easy';
+    }
+  }
+}
+
+class _StatChip extends StatelessWidget {
+  const _StatChip({
+    required this.label,
+    required this.value,
+  });
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text('$label: ', style: AppTextStyles.secondary),
+          Text(value, style: AppTextStyles.chip),
         ],
       ),
     );

@@ -215,7 +215,9 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
       if (selected == q.correctIndex) {
         correct++;
       } else {
-        ref.read(mistakesServiceProvider.notifier).addMistake(q.questionId, q.moduleId);
+        ref
+            .read(mistakesServiceProvider.notifier)
+            .addMistake(q.questionId, q.moduleId, q.lessonId, q.difficulty);
       }
     }
 

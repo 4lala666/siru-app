@@ -17,18 +17,24 @@ class MistakesService extends StateNotifier<List<Mistake>> {
           Mistake(
             questionId: 'q1',
             moduleId: 'gov_risk',
+            lessonId: 'gov_02',
+            difficulty: 'easy',
             wrongCount: 2,
             lastWrongAt: DateTime(2026, 1, 10),
           ),
           Mistake(
             questionId: 'q3',
             moduleId: 'social_eng',
+            lessonId: 'se_02',
+            difficulty: 'easy',
             wrongCount: 1,
             lastWrongAt: DateTime(2026, 1, 11),
           ),
           Mistake(
             questionId: 'q5',
             moduleId: 'network_sec',
+            lessonId: 'net_05',
+            difficulty: 'easy',
             wrongCount: 1,
             lastWrongAt: DateTime(2026, 1, 12),
           ),
@@ -42,7 +48,12 @@ class MistakesService extends StateNotifier<List<Mistake>> {
         .toList();
   }
 
-  void addMistake(String questionId, String moduleId) {
+  void addMistake(
+    String questionId,
+    String moduleId,
+    String lessonId,
+    String difficulty,
+  ) {
     final int index = state.indexWhere((Mistake m) => m.questionId == questionId);
     if (index == -1) {
       state = <Mistake>[
@@ -50,6 +61,8 @@ class MistakesService extends StateNotifier<List<Mistake>> {
         Mistake(
           questionId: questionId,
           moduleId: moduleId,
+          lessonId: lessonId,
+          difficulty: difficulty,
           wrongCount: 1,
           lastWrongAt: DateTime.now(),
         ),
@@ -61,6 +74,8 @@ class MistakesService extends StateNotifier<List<Mistake>> {
     final Mistake updated = old.copyWith(
       wrongCount: old.wrongCount + 1,
       lastWrongAt: DateTime.now(),
+      lessonId: lessonId,
+      difficulty: difficulty,
     );
 
     final List<Mistake> clone = <Mistake>[...state];
@@ -70,21 +85,66 @@ class MistakesService extends StateNotifier<List<Mistake>> {
 
   Future<List<QuizQuestion>> getRandom10Questions() async {
     final List<QuizQuestion> bank = await _loadQuestions();
-    final Set<String> mistakeIds = state.map((Mistake m) => m.questionId).toSet();
+    final Set<String> lessonIds = state.map((Mistake m) => m.lessonId).toSet();
+    final Random rng = Random();
 
-    final List<QuizQuestion> pool = bank
-        .where((QuizQuestion q) => mistakeIds.contains(q.questionId))
+    final Map<String, QuizQuestion> bankById = <String, QuizQuestion>{
+      for (final QuizQuestion question in bank) question.questionId: question,
+    };
+
+    final List<Mistake> selectedMistakes = state
+        .where((Mistake m) => bankById.containsKey(m.questionId))
+        .toList()
+      ..sort((Mistake a, Mistake b) {
+        final int byWrongCount = b.wrongCount.compareTo(a.wrongCount);
+        if (byWrongCount != 0) return byWrongCount;
+        final int byDifficulty =
+            _difficultyWeight(b.difficulty).compareTo(_difficultyWeight(a.difficulty));
+        if (byDifficulty != 0) return byDifficulty;
+        return b.lastWrongAt.compareTo(a.lastWrongAt);
+      });
+
+    final List<QuizQuestion> chosen = selectedMistakes
+        .map((Mistake mistake) => bankById[mistake.questionId]!)
+        .take(10)
         .toList();
 
-    if (pool.isEmpty) {
-      return <QuizQuestion>[];
+    final Set<String> chosenIds = chosen.map((QuizQuestion q) => q.questionId).toSet();
+
+    if (chosen.length < 10) {
+      final List<QuizQuestion> lessonPool = bank
+          .where((QuizQuestion q) => lessonIds.contains(q.lessonId) && !chosenIds.contains(q.questionId))
+          .toList()
+        ..sort((QuizQuestion a, QuizQuestion b) {
+          final int byDifficulty =
+              _difficultyWeight(b.difficulty).compareTo(_difficultyWeight(a.difficulty));
+          if (byDifficulty != 0) return byDifficulty;
+          return rng.nextInt(3) - 1;
+        });
+      for (final QuizQuestion q in lessonPool) {
+        if (chosen.length >= 10) break;
+        chosen.add(q);
+        chosenIds.add(q.questionId);
+      }
     }
 
-    final Random rng = Random();
-    pool.shuffle(rng);
+    if (chosen.length < 10) {
+      final List<QuizQuestion> fallbackPool = bank
+          .where((QuizQuestion q) => !chosenIds.contains(q.questionId))
+          .toList()
+        ..sort((QuizQuestion a, QuizQuestion b) {
+          final int byDifficulty =
+              _difficultyWeight(b.difficulty).compareTo(_difficultyWeight(a.difficulty));
+          if (byDifficulty != 0) return byDifficulty;
+          return rng.nextInt(3) - 1;
+        });
+      for (final QuizQuestion q in fallbackPool) {
+        if (chosen.length >= 10) break;
+        chosen.add(q);
+      }
+    }
 
-    if (pool.length <= 10) return pool;
-    return pool.take(10).toList();
+    return chosen;
   }
 
   Future<List<QuizQuestion>> getQuestionsForLesson(String lessonId) async {
@@ -100,5 +160,16 @@ class MistakesService extends StateNotifier<List<Mistake>> {
     lessonQuestions.shuffle(rng);
     return lessonQuestions;
   }
-}
 
+  int _difficultyWeight(String difficulty) {
+    switch (difficulty) {
+      case 'hard':
+        return 3;
+      case 'medium':
+        return 2;
+      case 'easy':
+      default:
+        return 1;
+    }
+  }
+}

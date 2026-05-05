@@ -2,24 +2,32 @@
   const Mistake({
     required this.questionId,
     required this.moduleId,
+    required this.lessonId,
+    required this.difficulty,
     required this.wrongCount,
     required this.lastWrongAt,
   });
 
   final String questionId;
   final String moduleId;
+  final String lessonId;
+  final String difficulty;
   final int wrongCount;
   final DateTime lastWrongAt;
 
   Mistake copyWith({
     String? questionId,
     String? moduleId,
+    String? lessonId,
+    String? difficulty,
     int? wrongCount,
     DateTime? lastWrongAt,
   }) {
     return Mistake(
       questionId: questionId ?? this.questionId,
       moduleId: moduleId ?? this.moduleId,
+      lessonId: lessonId ?? this.lessonId,
+      difficulty: difficulty ?? this.difficulty,
       wrongCount: wrongCount ?? this.wrongCount,
       lastWrongAt: lastWrongAt ?? this.lastWrongAt,
     );
@@ -88,4 +96,3 @@ class QuestionSource {
     );
   }
 }
-
