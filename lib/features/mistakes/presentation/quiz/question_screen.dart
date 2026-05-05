@@ -8,9 +8,18 @@ import '../../data/mistakes_service.dart';
 import '../../domain/mistake.dart';
 
 class QuestionScreen extends ConsumerStatefulWidget {
-  const QuestionScreen({super.key, required this.questions});
+  const QuestionScreen({
+    super.key,
+    required this.questions,
+    this.resultRoute = '/app/profile/mistakes/result',
+    this.resultBackRoute = '/app/profile/mistakes',
+    this.resultBackLabel = 'Back to mistakes',
+  });
 
   final List<QuizQuestion> questions;
+  final String resultRoute;
+  final String resultBackRoute;
+  final String resultBackLabel;
 
   @override
   ConsumerState<QuestionScreen> createState() => _QuestionScreenState();
@@ -86,9 +95,11 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
       }
     }
 
-    context.go('/app/profile/mistakes/result', extra: <String, int>{
+    context.go(widget.resultRoute, extra: <String, dynamic>{
       'correct': correct,
       'total': widget.questions.length,
+      'backRoute': widget.resultBackRoute,
+      'backLabel': widget.resultBackLabel,
     });
   }
 }

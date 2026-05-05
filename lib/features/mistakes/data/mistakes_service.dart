@@ -86,5 +86,19 @@ class MistakesService extends StateNotifier<List<Mistake>> {
     if (pool.length <= 10) return pool;
     return pool.take(10).toList();
   }
+
+  Future<List<QuizQuestion>> getQuestionsForLesson(String lessonId) async {
+    final List<QuizQuestion> bank = await _loadQuestions();
+    final List<QuizQuestion> lessonQuestions =
+        bank.where((QuizQuestion q) => q.lessonId == lessonId).toList();
+
+    if (lessonQuestions.isEmpty) {
+      return <QuizQuestion>[];
+    }
+
+    final Random rng = Random();
+    lessonQuestions.shuffle(rng);
+    return lessonQuestions;
+  }
 }
 

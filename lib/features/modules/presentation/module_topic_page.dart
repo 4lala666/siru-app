@@ -1,7 +1,11 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
+import '../../mistakes/data/mistakes_service.dart';
+import '../../mistakes/domain/mistake.dart';
 import '../domain/module_models.dart';
 
 class ModuleTopicArgs {
@@ -14,7 +18,7 @@ class ModuleTopicArgs {
   final Lesson lesson;
 }
 
-class ModuleTopicPage extends StatelessWidget {
+class ModuleTopicPage extends ConsumerWidget {
   const ModuleTopicPage({
     super.key,
     required this.args,
@@ -23,7 +27,7 @@ class ModuleTopicPage extends StatelessWidget {
   final ModuleTopicArgs args;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final String lang = Localizations.localeOf(context).languageCode;
     final String lessonTitle = tr(args.lesson.title, lang);
     final String summary = tr(args.lesson.summary, lang);
@@ -117,18 +121,30 @@ class ModuleTopicPage extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(_t(lang, 'interactiveLessonSoon'))),
-                  );
-                },
-                child: Text(_t(lang, 'startLesson')),
+                onPressed: () => _startLessonQuiz(context, ref, lang),
+                child: Text(_t(lang, 'startQuiz')),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _startLessonQuiz(BuildContext context, WidgetRef ref, String lang) async {
+    final List<QuizQuestion> questions =
+        await ref.read(mistakesServiceProvider.notifier).getQuestionsForLesson(args.lesson.id);
+
+    if (!context.mounted) return;
+
+    if (questions.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(_t(lang, 'noQuizYet'))),
+      );
+      return;
+    }
+
+    context.push('/lesson-quiz', extra: questions);
   }
 
   String _t(String lang, String key) {
@@ -163,15 +179,10 @@ class ModuleTopicPage extends StatelessWidget {
         'en': 'Sources',
         'kk': 'Дереккөздер',
       },
-      'startLesson': <String, String>{
-        'ru': 'Начать урок',
-        'en': 'Start Lesson',
-        'kk': 'Сабақты бастау',
-      },
-      'interactiveLessonSoon': <String, String>{
-        'ru': 'Интерактивный сценарий для этого урока скоро появится.',
-        'en': 'An interactive scenario for this lesson is coming soon.',
-        'kk': 'Бұл сабаққа арналған интерактивті сценарий жақында қосылады.',
+      'startQuiz': <String, String>{
+        'ru': 'Начать тест',
+        'en': 'Start Quiz',
+        'kk': 'Тесті бастау',
       },
       'comingSoonDescription': <String, String>{
         'ru': 'Подробное описание урока скоро будет добавлено.',
@@ -197,6 +208,11 @@ class ModuleTopicPage extends StatelessWidget {
         'ru': 'Источники для этого урока будут добавлены следующим этапом.',
         'en': 'Sources for this lesson will be added in the next iteration.',
         'kk': 'Бұл сабақтың дереккөздері келесі кезеңде қосылады.',
+      },
+      'noQuizYet': <String, String>{
+        'ru': 'Для этого урока пока нет вопросов.',
+        'en': 'There are no questions for this lesson yet.',
+        'kk': 'Бұл сабаққа арналған сұрақтар әзірге жоқ.',
       },
     };
 

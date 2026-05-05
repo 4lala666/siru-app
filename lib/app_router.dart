@@ -95,6 +95,34 @@ class AppRouter {
           return ModuleTopicPage(args: args);
         },
       ),
+      GoRoute(
+        path: '/lesson-quiz',
+        builder: (_, GoRouterState state) {
+          final Object? extra = state.extra;
+          final List<QuizQuestion> questions =
+              (extra is List<QuizQuestion>) ? extra : const <QuizQuestion>[];
+          return QuestionScreen(
+            questions: questions,
+            resultRoute: '/lesson-quiz/result',
+            resultBackRoute: '/app/modules',
+            resultBackLabel: 'Back to modules',
+          );
+        },
+      ),
+      GoRoute(
+        path: '/lesson-quiz/result',
+        builder: (_, GoRouterState state) {
+          final Object? extra = state.extra;
+          final Map<String, dynamic> map =
+              (extra is Map<String, dynamic>) ? extra : const <String, dynamic>{};
+          return ResultScreen(
+            correct: (map['correct'] as int?) ?? 0,
+            total: (map['total'] as int?) ?? 0,
+            backRoute: (map['backRoute'] as String?) ?? '/app/modules',
+            backLabel: (map['backLabel'] as String?) ?? 'Back to modules',
+          );
+        },
+      ),
       GoRoute(path: '/app', redirect: (_, __) => '/app/home'),
       StatefulShellRoute.indexedStack(
         builder: (BuildContext context, GoRouterState state, StatefulNavigationShell shell) {
@@ -138,11 +166,13 @@ class AppRouter {
                         path: 'result',
                         builder: (_, GoRouterState state) {
                           final Object? extra = state.extra;
-                          final Map<String, int> map =
-                              (extra is Map<String, int>) ? extra : const <String, int>{'correct': 0, 'total': 0};
+                          final Map<String, dynamic> map =
+                              (extra is Map<String, dynamic>) ? extra : const <String, dynamic>{};
                           return ResultScreen(
-                            correct: map['correct'] ?? 0,
-                            total: map['total'] ?? 0,
+                            correct: (map['correct'] as int?) ?? 0,
+                            total: (map['total'] as int?) ?? 0,
+                            backRoute: (map['backRoute'] as String?) ?? '/app/profile/mistakes',
+                            backLabel: (map['backLabel'] as String?) ?? 'Back to mistakes',
                           );
                         },
                       ),

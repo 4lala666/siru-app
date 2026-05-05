@@ -5,10 +5,18 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_text_styles.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.correct, required this.total});
+  const ResultScreen({
+    super.key,
+    required this.correct,
+    required this.total,
+    this.backRoute = '/app/profile/mistakes',
+    this.backLabel = 'Back to mistakes',
+  });
 
   final int correct;
   final int total;
+  final String backRoute;
+  final String backLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +55,8 @@ class ResultScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => context.go('/app/profile/mistakes'),
-                  child: const Text('Back to mistakes'),
+                  onPressed: () => context.go(backRoute),
+                  child: Text(backLabel),
                 ),
               ),
             ],
