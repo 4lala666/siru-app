@@ -1,87 +1,254 @@
-﻿[
+[
   {
     "questionId": "q1",
-    "moduleId": "governance",
+    "moduleId": "gov_risk",
+    "lessonId": "gov_02",
+    "type": "single_choice",
+    "difficulty": "easy",
     "question": "What does CIA stand for in cybersecurity?",
-    "options": ["Control, Integrity, Access", "Confidentiality, Integrity, Availability", "Cyber, Internet, Access", "Critical, Internal, Audit"],
-    "correctIndex": 1
+    "options": [
+      "Control, Integrity, Access",
+      "Confidentiality, Integrity, Availability",
+      "Cyber, Internet, Access",
+      "Critical, Internal, Audit"
+    ],
+    "correctIndex": 1,
+    "explanation": "The CIA triad stands for Confidentiality, Integrity, and Availability. It describes the three foundational properties of information security.",
+    "hint": "Think about the three core properties every secure system should protect.",
+    "source": {
+      "title": "TechTarget: CIA triad",
+      "url": "https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA"
+    }
   },
   {
     "questionId": "q2",
-    "moduleId": "governance",
+    "moduleId": "gov_risk",
+    "lessonId": "gov_05",
+    "type": "single_choice",
+    "difficulty": "medium",
     "question": "Which is an example of risk treatment?",
-    "options": ["Ignore all findings", "Mitigate with MFA", "Disable logging", "Use default passwords"],
-    "correctIndex": 1
+    "options": [
+      "Ignore all findings",
+      "Mitigate with MFA",
+      "Disable logging",
+      "Use default passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adding MFA is a mitigation control. It reduces the likelihood that a stolen password alone can be used to compromise an account.",
+    "hint": "Look for the answer that actively reduces either the likelihood or the impact of a threat.",
+    "source": {
+      "title": "SentinelOne: cyber risk management",
+      "url": "https://www.sentinelone.com/cybersecurity-101/cybersecurity/cyber-security-risk-management/"
+    }
   },
   {
     "questionId": "q3",
-    "moduleId": "social",
-    "question": "Main sign of phishing email?",
-    "options": ["Expected sender and context", "Urgency + suspicious link", "Signed with DKIM", "Internal ticket reference"],
-    "correctIndex": 1
+    "moduleId": "social_eng",
+    "lessonId": "se_02",
+    "type": "single_choice",
+    "difficulty": "easy",
+    "question": "Main sign of a phishing email?",
+    "options": [
+      "Expected sender and context",
+      "Urgency and a suspicious link",
+      "Signed with DKIM",
+      "Internal ticket reference"
+    ],
+    "correctIndex": 1,
+    "explanation": "Phishing emails often create urgency and try to push the user toward a suspicious link or action before they have time to verify the request.",
+    "hint": "Think about what attackers use to pressure a victim into acting too quickly.",
+    "source": {
+      "title": "MyCSBIN: phishing, vishing, smishing",
+      "url": "https://blog.mycsbin.com/voice-phishing-vishing-and-sms-phishing-smishing"
+    }
   },
   {
     "questionId": "q4",
-    "moduleId": "social",
+    "moduleId": "social_eng",
+    "lessonId": "se_03",
+    "type": "single_choice",
+    "difficulty": "easy",
     "question": "Vishing means:",
-    "options": ["SMS scam", "Phone call scam", "Physical break-in", "USB malware"],
-    "correctIndex": 1
+    "options": [
+      "SMS scam",
+      "Phone call scam",
+      "Physical break-in",
+      "USB malware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vishing is voice phishing. The attacker typically pretends to be a bank, support specialist, or official representative over a phone call.",
+    "hint": "The “v” in vishing points to voice.",
+    "source": {
+      "title": "MyCSBIN: phishing, vishing, smishing",
+      "url": "https://blog.mycsbin.com/voice-phishing-vishing-and-sms-phishing-smishing"
+    }
   },
   {
     "questionId": "q5",
-    "moduleId": "network",
+    "moduleId": "network_sec",
+    "lessonId": "net_05",
+    "type": "single_choice",
+    "difficulty": "easy",
     "question": "HTTPS primarily protects:",
-    "options": ["Disk encryption", "Data in transit", "BIOS settings", "USB devices"],
-    "correctIndex": 1
+    "options": [
+      "Disk encryption",
+      "Data in transit",
+      "BIOS settings",
+      "USB devices"
+    ],
+    "correctIndex": 1,
+    "explanation": "HTTPS uses TLS to protect data while it travels between the client and the server. It does not encrypt data stored on disk.",
+    "hint": "Think about where TLS is active: during communication, not storage.",
+    "source": {
+      "title": "Contrast Security: firewall and web security concepts",
+      "url": "https://www.contrastsecurity.com/glossary/firewall"
+    }
   },
   {
     "questionId": "q6",
-    "moduleId": "network",
+    "moduleId": "network_sec",
+    "lessonId": "net_03",
+    "type": "single_choice",
+    "difficulty": "easy",
     "question": "A firewall is used to:",
-    "options": ["Sort photos", "Control network traffic", "Install apps", "Reset passwords"],
-    "correctIndex": 1
+    "options": [
+      "Sort photos",
+      "Control network traffic",
+      "Install apps",
+      "Reset passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "A firewall filters incoming and outgoing traffic according to defined rules. It is a core network defense mechanism.",
+    "hint": "This tool sits on the boundary and decides what traffic can pass.",
+    "source": {
+      "title": "Contrast Security: firewall basics",
+      "url": "https://www.contrastsecurity.com/glossary/firewall"
+    }
   },
   {
     "questionId": "q7",
     "moduleId": "iam",
+    "lessonId": "iam_03",
+    "type": "single_choice",
+    "difficulty": "easy",
     "question": "MFA adds security by:",
-    "options": ["Using one short password", "Adding an extra verification factor", "Disabling lockout", "Sharing credentials"],
-    "correctIndex": 1
+    "options": [
+      "Using one short password",
+      "Adding an extra verification factor",
+      "Disabling lockout",
+      "Sharing credentials"
+    ],
+    "correctIndex": 1,
+    "explanation": "MFA improves security because it requires an additional factor beyond the password, such as a code, token, or biometric check.",
+    "hint": "The key idea is not a better password, but one more proof of identity.",
+    "source": {
+      "title": "General IAM and MFA best practices",
+      "url": "https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA"
+    }
   },
   {
     "questionId": "q8",
     "moduleId": "iam",
+    "lessonId": "iam_05",
+    "type": "single_choice",
+    "difficulty": "medium",
     "question": "RBAC means:",
-    "options": ["Role-Based Access Control", "Random Backup Access Control", "Remote Browser Access Core", "Risk Based Audit Cycle"],
-    "correctIndex": 0
+    "options": [
+      "Role-Based Access Control",
+      "Random Backup Access Control",
+      "Remote Browser Access Core",
+      "Risk Based Audit Cycle"
+    ],
+    "correctIndex": 0,
+    "explanation": "RBAC stands for Role-Based Access Control. Permissions are assigned to roles, and users receive permissions through those roles.",
+    "hint": "Think about access being granted through job roles or functional roles.",
+    "source": {
+      "title": "General IAM and RBAC concepts",
+      "url": "https://www.techtarget.com/whatis/definition/Confidentiality-integrity-and-availability-CIA"
+    }
   },
   {
     "questionId": "q9",
-    "moduleId": "cloud",
-    "question": "Public cloud bucket misconfig can cause:",
-    "options": ["Improved encryption", "Data exposure", "Faster CPU", "Better UX"],
-    "correctIndex": 1
+    "moduleId": "cloud_sec",
+    "lessonId": "cl_06",
+    "type": "single_choice",
+    "difficulty": "medium",
+    "question": "A public cloud bucket misconfiguration can cause:",
+    "options": [
+      "Improved encryption",
+      "Data exposure",
+      "Faster CPU",
+      "Better UX"
+    ],
+    "correctIndex": 1,
+    "explanation": "A publicly exposed bucket can make sensitive files accessible to anyone on the internet, leading directly to data exposure.",
+    "hint": "Misconfiguration in cloud storage usually affects visibility and access rights.",
+    "source": {
+      "title": "Cloud security fundamentals",
+      "url": "https://www.fortinet.com/resources/cyberglossary/data-classification"
+    }
   },
   {
     "questionId": "q10",
-    "moduleId": "cloud",
+    "moduleId": "cloud_sec",
+    "lessonId": "cl_02",
+    "type": "single_choice",
+    "difficulty": "medium",
     "question": "Shared responsibility model means:",
-    "options": ["Provider secures everything", "Customer secures everything", "Security duties are split", "No one is responsible"],
-    "correctIndex": 2
+    "options": [
+      "Provider secures everything",
+      "Customer secures everything",
+      "Security duties are split",
+      "No one is responsible"
+    ],
+    "correctIndex": 2,
+    "explanation": "In cloud environments, the provider and the customer each have their own responsibilities. The exact split depends on the service model.",
+    "hint": "In cloud, security is not fully owned by only one side.",
+    "source": {
+      "title": "Cloud shared responsibility overview",
+      "url": "https://www.fortinet.com/resources/cyberglossary/data-classification"
+    }
   },
   {
     "questionId": "q11",
-    "moduleId": "appsec",
+    "moduleId": "appsec_devsecops",
+    "lessonId": "as_03",
+    "type": "single_choice",
+    "difficulty": "medium",
     "question": "SQL Injection targets:",
-    "options": ["Database queries", "Bluetooth stack", "GPU drivers", "Email headers"],
-    "correctIndex": 0
+    "options": [
+      "Database queries",
+      "Bluetooth stack",
+      "GPU drivers",
+      "Email headers"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQL Injection manipulates database queries by injecting malicious input into unsafe SQL statements.",
+    "hint": "This attack abuses the way an application builds and executes database requests.",
+    "source": {
+      "title": "OWASP Top 10",
+      "url": "https://owasp.org/www-project-top-ten/"
+    }
   },
   {
     "questionId": "q12",
-    "moduleId": "appsec",
-    "question": "XSS allows attacker to:",
-    "options": ["Run script in victim browser", "Encrypt server disks", "Reset MFA", "Patch kernel"],
-    "correctIndex": 0
+    "moduleId": "appsec_devsecops",
+    "lessonId": "as_04",
+    "type": "single_choice",
+    "difficulty": "medium",
+    "question": "XSS allows an attacker to:",
+    "options": [
+      "Run script in the victim browser",
+      "Encrypt server disks",
+      "Reset MFA",
+      "Patch kernel"
+    ],
+    "correctIndex": 0,
+    "explanation": "Cross-site scripting injects malicious script into a page so that it runs inside the victim’s browser session.",
+    "hint": "The browser, not the server shell, is the main execution target here.",
+    "source": {
+      "title": "OWASP Top 10",
+      "url": "https://owasp.org/www-project-top-ten/"
+    }
   }
 ]
-

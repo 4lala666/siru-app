@@ -16,19 +16,19 @@ class MistakesService extends StateNotifier<List<Mistake>> {
       : super(<Mistake>[
           Mistake(
             questionId: 'q1',
-            moduleId: 'governance',
+            moduleId: 'gov_risk',
             wrongCount: 2,
             lastWrongAt: DateTime(2026, 1, 10),
           ),
           Mistake(
             questionId: 'q3',
-            moduleId: 'social',
+            moduleId: 'social_eng',
             wrongCount: 1,
             lastWrongAt: DateTime(2026, 1, 11),
           ),
           Mistake(
             questionId: 'q5',
-            moduleId: 'network',
+            moduleId: 'network_sec',
             wrongCount: 1,
             lastWrongAt: DateTime(2026, 1, 12),
           ),
