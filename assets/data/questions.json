@@ -66,18 +66,16 @@
     "questionId": "q4",
     "moduleId": "social_eng",
     "lessonId": "se_03",
-    "type": "single_choice",
+    "type": "true_false",
     "difficulty": "easy",
-    "question": "Vishing means:",
+    "question": "True or false: vishing is a phone-based phishing attack.",
     "options": [
-      "SMS scam",
-      "Phone call scam",
-      "Physical break-in",
-      "USB malware"
+      "True",
+      "False"
     ],
-    "correctIndex": 1,
-    "explanation": "Vishing is voice phishing. The attacker typically pretends to be a bank, support specialist, or official representative over a phone call.",
-    "hint": "The “v” in vishing points to voice.",
+    "correctIndex": 0,
+    "explanation": "This statement is true. Vishing is phishing performed through voice calls, usually with impersonation and pressure tactics.",
+    "hint": "Think about the “voice” part of the term.",
     "source": {
       "title": "MyCSBIN: phishing, vishing, smishing",
       "url": "https://blog.mycsbin.com/voice-phishing-vishing-and-sms-phishing-smishing"
@@ -192,18 +190,16 @@
     "questionId": "q10",
     "moduleId": "cloud_sec",
     "lessonId": "cl_02",
-    "type": "single_choice",
+    "type": "true_false",
     "difficulty": "medium",
-    "question": "Shared responsibility model means:",
+    "question": "True or false: in the shared responsibility model, the cloud provider is responsible for absolutely everything.",
     "options": [
-      "Provider secures everything",
-      "Customer secures everything",
-      "Security duties are split",
-      "No one is responsible"
+      "True",
+      "False"
     ],
-    "correctIndex": 2,
-    "explanation": "In cloud environments, the provider and the customer each have their own responsibilities. The exact split depends on the service model.",
-    "hint": "In cloud, security is not fully owned by only one side.",
+    "correctIndex": 1,
+    "explanation": "This statement is false. Security responsibilities are split between the cloud provider and the customer depending on the service model.",
+    "hint": "Cloud security is shared, not fully outsourced.",
     "source": {
       "title": "Cloud shared responsibility overview",
       "url": "https://www.fortinet.com/resources/cyberglossary/data-classification"

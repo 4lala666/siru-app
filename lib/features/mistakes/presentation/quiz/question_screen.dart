@@ -72,25 +72,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
             Expanded(
               child: ListView(
                 children: <Widget>[
-                  for (int i = 0; i < q.options.length; i++)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _optionColor(q, i, isRevealed),
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        ),
-                        onPressed: isRevealed
-                            ? null
-                            : () {
-                                setState(() {
-                                  _answers[q.questionId] = i;
-                                });
-                              },
-                        child: Text(q.options[i]),
-                      ),
-                    ),
+                  ..._buildQuestionOptions(q, isRevealed),
                   if (isRevealed) ...<Widget>[
                     const SizedBox(height: 6),
                     _ExplanationCard(
@@ -120,6 +102,57 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildQuestionOptions(QuizQuestion question, bool isRevealed) {
+    switch (question.type) {
+      case 'true_false':
+      case 'single_choice':
+        return _buildChoiceButtons(question, isRevealed);
+      case 'matching':
+      case 'mini_case':
+      default:
+        return <Widget>[
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.cardBackground,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.orangeAccent.withValues(alpha: 0.55)),
+            ),
+            child: Text(
+              'This question type is not fully implemented yet. A temporary single-choice fallback is shown below.',
+              style: AppTextStyles.body,
+            ),
+          ),
+          const SizedBox(height: 12),
+          ..._buildChoiceButtons(question, isRevealed),
+        ];
+    }
+  }
+
+  List<Widget> _buildChoiceButtons(QuizQuestion q, bool isRevealed) {
+    return <Widget>[
+      for (int i = 0; i < q.options.length; i++)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _optionColor(q, i, isRevealed),
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            ),
+            onPressed: isRevealed
+                ? null
+                : () {
+                    setState(() {
+                      _answers[q.questionId] = i;
+                    });
+                  },
+            child: Text(q.options[i]),
+          ),
+        ),
+    ];
   }
 
   void _reveal(String questionId) {
@@ -216,7 +249,9 @@ class _ExplanationCard extends StatelessWidget {
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isCorrect ? Colors.greenAccent.withValues(alpha: 0.7) : Colors.redAccent.withValues(alpha: 0.7),
+          color: isCorrect
+              ? Colors.greenAccent.withValues(alpha: 0.7)
+              : Colors.redAccent.withValues(alpha: 0.7),
         ),
       ),
       child: Column(
