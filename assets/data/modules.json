@@ -66,17 +66,17 @@
             "ru": [
               "Новичкам",
               "Студентам",
-              "Начинающим специалистам"
+              "Начинающим специалистам по ИБ"
             ],
             "en": [
               "Beginners",
               "Students",
-              "Junior specialists"
+              "Junior security specialists"
             ],
             "kk": [
               "Жаңадан бастаушыларға",
               "Студенттерге",
-              "Бастапқы мамандарға"
+              "Бастапқы деңгейдегі ИБ мамандарына"
             ]
           }
         },
@@ -88,19 +88,19 @@
           },
           "bullets": {
             "ru": [
-              "Короткие уроки",
-              "Чёткая терминология",
-              "Практичные примеры"
+              "Даёт прочную теоретическую базу",
+              "Учит мыслить через риски и меры защиты",
+              "Помогает ориентироваться в стандартах и комплаенсе"
             ],
             "en": [
-              "Short lessons",
-              "Clear terminology",
-              "Practical examples"
+              "Builds a strong theoretical foundation",
+              "Teaches risk-based security thinking",
+              "Helps navigate standards and compliance"
             ],
             "kk": [
-              "Қысқа сабақтар",
-              "Түсінікті терминдер",
-              "Практикалық мысалдар"
+              "Мықты теориялық база береді",
+              "Тәуекел арқылы ойлауды үйретеді",
+              "Стандарттар мен комплаенсте бағдар береді"
             ]
           }
         }
@@ -244,17 +244,41 @@
             "ru": [
               "Всем пользователям почты и мессенджеров",
               "Сотрудникам компаний",
-              "Новичкам в ИБ"
+              "Студентам и новичкам"
             ],
             "en": [
-              "Anyone using email & messengers",
-              "Company staff",
-              "Beginners in security"
+              "Email and messenger users",
+              "Company employees",
+              "Students and beginners"
             ],
             "kk": [
-              "Пошта/мессенджер қолданатындарға",
+              "Пошта мен мессенджер қолданушыларына",
               "Компания қызметкерлеріне",
-              "Жаңадан бастаушыларға"
+              "Студенттер мен жаңадан бастаушыларға"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Помогает распознавать реальные схемы атак",
+              "Даёт поведенческие чек-листы",
+              "Формирует безопасные цифровые привычки"
+            ],
+            "en": [
+              "Helps detect real attack patterns",
+              "Provides practical behavior checklists",
+              "Builds safer digital habits"
+            ],
+            "kk": [
+              "Шынайы шабуыл схемаларын тануға көмектеседі",
+              "Практикалық чек-листтер береді",
+              "Қауіпсіз цифрлық әдеттер қалыптастырады"
             ]
           }
         }
@@ -390,6 +414,54 @@
               "Сегментация және Zero Trust"
             ]
           }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Тем, кто изучает сети",
+              "Системным администраторам",
+              "Junior SOC/Blue Team специалистам"
+            ],
+            "en": [
+              "People learning networking",
+              "System administrators",
+              "Junior SOC/Blue Team specialists"
+            ],
+            "kk": [
+              "Желілерді үйреніп жүргендерге",
+              "Жүйелік әкімшілерге",
+              "Junior SOC/Blue Team мамандарына"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Объясняет сетевые основы простым языком",
+              "Показывает, как защищается трафик",
+              "Даёт базу для изучения архитектуры и защиты сетей"
+            ],
+            "en": [
+              "Explains networking basics in simple terms",
+              "Shows how traffic protection works",
+              "Builds a base for network architecture and defense"
+            ],
+            "kk": [
+              "Желі негіздерін қарапайым тілмен түсіндіреді",
+              "Трафик қорғанысы қалай жұмыс істейтінін көрсетеді",
+              "Желі архитектурасы мен қорғанысын үйренуге база береді"
+            ]
+          }
         }
       ],
       "lessons": [
@@ -521,6 +593,54 @@
               "Жаңарту",
               "Mobile security & MDM",
               "Инцидент жоспары"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Обычным пользователям",
+              "Сисадминам и helpdesk",
+              "Тем, кто работает со смартфонами и ноутбуками"
+            ],
+            "en": [
+              "Regular users",
+              "Sysadmins and helpdesk teams",
+              "People working with smartphones and laptops"
+            ],
+            "kk": [
+              "Қарапайым пайдаланушыларға",
+              "Сисадминдер мен helpdesk мамандарына",
+              "Смартфондар мен ноутбуктермен жұмыс істейтіндерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Формирует практику безопасной работы с устройствами",
+              "Показывает разницу между AV, EDR и XDR",
+              "Готовит к действиям при заражении или потере устройства"
+            ],
+            "en": [
+              "Builds safe device usage habits",
+              "Explains the difference between AV, EDR, and XDR",
+              "Prepares you for infection or device loss scenarios"
+            ],
+            "kk": [
+              "Құрылғылармен қауіпсіз жұмыс істеу әдетін қалыптастырады",
+              "AV, EDR және XDR айырмасын түсіндіреді",
+              "Жұқтыру немесе құрылғы жоғалту жағдайына дайындайды"
             ]
           }
         }
@@ -656,6 +776,54 @@
               "Onboarding/Offboarding"
             ]
           }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Администраторам систем",
+              "Специалистам по ИБ",
+              "Тем, кто управляет учётными записями"
+            ],
+            "en": [
+              "System administrators",
+              "Security specialists",
+              "People who manage accounts and access"
+            ],
+            "kk": [
+              "Жүйе әкімшілеріне",
+              "ИБ мамандарына",
+              "Есептік жазбалар мен қолжетімділікті басқаратындарға"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Помогает выстроить сильную аутентификацию",
+              "Объясняет роли, атрибуты и привилегии",
+              "Учит управлять доступом на протяжении всего жизненного цикла"
+            ],
+            "en": [
+              "Helps design strong authentication",
+              "Explains roles, attributes, and privileges",
+              "Teaches access management across the full lifecycle"
+            ],
+            "kk": [
+              "Күшті аутентификация құруға көмектеседі",
+              "Рөлдер, атрибуттар және привилегияларды түсіндіреді",
+              "Қолжетімділікті бүкіл өмірлік цикл бойы басқаруды үйретеді"
+            ]
+          }
         }
       ],
       "lessons": [
@@ -787,6 +955,54 @@
               "ЭЦҚ",
               "PKI/сертификаттар",
               "Крипто қателер"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Новичкам в ИБ",
+              "Разработчикам",
+              "Студентам технических направлений"
+            ],
+            "en": [
+              "InfoSec beginners",
+              "Developers",
+              "Technical students"
+            ],
+            "kk": [
+              "ИБ-ға жаңадан келгендерге",
+              "Әзірлеушілерге",
+              "Техникалық бағыттағы студенттерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Делает криптографию понятнее",
+              "Показывает, где чаще всего совершают ошибки",
+              "Даёт интуитивное понимание доверия и подлинности"
+            ],
+            "en": [
+              "Makes cryptography easier to understand",
+              "Shows common implementation mistakes",
+              "Builds intuition around trust and authenticity"
+            ],
+            "kk": [
+              "Криптографияны түсінуді жеңілдетеді",
+              "Көбіне қай жерде қателесетінін көрсетеді",
+              "Сенім мен түпнұсқалық туралы интуиция береді"
             ]
           }
         }
@@ -922,6 +1138,54 @@
               "3-2-1 бэкап"
             ]
           }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Аналитикам и офисным сотрудникам",
+              "Руководителям команд",
+              "Тем, кто работает с чувствительными данными"
+            ],
+            "en": [
+              "Analysts and office staff",
+              "Team leads and managers",
+              "People working with sensitive data"
+            ],
+            "kk": [
+              "Аналитиктер мен кеңсе қызметкерлеріне",
+              "Топ жетекшілеріне",
+              "Сезімтал деректермен жұмыс істейтіндерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Учит классифицировать и защищать данные",
+              "Показывает, как снижать риск утечек",
+              "Даёт практику по бэкапам, шифрованию и приватности"
+            ],
+            "en": [
+              "Teaches data classification and protection",
+              "Shows how to reduce leakage risk",
+              "Provides practical backup, encryption, and privacy basics"
+            ],
+            "kk": [
+              "Деректерді жіктеуді және қорғауды үйретеді",
+              "Ақпараттың сыртқа шығу тәуекелін азайтуды көрсетеді",
+              "Бэкап, шифрлау және құпиялық бойынша практика береді"
+            ]
+          }
         }
       ],
       "lessons": [
@@ -1053,6 +1317,54 @@
               "Auth/session",
               "SAST/DAST/SCA",
               "API/контейнер (шолу)"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Разработчикам",
+              "QA и DevOps инженерам",
+              "Тем, кто начинает путь в AppSec"
+            ],
+            "en": [
+              "Developers",
+              "QA and DevOps engineers",
+              "People starting in AppSec"
+            ],
+            "kk": [
+              "Әзірлеушілерге",
+              "QA және DevOps инженерлеріне",
+              "AppSec бағытын жаңадан бастаушыларға"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Помогает увидеть ключевые веб-уязвимости",
+              "Формирует secure-by-design мышление",
+              "Даёт основу для безопасности в CI/CD и API"
+            ],
+            "en": [
+              "Helps identify core web vulnerabilities",
+              "Builds a secure-by-design mindset",
+              "Provides a base for CI/CD and API security"
+            ],
+            "kk": [
+              "Негізгі веб-осалдықтарды көруге көмектеседі",
+              "Secure-by-design ойлауын қалыптастырады",
+              "CI/CD және API қауіпсіздігіне негіз береді"
             ]
           }
         }
@@ -1188,6 +1500,54 @@
               "SOAR және postmortem"
             ]
           }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Junior SOC аналитикам",
+              "Blue Team специалистам",
+              "Тем, кто изучает реагирование на инциденты"
+            ],
+            "en": [
+              "Junior SOC analysts",
+              "Blue Team specialists",
+              "People learning incident response"
+            ],
+            "kk": [
+              "Junior SOC аналитиктеріне",
+              "Blue Team мамандарына",
+              "Инциденттерге әрекет етуді үйреніп жүргендерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Показывает, как устроены мониторинг и детекты",
+              "Даёт понимание жизненного цикла инцидента",
+              "Помогает мыслить как SOC-команда"
+            ],
+            "en": [
+              "Shows how monitoring and detections work",
+              "Explains the incident lifecycle",
+              "Helps you think like a SOC team"
+            ],
+            "kk": [
+              "Мониторинг пен детекттердің қалай жұмыс істейтінін көрсетеді",
+              "Инциденттің өмірлік циклін түсіндіреді",
+              "SOC командасы сияқты ойлауға көмектеседі"
+            ]
+          }
         }
       ],
       "lessons": [
@@ -1319,6 +1679,54 @@
               "Мисконфигурация",
               "Red Team vs Pentest",
               "Bug Bounty этика"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Студентам и новичкам в pentest",
+              "Blue Team специалистам для понимания логики атакующего",
+              "Тем, кто хочет понять этику bug bounty"
+            ],
+            "en": [
+              "Students and pentest beginners",
+              "Blue Team specialists who want attacker context",
+              "People interested in bug bounty ethics"
+            ],
+            "kk": [
+              "Pentest-ке жаңадан келген студенттерге",
+              "Шабуылдаушы логикасын түсінгісі келетін Blue Team мамандарына",
+              "Bug bounty этикасын түсінгісі келетіндерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Даёт легальное понимание offensive security",
+              "Знакомит с логикой атакующего без опасных деталей",
+              "Учит ценности отчётов и этики"
+            ],
+            "en": [
+              "Provides a legal view of offensive security",
+              "Introduces attacker thinking without unsafe details",
+              "Teaches the value of reporting and ethics"
+            ],
+            "kk": [
+              "Offensive security бағытын заңды тұрғыдан түсіндіреді",
+              "Қауіпті детальдарсыз шабуылдаушы логикасымен таныстырады",
+              "Есеп беру мен этиканың маңызын үйретеді"
             ]
           }
         }
@@ -1454,6 +1862,54 @@
               "Мисконфигурация/CASB"
             ]
           }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Cloud и DevOps инженерам",
+              "Специалистам по ИБ",
+              "Тем, кто работает с AWS, Azure или GCP"
+            ],
+            "en": [
+              "Cloud and DevOps engineers",
+              "Security specialists",
+              "People working with AWS, Azure, or GCP"
+            ],
+            "kk": [
+              "Cloud және DevOps инженерлеріне",
+              "ИБ мамандарына",
+              "AWS, Azure немесе GCP-пен жұмыс істейтіндерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Объясняет модель shared responsibility",
+              "Помогает увидеть типовые ошибки конфигурации",
+              "Даёт основу для безопасной работы в облаке"
+            ],
+            "en": [
+              "Explains the shared responsibility model",
+              "Helps identify common misconfigurations",
+              "Builds a foundation for secure cloud work"
+            ],
+            "kk": [
+              "Shared responsibility моделін түсіндіреді",
+              "Кең таралған қате конфигурацияларды көруге көмектеседі",
+              "Бұлтта қауіпсіз жұмыс істеуге негіз береді"
+            ]
+          }
         }
       ],
       "lessons": [
@@ -1585,6 +2041,54 @@
               "Forensics және chain of custody",
               "Артефакттар",
               "DRP және BCP"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Специалистам по безопасности",
+              "IT администраторам",
+              "Тем, кто изучает форензику и устойчивость бизнеса"
+            ],
+            "en": [
+              "Security officers",
+              "IT administrators",
+              "People learning forensics and resilience"
+            ],
+            "kk": [
+              "Қауіпсіздік мамандарына",
+              "IT әкімшілеріне",
+              "Форензика мен тұрақтылықты үйреніп жүргендерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Связывает ИБ с физической защитой и бизнес-процессами",
+              "Вводит в форензику и работу с доказательствами",
+              "Помогает понять, как строится устойчивость компании"
+            ],
+            "en": [
+              "Connects security with physical controls and business processes",
+              "Introduces forensics and evidence handling",
+              "Shows how organizational resilience is built"
+            ],
+            "kk": [
+              "Ақпараттық қауіпсіздікті физикалық қорғау және бизнес-процестермен байланыстырады",
+              "Форензика мен дәлелдермен жұмысқа кіріспе береді",
+              "Компания тұрақтылығы қалай құрылатынын көрсетеді"
             ]
           }
         }
@@ -1720,6 +2224,54 @@
               "Дипфейк және AI фишинг"
             ]
           }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Специалистам по ИБ",
+              "Командам, работающим с AI/LLM",
+              "Тем, кто хочет понимать современные риски"
+            ],
+            "en": [
+              "Security specialists",
+              "Teams working with AI/LLM",
+              "People who want to understand modern risks"
+            ],
+            "kk": [
+              "ИБ мамандарына",
+              "AI/LLM-пен жұмыс істейтін командаларға",
+              "Қазіргі тәуекелдерді түсінгісі келетіндерге"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Помогает понимать новые AI-риски",
+              "Показывает, где ИИ помогает защите",
+              "Даёт базу по LLM security и современным атакам"
+            ],
+            "en": [
+              "Helps understand emerging AI risks",
+              "Shows where AI improves defense",
+              "Provides a base in LLM security and modern attacks"
+            ],
+            "kk": [
+              "Жаңа AI тәуекелдерін түсінуге көмектеседі",
+              "ЖИ қорғанысқа қай жерде көмектесетінін көрсетеді",
+              "LLM security және заманауи шабуылдарға негіз береді"
+            ]
+          }
         }
       ],
       "lessons": [
@@ -1831,6 +2383,54 @@
               "Zigbee/MQTT/BLE (шолу)",
               "IoT сегментациясы",
               "Бизнес тәуекелі"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Кому подойдёт?",
+            "en": "Who is it for?",
+            "kk": "Кімге арналған?"
+          },
+          "bullets": {
+            "ru": [
+              "Сетевым инженерам",
+              "Тем, кто работает с IoT-устройствами",
+              "Пользователям smart home и умных устройств"
+            ],
+            "en": [
+              "Network engineers",
+              "People working with IoT devices",
+              "Smart home and smart device users"
+            ],
+            "kk": [
+              "Желі инженерлеріне",
+              "IoT құрылғыларымен жұмыс істейтіндерге",
+              "Smart home және ақылды құрылғылар пайдаланушыларына"
+            ]
+          }
+        },
+        {
+          "title": {
+            "ru": "Преимущества",
+            "en": "Benefits",
+            "kk": "Артықшылықтары"
+          },
+          "bullets": {
+            "ru": [
+              "Формирует базовую гигиену IoT безопасности",
+              "Показывает риск дефолтных настроек и слабой аутентификации",
+              "Учит сегментировать и обновлять устройства"
+            ],
+            "en": [
+              "Builds basic IoT security hygiene",
+              "Shows the risk of default settings and weak authentication",
+              "Teaches segmentation and update practices"
+            ],
+            "kk": [
+              "IoT қауіпсіздігінің базалық гигиенасын қалыптастырады",
+              "Әдепкі баптаулар мен әлсіз аутентификация тәуекелін көрсетеді",
+              "Құрылғыларды сегменттеу мен жаңартуды үйретеді"
             ]
           }
         }
