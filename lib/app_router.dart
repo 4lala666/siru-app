@@ -79,7 +79,16 @@ class AppRouter {
           final ModuleTopicArgs args = extra is ModuleTopicArgs
               ? extra
               : const ModuleTopicArgs(
-                  moduleTitle: 'Module',
+                  module: Module(
+                    id: 'placeholder_module',
+                    difficulty: 'beginner',
+                    icon: 'shield',
+                    cover: '',
+                    title: <String, String>{'ru': 'Модуль', 'en': 'Module', 'kk': 'Модуль'},
+                    subtitle: <String, String>{},
+                    descriptionSections: <DescriptionSection>[],
+                    lessons: <Lesson>[],
+                  ),
                   lesson: Lesson(
                     id: 'placeholder',
                     durationMin: 0,
@@ -91,6 +100,7 @@ class AppRouter {
                     examples: <String, List<String>>{},
                     sources: <LessonSource>[],
                   ),
+                  lessonIndex: 0,
                 );
           return ModuleTopicPage(args: args);
         },

@@ -5,9 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
+import '../data/lesson_content_builder.dart';
 import '../data/modules_provider.dart';
+import '../domain/lesson_content.dart';
 import '../domain/module_models.dart';
 import 'module_topic_page.dart';
+import 'widgets/module_hero_header.dart';
+import 'widgets/topic_card.dart';
 
 class ModuleDetailScreen extends ConsumerWidget {
   const ModuleDetailScreen({
@@ -33,59 +37,97 @@ class ModuleDetailScreen extends ConsumerWidget {
           );
         }
 
-        return DefaultTabController(
-          length: 2,
-          child: Scaffold(
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          appBar: AppBar(
             backgroundColor: AppColors.background,
-            body: NestedScrollView(
-              headerSliverBuilder: (_, __) => <Widget>[
-                SliverAppBar(
-                  expandedHeight: 250,
-                  pinned: true,
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: Text(
-                      tr(module.title, lang),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    background: Stack(
-                      fit: StackFit.expand,
-                      children: <Widget>[
-                        Image.asset(
-                          module.cover,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Container(color: const Color(0xFF123A82)),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: <Color>[
-                                Colors.black.withValues(alpha: 0.65),
-                                Colors.transparent,
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+            scrolledUnderElevation: 0,
+            title: Text(_t(lang, 'module'), style: AppTextStyles.cardTitle),
+          ),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
+            children: <Widget>[
+              ModuleHeroHeader(
+                title: _displayTitle(module, lang),
+                subtitle: _displaySubtitle(module, lang),
+                cover: module.cover,
+                lessonCount: module.lessons.length,
+                difficulty: module.difficulty,
+              ),
+              const SizedBox(height: 18),
+              Text(_t(lang, 'learningPath'), style: AppTextStyles.screenTitle),
+              const SizedBox(height: 8),
+              Text(_t(lang, 'learningPathSubtitle'), style: AppTextStyles.secondary),
+              const SizedBox(height: 14),
+              ...module.lessons.asMap().entries.map((MapEntry<int, Lesson> entry) {
+                final int index = entry.key;
+                final Lesson lesson = entry.value;
+                final LessonTopicStatus status = LessonContentBuilder.inferStatus(
+                  lesson: lesson,
+                  lessonIndex: index,
+                );
+                final double progress = switch (status) {
+                  LessonTopicStatus.completed => 1,
+                  LessonTopicStatus.inProgress => 0.4,
+                  LessonTopicStatus.locked => 0,
+                  LessonTopicStatus.notStarted => 0,
+                };
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: TopicCard(
+                    number: index + 1,
+                    title: _displayLessonTitle(module, lesson, lang),
+                    minutes: lesson.durationMin,
+                    steps: lesson.stepsCount,
+                    status: status,
+                    progress: progress,
+                    onTap: status == LessonTopicStatus.locked
+                        ? null
+                        : () {
+                            context.push(
+                              '/module-topic',
+                              extra: ModuleTopicArgs(
+                                module: module,
+                                lesson: lesson,
+                                lessonIndex: index,
+                              ),
+                            );
+                          },
                   ),
-                  bottom: TabBar(
-                    tabs: <Tab>[
-                      Tab(text: _t(lang, 'index')),
-                      Tab(text: _t(lang, 'description')),
+                );
+              }),
+              const SizedBox(height: 12),
+              Text(_t(lang, 'aboutModule'), style: AppTextStyles.screenTitle),
+              const SizedBox(height: 12),
+              ...module.descriptionSections.map((DescriptionSection section) {
+                final List<String> bullets =
+                    section.bullets[lang] ?? section.bullets['ru'] ?? <String>[];
+
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.cardBackground,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(_clean(tr(section.title, lang)), style: AppTextStyles.cardTitle),
+                      const SizedBox(height: 10),
+                      ...bullets.map(
+                        (String bullet) => Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Text('• ${_clean(bullet)}', style: AppTextStyles.body),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-              ],
-              body: TabBarView(
-                children: <Widget>[
-                  _IndexTab(module: module, lang: lang),
-                  _DescriptionTab(module: module, lang: lang),
-                ],
-              ),
-            ),
+                );
+              }),
+            ],
           ),
         );
       },
@@ -95,6 +137,23 @@ class ModuleDetailScreen extends ConsumerWidget {
         body: Center(child: Text('${_t(lang, 'failedToLoadModule')}: $e', style: AppTextStyles.body)),
       ),
     );
+  }
+
+  String _displayTitle(Module module, String lang) {
+    if (module.id == 'gov_risk') return _t(lang, 'govRiskTitle');
+    return _clean(tr(module.title, lang));
+  }
+
+  String _displaySubtitle(Module module, String lang) {
+    if (module.id == 'gov_risk') return _t(lang, 'govRiskSubtitle');
+    return _clean(tr(module.subtitle, lang));
+  }
+
+  String _displayLessonTitle(Module module, Lesson lesson, String lang) {
+    if (module.id == 'gov_risk' && lesson.id == 'gov_02') {
+      return _t(lang, 'ciaLessonTitle');
+    }
+    return _clean(tr(lesson.title, lang));
   }
 
   String _t(String lang, String key) {
@@ -107,134 +166,61 @@ class ModuleDetailScreen extends ConsumerWidget {
       'failedToLoadModule': <String, String>{
         'ru': 'Не удалось загрузить модуль',
         'en': 'Failed to load module',
-        'kk': 'Модульді жүктеу мүмкін болмады',
+        'kk': 'Модульді ж?ктеу м?мкін болмады',
       },
-      'index': <String, String>{
-        'ru': 'Индекс',
-        'en': 'Index',
-        'kk': 'Индекс',
+      'module': <String, String>{
+        'ru': 'Модуль',
+        'en': 'Module',
+        'kk': 'Модуль',
       },
-      'description': <String, String>{
-        'ru': 'Описание',
-        'en': 'Description',
-        'kk': 'Сипаттама',
+      'learningPath': <String, String>{
+        'ru': 'Подтемы и путь обучения',
+        'en': 'Topics and learning path',
+        'kk': 'Саба?тар ж?не о?у жолы',
+      },
+      'learningPathSubtitle': <String, String>{
+        'ru': 'Продвигайтесь по подтемам по шагам: видно, что завершено, что доступно и что готовится.',
+        'en': 'Move through topics step by step: see what is complete, active, and coming next.',
+        'kk': 'Саба?тарды кезе?-кезе?імен ?ті?із: не ая?тал?аны ж?не не ашы? екені к?рінеді.',
+      },
+      'aboutModule': <String, String>{
+        'ru': 'О модуле',
+        'en': 'About the module',
+        'kk': 'Модуль туралы',
+      },
+      'govRiskTitle': <String, String>{
+        'ru': 'Основы, управление и риск',
+        'en': 'Governance & Risk',
+        'kk': 'Бас?ару ж?не т?уекел',
+      },
+      'govRiskSubtitle': <String, String>{
+        'ru': 'База ИБ: цели, риски, политики и стандарты.',
+        'en': 'Security fundamentals: goals, risks, policies, and standards.',
+        'kk': 'А?паратты? ?ауіпсіздік негіздері: ма?саттар, т?уекелдер, саясаттар ж?не стандарттар.',
+      },
+      'ciaLessonTitle': <String, String>{
+        'ru': 'CIA-триада и базовые свойства безопасности',
+        'en': 'CIA triad and core security properties',
+        'kk': 'CIA триадасы ж?не негізгі ?ауіпсіздік ?асиеттері',
       },
     };
 
     return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
-}
 
-class _IndexTab extends StatelessWidget {
-  const _IndexTab({required this.module, required this.lang});
-
-  final Module module;
-  final String lang;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(16),
-      itemCount: module.lessons.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 10),
-      itemBuilder: (BuildContext context, int i) {
-        final Lesson lesson = module.lessons[i];
-        final String title = tr(lesson.title, lang);
-        return Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(16),
-            onTap: () {
-              context.push(
-                '/module-topic',
-                extra: ModuleTopicArgs(
-                  moduleTitle: tr(module.title, lang),
-                  lesson: lesson,
-                ),
-              );
-            },
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: AppColors.cardBackground,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: AppColors.softShadow,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text('${i + 1}. $title', style: AppTextStyles.body),
-                      ),
-                      const Icon(Icons.chevron_right, color: AppColors.textSecondary),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(_lessonMeta(lesson), style: AppTextStyles.secondary),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  String _lessonMeta(Lesson lesson) {
-    switch (lang) {
-      case 'en':
-        return '${lesson.durationMin} min • ${lesson.stepsCount} steps';
-      case 'kk':
-        return '${lesson.durationMin} мин • ${lesson.stepsCount} қадам';
-      case 'ru':
-      default:
-        return '${lesson.durationMin} мин • ${lesson.stepsCount} шагов';
-    }
-  }
-}
-
-class _DescriptionTab extends StatelessWidget {
-  const _DescriptionTab({required this.module, required this.lang});
-
-  final Module module;
-  final String lang;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: module.descriptionSections.map((DescriptionSection section) {
-        final List<String> bullets = section.bullets[lang] ?? section.bullets['ru'] ?? <String>[];
-
-        return Container(
-          margin: const EdgeInsets.only(bottom: 12),
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: AppColors.cardBackground,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: AppColors.softShadow,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(tr(section.title, lang), style: AppTextStyles.cardTitle),
-              const SizedBox(height: 8),
-              ...bullets.map(
-                (String bullet) => Padding(
-                  padding: const EdgeInsets.only(bottom: 6),
-                  child: Text('• $bullet', style: AppTextStyles.body),
-                ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-    );
+  String _clean(String value) {
+    return value
+        .replaceAll('вЂ”', '—')
+        .replaceAll('вЂ“', '–')
+        .replaceAll('вЂ™', '’')
+        .replaceAll('вЂ', '‘')
+        .replaceAll('вЂњ', '“')
+        .replaceAll('вЂќ', '”')
+        .trim();
   }
 }
 
 extension _FirstOrNullExt<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
 }
+
