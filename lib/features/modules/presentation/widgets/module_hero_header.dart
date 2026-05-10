@@ -21,6 +21,7 @@ class ModuleHeroHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     return Container(
       height: 240,
       decoration: BoxDecoration(
@@ -68,9 +69,9 @@ class ModuleHeroHeader extends StatelessWidget {
                   spacing: 8,
                   runSpacing: 8,
                   children: <Widget>[
-                    _HeaderChip(icon: Icons.layers_outlined, label: '$lessonCount С‚РµРј'),
+                    _HeaderChip(icon: Icons.layers_outlined, label: _topicsLabel(lang, lessonCount)),
                     _HeaderChip(icon: Icons.flash_on_rounded, label: difficulty),
-                    const _HeaderChip(icon: Icons.route_rounded, label: 'Learning path'),
+                    _HeaderChip(icon: Icons.route_rounded, label: _pathLabel(lang)),
                   ],
                 ),
               ],
@@ -79,6 +80,30 @@ class ModuleHeroHeader extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _topicsLabel(String lang, int lessonCount) {
+    switch (lang) {
+      case 'en':
+        return '$lessonCount topics';
+      case 'kk':
+        return '$lessonCount тақырып';
+      case 'ru':
+      default:
+        return '$lessonCount тем';
+    }
+  }
+
+  String _pathLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return 'Learning path';
+      case 'kk':
+        return 'Оқу жолы';
+      case 'ru':
+      default:
+        return 'Путь обучения';
+    }
   }
 }
 
@@ -110,4 +135,3 @@ class _HeaderChip extends StatelessWidget {
     );
   }
 }
-

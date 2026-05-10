@@ -16,6 +16,7 @@ class LessonSourcesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
@@ -40,7 +41,7 @@ class LessonSourcesSection extends StatelessWidget {
             child: const Icon(Icons.source_outlined, color: AppColors.accent),
           ),
           title: Text(title, style: AppTextStyles.cardTitle),
-          subtitle: Text('${sources.length} СЃСЃС‹Р»РѕРє', style: AppTextStyles.secondary),
+          subtitle: Text(_countLabel(lang), style: AppTextStyles.secondary),
           children: sources
               .map(
                 (LessonContentSource source) => Container(
@@ -68,5 +69,16 @@ class LessonSourcesSection extends StatelessWidget {
       ),
     );
   }
-}
 
+  String _countLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return '${sources.length} sources';
+      case 'kk':
+        return '${sources.length} дереккөз';
+      case 'ru':
+      default:
+        return '${sources.length} источников';
+    }
+  }
+}

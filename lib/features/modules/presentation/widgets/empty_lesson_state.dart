@@ -17,6 +17,7 @@ class EmptyLessonState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -49,11 +50,22 @@ class EmptyLessonState extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: onBack,
             icon: const Icon(Icons.arrow_back_rounded),
-            label: const Text('РќР°Р·Р°Рґ Рє РїРѕРґС‚РµРјР°Рј'),
+            label: Text(_backLabel(lang)),
           ),
         ],
       ),
     );
   }
-}
 
+  String _backLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return 'Back to topics';
+      case 'kk':
+        return 'Сабақтар тізіміне оралу';
+      case 'ru':
+      default:
+        return 'Назад к подтемам';
+    }
+  }
+}

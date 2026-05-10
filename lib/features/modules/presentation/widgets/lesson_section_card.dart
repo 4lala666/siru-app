@@ -182,6 +182,7 @@ class _LessonSelfCheckCardState extends State<LessonSelfCheckCard> {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     return LessonSectionCard(
       title: widget.section.title,
       icon: Icons.quiz_outlined,
@@ -242,7 +243,7 @@ class _LessonSelfCheckCardState extends State<LessonSelfCheckCard> {
                         revealed = true;
                       });
                     },
-              child: const Text('РџСЂРѕРІРµСЂРёС‚СЊ'),
+              child: Text(_checkLabel(lang)),
             ),
           if (revealed) ...<Widget>[
             const SizedBox(height: 12),
@@ -256,7 +257,7 @@ class _LessonSelfCheckCardState extends State<LessonSelfCheckCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    selectedIndex == widget.section.correctIndex ? 'Р’РµСЂРЅРѕ' : 'РџРѕС‡С‚Рё',
+                    selectedIndex == widget.section.correctIndex ? _correctLabel(lang) : _almostLabel(lang),
                     style: AppTextStyles.cardTitle,
                   ),
                   const SizedBox(height: 8),
@@ -268,6 +269,42 @@ class _LessonSelfCheckCardState extends State<LessonSelfCheckCard> {
         ],
       ),
     );
+  }
+
+  String _checkLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return 'Check answer';
+      case 'kk':
+        return 'Жауапты тексеру';
+      case 'ru':
+      default:
+        return 'Проверить';
+    }
+  }
+
+  String _correctLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return 'Correct';
+      case 'kk':
+        return 'Дұрыс';
+      case 'ru':
+      default:
+        return 'Верно';
+    }
+  }
+
+  String _almostLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return 'Not quite';
+      case 'kk':
+        return 'Сәл қате';
+      case 'ru':
+      default:
+        return 'Почти';
+    }
   }
 }
 
@@ -322,4 +359,3 @@ class LessonSectionCard extends StatelessWidget {
     );
   }
 }
-

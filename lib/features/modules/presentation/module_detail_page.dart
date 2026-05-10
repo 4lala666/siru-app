@@ -134,7 +134,9 @@ class ModuleDetailScreen extends ConsumerWidget {
       loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (Object e, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text('${_t(lang, 'failedToLoadModule')}: $e', style: AppTextStyles.body)),
+        body: Center(
+          child: Text('${_t(lang, 'failedToLoadModule')}: $e', style: AppTextStyles.body),
+        ),
       ),
     );
   }
@@ -166,7 +168,7 @@ class ModuleDetailScreen extends ConsumerWidget {
       'failedToLoadModule': <String, String>{
         'ru': 'Не удалось загрузить модуль',
         'en': 'Failed to load module',
-        'kk': 'Модульді ж?ктеу м?мкін болмады',
+        'kk': 'Модульді жүктеу мүмкін болмады',
       },
       'module': <String, String>{
         'ru': 'Модуль',
@@ -176,12 +178,12 @@ class ModuleDetailScreen extends ConsumerWidget {
       'learningPath': <String, String>{
         'ru': 'Подтемы и путь обучения',
         'en': 'Topics and learning path',
-        'kk': 'Саба?тар ж?не о?у жолы',
+        'kk': 'Сабақтар және оқу жолы',
       },
       'learningPathSubtitle': <String, String>{
         'ru': 'Продвигайтесь по подтемам по шагам: видно, что завершено, что доступно и что готовится.',
         'en': 'Move through topics step by step: see what is complete, active, and coming next.',
-        'kk': 'Саба?тарды кезе?-кезе?імен ?ті?із: не ая?тал?аны ж?не не ашы? екені к?рінеді.',
+        'kk': 'Сабақтарды кезең-кезеңімен өтіңіз: не аяқталғанын және не ашық екенін көресіз.',
       },
       'aboutModule': <String, String>{
         'ru': 'О модуле',
@@ -191,17 +193,17 @@ class ModuleDetailScreen extends ConsumerWidget {
       'govRiskTitle': <String, String>{
         'ru': 'Основы, управление и риск',
         'en': 'Governance & Risk',
-        'kk': 'Бас?ару ж?не т?уекел',
+        'kk': 'Басқару және тәуекел',
       },
       'govRiskSubtitle': <String, String>{
         'ru': 'База ИБ: цели, риски, политики и стандарты.',
         'en': 'Security fundamentals: goals, risks, policies, and standards.',
-        'kk': 'А?паратты? ?ауіпсіздік негіздері: ма?саттар, т?уекелдер, саясаттар ж?не стандарттар.',
+        'kk': 'Ақпараттық қауіпсіздік негіздері: мақсаттар, тәуекелдер, саясаттар және стандарттар.',
       },
       'ciaLessonTitle': <String, String>{
         'ru': 'CIA-триада и базовые свойства безопасности',
         'en': 'CIA triad and core security properties',
-        'kk': 'CIA триадасы ж?не негізгі ?ауіпсіздік ?асиеттері',
+        'kk': 'CIA триадасы және негізгі қауіпсіздік қасиеттері',
       },
     };
 
@@ -223,4 +225,3 @@ class ModuleDetailScreen extends ConsumerWidget {
 extension _FirstOrNullExt<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
 }
-

@@ -15,6 +15,7 @@ class LessonProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     final int currentStep = totalSteps == 0 ? 0 : (progress * totalSteps).ceil().clamp(1, totalSteps);
     return Container(
       padding: const EdgeInsets.all(16),
@@ -28,7 +29,7 @@ class LessonProgressCard extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text('РџСЂРѕРіСЂРµСЃСЃ СѓСЂРѕРєР°', style: AppTextStyles.cardTitle),
+              Text(_title(lang), style: AppTextStyles.cardTitle),
               const Spacer(),
               Text('${(progress * 100).round()}%', style: AppTextStyles.chip),
             ],
@@ -44,7 +45,7 @@ class LessonProgressCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text('РЁР°Рі $currentStep РёР· $totalSteps', style: AppTextStyles.secondary),
+          Text(_stepLabel(lang, currentStep, totalSteps), style: AppTextStyles.secondary),
           const SizedBox(height: 10),
           Row(
             children: List<Widget>.generate(
@@ -67,5 +68,28 @@ class LessonProgressCard extends StatelessWidget {
       ),
     );
   }
-}
 
+  String _title(String lang) {
+    switch (lang) {
+      case 'en':
+        return 'Lesson progress';
+      case 'kk':
+        return 'Сабақ прогресі';
+      case 'ru':
+      default:
+        return 'Прогресс урока';
+    }
+  }
+
+  String _stepLabel(String lang, int currentStep, int totalSteps) {
+    switch (lang) {
+      case 'en':
+        return 'Step $currentStep of $totalSteps';
+      case 'kk':
+        return '$currentStep / $totalSteps қадам';
+      case 'ru':
+      default:
+        return 'Шаг $currentStep из $totalSteps';
+    }
+  }
+}

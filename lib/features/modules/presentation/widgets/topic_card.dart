@@ -26,6 +26,7 @@ class TopicCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     final bool locked = status == LessonTopicStatus.locked;
     final bool completed = status == LessonTopicStatus.completed;
     final bool inProgress = status == LessonTopicStatus.inProgress;
@@ -33,9 +34,7 @@ class TopicCard extends StatelessWidget {
         ? Colors.white.withValues(alpha: 0.04)
         : completed
             ? const Color(0x1A41D38A)
-            : inProgress
-                ? AppColors.cardBackground
-                : AppColors.cardBackground;
+            : AppColors.cardBackground;
 
     return Opacity(
       opacity: locked ? 0.65 : 1,
@@ -89,7 +88,7 @@ class TopicCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Text('$minutes РјРёРЅ вЂў $steps С€Р°РіР°', style: AppTextStyles.secondary),
+                Text(_metaLabel(lang), style: AppTextStyles.secondary),
                 const SizedBox(height: 12),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(999),
@@ -105,7 +104,10 @@ class TopicCard extends StatelessWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: <Widget>[
-                    Text(_statusLabel(status), style: AppTextStyles.chip.copyWith(color: _statusColor(status))),
+                    Text(
+                      _statusLabel(lang, status),
+                      style: AppTextStyles.chip.copyWith(color: _statusColor(status)),
+                    ),
                     const Spacer(),
                     Icon(
                       locked ? Icons.lock_outline_rounded : Icons.arrow_forward_ios_rounded,
@@ -122,16 +124,44 @@ class TopicCard extends StatelessWidget {
     );
   }
 
-  String _statusLabel(LessonTopicStatus status) {
+  String _metaLabel(String lang) {
+    switch (lang) {
+      case 'en':
+        return '$minutes min • $steps steps';
+      case 'kk':
+        return '$minutes мин • $steps қадам';
+      case 'ru':
+      default:
+        return '$minutes мин • $steps шага';
+    }
+  }
+
+  String _statusLabel(String lang, LessonTopicStatus status) {
     switch (status) {
       case LessonTopicStatus.completed:
-        return 'Р—Р°РІРµСЂС€РµРЅРѕ';
+        return switch (lang) {
+          'en' => 'Completed',
+          'kk' => 'Аяқталды',
+          _ => 'Завершено',
+        };
       case LessonTopicStatus.inProgress:
-        return 'РџСЂРѕРґРѕР»Р¶РёС‚СЊ';
+        return switch (lang) {
+          'en' => 'Continue',
+          'kk' => 'Жалғастыру',
+          _ => 'Продолжить',
+        };
       case LessonTopicStatus.locked:
-        return 'РЎРєРѕСЂРѕ';
+        return switch (lang) {
+          'en' => 'Locked',
+          'kk' => 'Жабық',
+          _ => 'Скоро',
+        };
       case LessonTopicStatus.notStarted:
-        return 'РќРµ РЅР°С‡Р°С‚Рѕ';
+        return switch (lang) {
+          'en' => 'Not started',
+          'kk' => 'Басталмаған',
+          _ => 'Не начато',
+        };
     }
   }
 
@@ -167,4 +197,3 @@ class _StatusIcon extends StatelessWidget {
     }
   }
 }
-

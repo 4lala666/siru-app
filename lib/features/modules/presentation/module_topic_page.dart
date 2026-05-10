@@ -121,7 +121,7 @@ class ModuleTopicPage extends ConsumerWidget {
       ),
       error: (_, __) => Scaffold(
         backgroundColor: AppColors.background,
-        appBar: const LessonTopBar(title: 'Урок'),
+        appBar: LessonTopBar(title: _t(lang, 'lesson')),
         body: Center(
           child: Text(_t(lang, 'quizLoadFailed'), style: AppTextStyles.body),
         ),
@@ -134,12 +134,12 @@ class ModuleTopicPage extends ConsumerWidget {
       'lesson': <String, String>{
         'ru': 'Урок',
         'en': 'Lesson',
-        'kk': 'Саба?',
+        'kk': 'Сабақ',
       },
       'sources': <String, String>{
         'ru': 'Источники',
         'en': 'Sources',
-        'kk': 'Дерекк?здер',
+        'kk': 'Дереккөздер',
       },
       'startQuiz': <String, String>{
         'ru': 'Начать тест',
@@ -149,12 +149,12 @@ class ModuleTopicPage extends ConsumerWidget {
       'quizCtaLabel': <String, String>{
         'ru': 'Финальный шаг урока',
         'en': 'Final lesson step',
-        'kk': 'Саба?ты? со??ы ?адамы',
+        'kk': 'Сабақтың соңғы қадамы',
       },
       'quizSoon': <String, String>{
         'ru': 'Тест скоро будет добавлен',
         'en': 'Quiz coming soon',
-        'kk': 'Тест жа?ында ?осылады',
+        'kk': 'Тест жақында қосылады',
       },
       'emptyStateTitle': <String, String>{
         'ru': 'Контент готовится',
@@ -164,12 +164,12 @@ class ModuleTopicPage extends ConsumerWidget {
       'emptyStateDescription': <String, String>{
         'ru': 'Материал для этой подтемы будет добавлен позже. Пока можно вернуться к списку подтем и выбрать доступный урок.',
         'en': 'Material for this topic will be added later. You can return to the topic list and continue with an available lesson.',
-        'kk': 'Б?л та?ырып?а материал кейінірек ?осылады. ?зірге ?олжетімді саба??а оралу?а болады.',
+        'kk': 'Бұл тақырыпқа материал кейінірек қосылады. Әзірге қолжетімді сабаққа оралып, ашық тұрған сабақты таңдауға болады.',
       },
       'quizLoadFailed': <String, String>{
         'ru': 'Не удалось подготовить тест для этого урока.',
         'en': 'Failed to prepare the quiz for this lesson.',
-        'kk': 'Б?л саба??а тест дайындау м?мкін болмады.',
+        'kk': 'Бұл сабаққа тест дайындау мүмкін болмады.',
       },
     };
 
@@ -207,7 +207,7 @@ class ModuleTopicPage extends ConsumerWidget {
       case 'en':
         return '$steps steps';
       case 'kk':
-        return '$steps ?адам';
+        return '$steps қадам';
       case 'ru':
       default:
         return '$steps шага';
@@ -261,4 +261,3 @@ class ModuleTopicPage extends ConsumerWidget {
 final _lessonQuizProvider = FutureProvider.family<List<QuizQuestion>, String>((Ref ref, String lessonId) {
   return ref.read(mistakesServiceProvider.notifier).getQuestionsForLesson(lessonId);
 });
-
