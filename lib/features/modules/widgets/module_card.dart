@@ -57,7 +57,7 @@ class ModuleCard extends StatelessWidget {
                 child: Image.asset(
                   module.cardImagePath,
                   fit: BoxFit.cover,
-                  alignment: Alignment(module.alignmentX, module.alignmentY),
+                  alignment: Alignment.centerRight,
                   filterQuality: FilterQuality.high,
                   errorBuilder: (_, __, ___) => Container(color: const Color(0xFF123A82)),
                 ),

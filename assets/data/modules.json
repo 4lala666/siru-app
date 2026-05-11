@@ -700,7 +700,7 @@
       "id": "social_eng",
       "difficulty": "beginner",
       "icon": "message-circle",
-      "cover": "assets/modules/card_1600x500/social_eng.png",
+      "cover": "assets/modules/card_1600x500/social_eng.webp",
       "title": {
         "ru": "Социальная инженерия и человеческий фактор",
         "en": "Social Engineering & Human Factor",
@@ -873,7 +873,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/social_eng.png",
+      "cardImagePath": "assets/modules/card_1600x500/social_eng.webp",
       "heroImagePath": "assets/modules/hero_1800x600/social_eng.png",
       "alignmentX": 0.4,
       "alignmentY": 0.0
@@ -882,7 +882,7 @@
       "id": "network_sec",
       "difficulty": "beginner",
       "icon": "network",
-      "cover": "assets/modules/card_1600x500/network_sec.png",
+      "cover": "assets/modules/card_1600x500/network_sec.webp",
       "title": {
         "ru": "Сети и инфраструктура",
         "en": "Network Security",
@@ -1058,7 +1058,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/network_sec.png",
+      "cardImagePath": "assets/modules/card_1600x500/network_sec.webp",
       "heroImagePath": "assets/modules/hero_1800x600/network_sec.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -1067,7 +1067,7 @@
       "id": "endpoint_mobile",
       "difficulty": "beginner",
       "icon": "smartphone",
-      "cover": "assets/modules/card_1600x500/endpoint_mobile.png",
+      "cover": "assets/modules/card_1600x500/endpoint_mobile.webp",
       "title": {
         "ru": "Endpoint + Mobile Security",
         "en": "Endpoint & Mobile Security",
@@ -1243,7 +1243,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/endpoint_mobile.png",
+      "cardImagePath": "assets/modules/card_1600x500/endpoint_mobile.webp",
       "heroImagePath": "assets/modules/hero_1800x600/endpoint_mobile.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -1252,7 +1252,7 @@
       "id": "iam",
       "difficulty": "beginner",
       "icon": "key",
-      "cover": "assets/modules/card_1600x500/iam.png",
+      "cover": "assets/modules/card_1600x500/iam.webp",
       "title": {
         "ru": "Управление доступом (IAM)",
         "en": "Identity & Access Management (IAM)",
@@ -1428,7 +1428,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/iam.png",
+      "cardImagePath": "assets/modules/card_1600x500/iam.webp",
       "heroImagePath": "assets/modules/hero_1800x600/iam.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -1437,7 +1437,7 @@
       "id": "crypto",
       "difficulty": "intermediate",
       "icon": "lock",
-      "cover": "assets/modules/card_1600x500/crypto.png",
+      "cover": "assets/modules/card_1600x500/crypto.webp",
       "title": {
         "ru": "Криптография",
         "en": "Cryptography",
@@ -1613,7 +1613,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/crypto.png",
+      "cardImagePath": "assets/modules/card_1600x500/crypto.webp",
       "heroImagePath": "assets/modules/hero_1800x600/crypto.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -1622,7 +1622,7 @@
       "id": "data_privacy",
       "difficulty": "beginner",
       "icon": "database",
-      "cover": "assets/modules/card_1600x500/data_privacy.png",
+      "cover": "assets/modules/card_1600x500/data_privacy.webp",
       "title": {
         "ru": "Защита данных и приватность",
         "en": "Data Security & Privacy (DLP)",
@@ -1798,7 +1798,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/data_privacy.png",
+      "cardImagePath": "assets/modules/card_1600x500/data_privacy.webp",
       "heroImagePath": "assets/modules/hero_1800x600/data_privacy.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -1807,7 +1807,7 @@
       "id": "appsec_devsecops",
       "difficulty": "intermediate",
       "icon": "code",
-      "cover": "assets/modules/card_1600x500/appsec.png",
+      "cover": "assets/modules/card_1600x500/appsec.webp",
       "title": {
         "ru": "AppSec & DevSecOps",
         "en": "AppSec & DevSecOps",
@@ -1983,7 +1983,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/appsec.png",
+      "cardImagePath": "assets/modules/card_1600x500/appsec.webp",
       "heroImagePath": "assets/modules/hero_1800x600/appsec.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -1992,7 +1992,7 @@
       "id": "secops_ir",
       "difficulty": "intermediate",
       "icon": "activity",
-      "cover": "assets/modules/card_1600x500/secops.png",
+      "cover": "assets/modules/card_1600x500/secops.webp",
       "title": {
         "ru": "SecOps: мониторинг и реагирование",
         "en": "SecOps: Monitoring & Incident Response",
@@ -2168,7 +2168,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/secops.png",
+      "cardImagePath": "assets/modules/card_1600x500/secops.webp",
       "heroImagePath": "assets/modules/hero_1800x600/secops.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -2177,7 +2177,7 @@
       "id": "offsec",
       "difficulty": "intermediate",
       "icon": "target",
-      "cover": "assets/modules/card_1600x500/offsec.png",
+      "cover": "assets/modules/card_1600x500/offsec.webp",
       "title": {
         "ru": "Offensive Security (Pentest & Red Team)",
         "en": "Offensive Security (Pentest & Red Team)",
@@ -2353,7 +2353,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/offsec.png",
+      "cardImagePath": "assets/modules/card_1600x500/offsec.webp",
       "heroImagePath": "assets/modules/hero_1800x600/offsec.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -2362,7 +2362,7 @@
       "id": "cloud_sec",
       "difficulty": "intermediate",
       "icon": "cloud",
-      "cover": "assets/modules/card_1600x500/cloud_sec.png",
+      "cover": "assets/modules/card_1600x500/cloud_sec.webp",
       "title": {
         "ru": "Cloud Security",
         "en": "Cloud Security",
@@ -2538,7 +2538,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/cloud_sec.png",
+      "cardImagePath": "assets/modules/card_1600x500/cloud_sec.webp",
       "heroImagePath": "assets/modules/hero_1800x600/cloud_sec.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -2547,7 +2547,7 @@
       "id": "phys_forensics_resilience",
       "difficulty": "beginner",
       "icon": "shield-alert",
-      "cover": "assets/modules/card_1600x500/phys_forensics.png",
+      "cover": "assets/modules/card_1600x500/phys_forensics.webp",
       "title": {
         "ru": "Физическая безопасность, Forensics и устойчивость",
         "en": "Physical Security, Forensics & Resilience (DR/BCP)",
@@ -2723,7 +2723,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/phys_forensics.png",
+      "cardImagePath": "assets/modules/card_1600x500/phys_forensics.webp",
       "heroImagePath": "assets/modules/hero_1800x600/phys_forensics.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
@@ -2897,7 +2897,7 @@
       "id": "iot_sec",
       "difficulty": "intermediate",
       "icon": "cpu",
-      "cover": "assets/modules/card_1600x500/iot.png",
+      "cover": "assets/modules/card_1600x500/iot.webp",
       "title": {
         "ru": "Безопасность интернета вещей",
         "en": "IoT Security",
@@ -3053,7 +3053,7 @@
           }
         }
       ],
-      "cardImagePath": "assets/modules/card_1600x500/iot.png",
+      "cardImagePath": "assets/modules/card_1600x500/iot.webp",
       "heroImagePath": "assets/modules/hero_1800x600/iot.png",
       "alignmentX": 0.6,
       "alignmentY": 0.0
