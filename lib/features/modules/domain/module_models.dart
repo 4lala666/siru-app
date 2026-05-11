@@ -81,6 +81,10 @@ class Module {
     required this.difficulty,
     required this.icon,
     required this.cover,
+    required this.cardImagePath,
+    required this.heroImagePath,
+    required this.alignmentX,
+    required this.alignmentY,
     required this.title,
     required this.subtitle,
     required this.descriptionSections,
@@ -91,6 +95,10 @@ class Module {
   final String difficulty;
   final String icon;
   final String cover;
+  final String cardImagePath;
+  final String heroImagePath;
+  final double alignmentX;
+  final double alignmentY;
   final Map<String, String> title;
   final Map<String, String> subtitle;
   final List<DescriptionSection> descriptionSections;
@@ -105,6 +113,10 @@ class Module {
       difficulty: (json['difficulty'] ?? '').toString(),
       icon: (json['icon'] ?? '').toString(),
       cover: (json['cover'] ?? '').toString(),
+      cardImagePath: (json['cardImagePath'] ?? json['cover'] ?? '').toString(),
+      heroImagePath: (json['heroImagePath'] ?? json['cover'] ?? '').toString(),
+      alignmentX: _asDouble(json['alignmentX']),
+      alignmentY: _asDouble(json['alignmentY']),
       title: _stringMap(json['title']),
       subtitle: _stringMap(json['subtitle']),
       descriptionSections: rawSections
@@ -147,4 +159,10 @@ Map<String, List<String>> _stringListMap(dynamic raw) {
 int _asInt(dynamic value) {
   if (value is int) return value;
   return int.tryParse((value ?? '').toString()) ?? 0;
+}
+
+double _asDouble(dynamic value) {
+  if (value is double) return value;
+  if (value is int) return value.toDouble();
+  return double.tryParse((value ?? '').toString()) ?? 0;
 }

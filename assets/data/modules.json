@@ -1,4 +1,4 @@
-{
+﻿{
   "version": 1,
   "defaultLocale": "ru",
   "locales": [
@@ -11,7 +11,7 @@
       "id": "gov_risk",
       "difficulty": "beginner",
       "icon": "shield",
-      "cover": "assets/images/modules/gov_risk.png",
+      "cover": "assets/modules/card_1600x500/gov_risk.png",
       "title": {
         "ru": "Основы, управление и риск",
         "en": "Governance & Risk",
@@ -690,13 +690,17 @@
             }
           ]
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/gov_risk.png",
+      "heroImagePath": "assets/modules/hero_1800x600/gov_risk.png",
+      "alignmentX": 0.7,
+      "alignmentY": 0.0
     },
     {
       "id": "social_eng",
       "difficulty": "beginner",
       "icon": "message-circle",
-      "cover": "assets/images/modules/social_eng.png",
+      "cover": "assets/modules/card_1600x500/social_eng.png",
       "title": {
         "ru": "Социальная инженерия и человеческий фактор",
         "en": "Social Engineering & Human Factor",
@@ -868,13 +872,17 @@
             "kk": "Security awareness: оқыту және симуляциялар"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/social_eng.png",
+      "heroImagePath": "assets/modules/hero_1800x600/social_eng.png",
+      "alignmentX": 0.4,
+      "alignmentY": 0.0
     },
     {
       "id": "network_sec",
       "difficulty": "beginner",
       "icon": "network",
-      "cover": "assets/images/modules/network_sec.png",
+      "cover": "assets/modules/card_1600x500/network_sec.png",
       "title": {
         "ru": "Сети и инфраструктура",
         "en": "Network Security",
@@ -1049,13 +1057,17 @@
             "kk": "Zero Trust: “ешкімге сенбе, әрдайым тексер”"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/network_sec.png",
+      "heroImagePath": "assets/modules/hero_1800x600/network_sec.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "endpoint_mobile",
       "difficulty": "beginner",
       "icon": "smartphone",
-      "cover": "assets/images/modules/endpoint_mobile.png",
+      "cover": "assets/modules/card_1600x500/endpoint_mobile.png",
       "title": {
         "ru": "Endpoint + Mobile Security",
         "en": "Endpoint & Mobile Security",
@@ -1230,13 +1242,17 @@
             "kk": "Жоспар: жұқтыру/ұрлау кезінде не істеу керек"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/endpoint_mobile.png",
+      "heroImagePath": "assets/modules/hero_1800x600/endpoint_mobile.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "iam",
       "difficulty": "beginner",
       "icon": "key",
-      "cover": "assets/images/modules/iam.png",
+      "cover": "assets/modules/card_1600x500/iam.png",
       "title": {
         "ru": "Управление доступом (IAM)",
         "en": "Identity & Access Management (IAM)",
@@ -1411,13 +1427,17 @@
             "kk": "Аккаунт өмірлік циклі: onboarding/offboarding"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/iam.png",
+      "heroImagePath": "assets/modules/hero_1800x600/iam.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "crypto",
       "difficulty": "intermediate",
       "icon": "lock",
-      "cover": "assets/images/modules/crypto.png",
+      "cover": "assets/modules/card_1600x500/crypto.png",
       "title": {
         "ru": "Криптография",
         "en": "Cryptography",
@@ -1592,13 +1612,17 @@
             "kk": "Криптография қателері: жиі қайда бұзылады"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/crypto.png",
+      "heroImagePath": "assets/modules/hero_1800x600/crypto.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "data_privacy",
       "difficulty": "beginner",
       "icon": "database",
-      "cover": "assets/images/modules/data_privacy.png",
+      "cover": "assets/modules/card_1600x500/data_privacy.png",
       "title": {
         "ru": "Защита данных и приватность",
         "en": "Data Security & Privacy (DLP)",
@@ -1773,13 +1797,17 @@
             "kk": "Құпиялық: жеке дерек және тәуекелді азайту"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/data_privacy.png",
+      "heroImagePath": "assets/modules/hero_1800x600/data_privacy.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "appsec_devsecops",
       "difficulty": "intermediate",
       "icon": "code",
-      "cover": "assets/images/modules/appsec.png",
+      "cover": "assets/modules/card_1600x500/appsec.png",
       "title": {
         "ru": "AppSec & DevSecOps",
         "en": "AppSec & DevSecOps",
@@ -1954,13 +1982,17 @@
             "kk": "API және контейнер: REST, Docker, K8s қауіпсіздігі (шолу)"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/appsec.png",
+      "heroImagePath": "assets/modules/hero_1800x600/appsec.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "secops_ir",
       "difficulty": "intermediate",
       "icon": "activity",
-      "cover": "assets/images/modules/secops.png",
+      "cover": "assets/modules/card_1600x500/secops.png",
       "title": {
         "ru": "SecOps: мониторинг и реагирование",
         "en": "SecOps: Monitoring & Incident Response",
@@ -2135,13 +2167,17 @@
             "kk": "Оқиғадан кейін талдау: есеп, сабақ, жақсарту"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/secops.png",
+      "heroImagePath": "assets/modules/hero_1800x600/secops.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "offsec",
       "difficulty": "intermediate",
       "icon": "target",
-      "cover": "assets/images/modules/offsec.png",
+      "cover": "assets/modules/card_1600x500/offsec.png",
       "title": {
         "ru": "Offensive Security (Pentest & Red Team)",
         "en": "Offensive Security (Pentest & Red Team)",
@@ -2316,13 +2352,17 @@
             "kk": "Bug bounty: ереже, этика, тәсіл"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/offsec.png",
+      "heroImagePath": "assets/modules/hero_1800x600/offsec.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "cloud_sec",
       "difficulty": "intermediate",
       "icon": "cloud",
-      "cover": "assets/images/modules/cloud_sec.png",
+      "cover": "assets/modules/card_1600x500/cloud_sec.png",
       "title": {
         "ru": "Cloud Security",
         "en": "Cloud Security",
@@ -2497,13 +2537,17 @@
             "kk": "Serverless және микросервис: тәуекел және қорғаныс (шолу)"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/cloud_sec.png",
+      "heroImagePath": "assets/modules/hero_1800x600/cloud_sec.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "phys_forensics_resilience",
       "difficulty": "beginner",
       "icon": "shield-alert",
-      "cover": "assets/images/modules/phys_forensics.png",
+      "cover": "assets/modules/card_1600x500/phys_forensics.png",
       "title": {
         "ru": "Физическая безопасность, Forensics и устойчивость",
         "en": "Physical Security, Forensics & Resilience (DR/BCP)",
@@ -2678,13 +2722,17 @@
             "kk": "BCP: бизнес үздіксіздігі + жаттығу"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/phys_forensics.png",
+      "heroImagePath": "assets/modules/hero_1800x600/phys_forensics.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     },
     {
       "id": "ai_llm_sec",
       "difficulty": "intermediate",
       "icon": "sparkles",
-      "cover": "assets/images/modules/ai_llm.png",
+      "cover": "assets/modules/card_1600x500/ai_llm.png",
       "title": {
         "ru": "Искусственный интеллект в ИБ",
         "en": "AI & LLM Security",
@@ -2839,13 +2887,17 @@
             "kk": "Шабуылға AI: дипфейк, фишинг, зиянды генерация"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/ai_llm.png",
+      "heroImagePath": "assets/modules/hero_1800x600/ai_llm.png",
+      "alignmentX": 0.5,
+      "alignmentY": 0.0
     },
     {
       "id": "iot_sec",
       "difficulty": "intermediate",
       "icon": "cpu",
-      "cover": "assets/images/modules/iot.png",
+      "cover": "assets/modules/card_1600x500/iot.png",
       "title": {
         "ru": "Безопасность интернета вещей",
         "en": "IoT Security",
@@ -3000,7 +3052,11 @@
             "kk": "Бизнес IoT: камера, датчик, smart құрылғы тәуекелі"
           }
         }
-      ]
+      ],
+      "cardImagePath": "assets/modules/card_1600x500/iot.png",
+      "heroImagePath": "assets/modules/hero_1800x600/iot.png",
+      "alignmentX": 0.6,
+      "alignmentY": 0.0
     }
   ]
 }

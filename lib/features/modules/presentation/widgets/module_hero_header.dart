@@ -8,14 +8,18 @@ class ModuleHeroHeader extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
-    required this.cover,
+    required this.heroImagePath,
+    required this.alignmentX,
+    required this.alignmentY,
     required this.lessonCount,
     required this.difficulty,
   });
 
   final String title;
   final String subtitle;
-  final String cover;
+  final String heroImagePath;
+  final double alignmentX;
+  final double alignmentY;
   final int lessonCount;
   final String difficulty;
 
@@ -25,7 +29,7 @@ class ModuleHeroHeader extends StatelessWidget {
     return Container(
       height: 240,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(22),
         boxShadow: AppColors.softShadow,
       ),
       clipBehavior: Clip.antiAlias,
@@ -33,19 +37,21 @@ class ModuleHeroHeader extends StatelessWidget {
         fit: StackFit.expand,
         children: <Widget>[
           Image.asset(
-            cover,
+            heroImagePath,
             fit: BoxFit.cover,
+            alignment: Alignment(alignmentX, alignmentY),
+            filterQuality: FilterQuality.high,
             errorBuilder: (_, __, ___) => Container(color: const Color(0xFF123A82)),
           ),
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
                 colors: <Color>[
-                  Colors.black.withValues(alpha: 0.82),
-                  Colors.black.withValues(alpha: 0.34),
-                  Colors.transparent,
+                  const Color(0xFF071A3D).withValues(alpha: 0.90),
+                  const Color(0xFF071A3D).withValues(alpha: 0.55),
+                  const Color(0xFF071A3D).withValues(alpha: 0.20),
                 ],
               ),
             ),

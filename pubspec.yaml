@@ -47,6 +47,8 @@ flutter:
     - assets/fonts/
     - assets/images/
     - assets/images/modules/
+    - assets/modules/card_1600x500/
+    - assets/modules/hero_1800x600/
     - assets/data/facts.json
     - assets/data/modules.json
     - assets/data/questions.json

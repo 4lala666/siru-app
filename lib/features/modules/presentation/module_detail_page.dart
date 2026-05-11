@@ -50,7 +50,9 @@ class ModuleDetailScreen extends ConsumerWidget {
               ModuleHeroHeader(
                 title: _displayTitle(module, lang),
                 subtitle: _displaySubtitle(module, lang),
-                cover: module.cover,
+                heroImagePath: module.heroImagePath,
+                alignmentX: module.alignmentX,
+                alignmentY: module.alignmentY,
                 lessonCount: module.lessons.length,
                 difficulty: module.difficulty,
               ),

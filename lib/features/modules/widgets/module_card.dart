@@ -47,7 +47,7 @@ class ModuleCard extends StatelessWidget {
           margin: EdgeInsets.zero,
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(18),
             boxShadow: AppColors.softShadow,
           ),
           clipBehavior: Clip.antiAlias,
@@ -55,8 +55,10 @@ class ModuleCard extends StatelessWidget {
             children: <Widget>[
               Positioned.fill(
                 child: Image.asset(
-                  module.cover,
+                  module.cardImagePath,
                   fit: BoxFit.cover,
+                  alignment: Alignment(module.alignmentX, module.alignmentY),
+                  filterQuality: FilterQuality.high,
                   errorBuilder: (_, __, ___) => Container(color: const Color(0xFF123A82)),
                 ),
               ),
@@ -64,12 +66,12 @@ class ModuleCard extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
                       colors: <Color>[
-                        Colors.black.withValues(alpha: 0.65),
-                        Colors.black.withValues(alpha: 0.25),
-                        Colors.transparent,
+                        const Color(0xFF071A3D).withValues(alpha: 0.88),
+                        const Color(0xFF071A3D).withValues(alpha: 0.55),
+                        const Color(0xFF071A3D).withValues(alpha: 0.25),
                       ],
                     ),
                   ),
