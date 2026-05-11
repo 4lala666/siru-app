@@ -13,7 +13,6 @@ import 'widgets/empty_lesson_state.dart';
 import 'widgets/lesson_hero_card.dart';
 import 'widgets/lesson_progress_card.dart';
 import 'widgets/lesson_section_card.dart';
-import 'widgets/lesson_sources_section.dart';
 import 'widgets/lesson_top_bar.dart';
 import 'widgets/start_quiz_sticky_button.dart';
 
@@ -97,13 +96,6 @@ class ModuleTopicPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: 14),
                   ..._buildSections(content.sections),
-                  if (content.sources.isNotEmpty) ...<Widget>[
-                    const SizedBox(height: 14),
-                    LessonSourcesSection(
-                      title: _t(lang, 'sources'),
-                      sources: content.sources,
-                    ),
-                  ],
                 ] else
                   EmptyLessonState(
                     title: _t(lang, 'emptyStateTitle'),
@@ -135,11 +127,6 @@ class ModuleTopicPage extends ConsumerWidget {
         'ru': 'Урок',
         'en': 'Lesson',
         'kk': 'Сабақ',
-      },
-      'sources': <String, String>{
-        'ru': 'Источники',
-        'en': 'Sources',
-        'kk': 'Дереккөздер',
       },
       'startQuiz': <String, String>{
         'ru': 'Начать тест',
