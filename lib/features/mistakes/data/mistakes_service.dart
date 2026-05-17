@@ -161,6 +161,25 @@ class MistakesService extends StateNotifier<List<Mistake>> {
     return lessonQuestions;
   }
 
+  Future<List<QuizQuestion>> getQuestionsForSubtopic({
+    required String moduleId,
+    required String lessonId,
+    int limit = 10,
+  }) async {
+    final List<QuizQuestion> bank = await _loadQuestions();
+    final List<QuizQuestion> lessonQuestions = bank
+        .where((QuizQuestion q) => q.lessonId == lessonId && q.moduleId == moduleId)
+        .toList();
+
+    if (lessonQuestions.isEmpty) {
+      return <QuizQuestion>[];
+    }
+
+    final Random rng = Random();
+    lessonQuestions.shuffle(rng);
+    return lessonQuestions.take(limit).toList();
+  }
+
   int _difficultyWeight(String difficulty) {
     switch (difficulty) {
       case 'hard':

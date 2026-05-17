@@ -1,4 +1,4 @@
-﻿{
+{
   "version": 1,
   "defaultLocale": "ru",
   "locales": [
@@ -1058,7 +1058,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/social_eng.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/social_eng.png",
+      "heroImagePath": "assets/modules/hero_1800x600/social_eng.webp",
       "alignmentX": 0.4,
       "alignmentY": 0.0
     },
@@ -1427,7 +1427,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/network_sec.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/network_sec.png",
+      "heroImagePath": "assets/modules/hero_1800x600/network_sec.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -1796,7 +1796,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/endpoint_mobile.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/endpoint_mobile.png",
+      "heroImagePath": "assets/modules/hero_1800x600/endpoint_mobile.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -2165,7 +2165,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/iam.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/iam.png",
+      "heroImagePath": "assets/modules/hero_1800x600/iam.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -2534,7 +2534,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/crypto.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/crypto.png",
+      "heroImagePath": "assets/modules/hero_1800x600/crypto.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -2903,7 +2903,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/data_privacy.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/data_privacy.png",
+      "heroImagePath": "assets/modules/hero_1800x600/data_privacy.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -3641,7 +3641,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/secops.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/secops.png",
+      "heroImagePath": "assets/modules/hero_1800x600/secops.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -4010,7 +4010,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/offsec.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/offsec.png",
+      "heroImagePath": "assets/modules/hero_1800x600/offsec.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -4748,7 +4748,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/phys_forensics.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/phys_forensics.png",
+      "heroImagePath": "assets/modules/hero_1800x600/phys_forensics.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     },
@@ -5354,7 +5354,7 @@
         }
       ],
       "cardImagePath": "assets/modules/card_1600x500/iot.webp",
-      "heroImagePath": "assets/modules/hero_1800x600/iot.png",
+      "heroImagePath": "assets/modules/hero_1800x600/iot.webp",
       "alignmentX": 0.6,
       "alignmentY": 0.0
     }

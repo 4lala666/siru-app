@@ -17,6 +17,7 @@ import 'features/mistakes/work_on_mistakes_screen.dart';
 import 'features/modules/domain/module_models.dart';
 import 'features/modules/modules_catalog.dart';
 import 'features/modules/presentation/module_detail_page.dart';
+import 'features/modules/presentation/lesson_quiz_screen.dart';
 import 'features/modules/presentation/module_topic_page.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/profile/profile_screen.dart';
@@ -110,17 +111,15 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: '/lesson-quiz',
+        path: '/lesson-quiz/:moduleId/:lessonId',
         builder: (_, GoRouterState state) {
+          final String moduleId = state.pathParameters['moduleId'] ?? '';
+          final String lessonId = state.pathParameters['lessonId'] ?? '';
           final Object? extra = state.extra;
-          final List<QuizQuestion> questions =
-              (extra is List<QuizQuestion>) ? extra : const <QuizQuestion>[];
-          return QuestionScreen(
-            questions: questions,
-            resultRoute: '/lesson-quiz/result',
-            resultBackRoute: '/app/modules',
-            resultBackLabel: 'Back to modules',
-          );
+          final LessonQuizArgs args = extra is LessonQuizArgs
+              ? extra
+              : LessonQuizArgs(moduleId: moduleId, lessonId: lessonId);
+          return LessonQuizScreen(args: args);
         },
       ),
       GoRoute(

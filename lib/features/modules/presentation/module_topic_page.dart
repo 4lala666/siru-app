@@ -9,6 +9,7 @@ import '../../mistakes/domain/mistake.dart';
 import '../data/lesson_content_builder.dart';
 import '../domain/lesson_content.dart';
 import '../domain/module_models.dart';
+import 'lesson_quiz_screen.dart';
 import 'widgets/empty_lesson_state.dart';
 import 'widgets/lesson_hero_card.dart';
 import 'widgets/lesson_progress_card.dart';
@@ -68,7 +69,13 @@ class ModuleTopicPage extends ConsumerWidget {
                   disabledLabel: _t(lang, 'quizSoon'),
                   enabled: quizEnabled,
                   onPressed: quizEnabled
-                      ? () => context.push('/lesson-quiz', extra: quizQuestions)
+                      ? () => context.push(
+                            '/lesson-quiz/${args.module.id}/${args.lesson.id}',
+                            extra: LessonQuizArgs(
+                              moduleId: args.module.id,
+                              lessonId: args.lesson.id,
+                            ),
+                          )
                       : null,
                 )
               : null,
@@ -139,9 +146,9 @@ class ModuleTopicPage extends ConsumerWidget {
         'kk': 'Сабақтың соңғы қадамы',
       },
       'quizSoon': <String, String>{
-        'ru': 'Тест скоро будет добавлен',
-        'en': 'Quiz coming soon',
-        'kk': 'Тест жақында қосылады',
+        'ru': 'Тест для этой подтемы пока готовится',
+        'en': 'Quiz for this subtopic is in progress',
+        'kk': 'Бұл ішкі тақырыпқа тест әзірленіп жатыр',
       },
       'emptyStateTitle': <String, String>{
         'ru': 'Контент готовится',
