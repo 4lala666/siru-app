@@ -186,7 +186,24 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
     await ref.read(quizAttemptStoreProvider).saveAttempt(
           attempt,
         );
-    await ref.read(quizResultsFirestoreServiceProvider).saveQuizAttempt(attempt);
+    String? attemptId;
+    try {
+      attemptId = await ref.read(quizResultsFirestoreServiceProvider).saveQuizAttempt(attempt);
+      await ref.read(quizResultsFirestoreServiceProvider).saveWrongAnswers(
+            moduleId: widget.args.moduleId,
+            subtopicId: widget.args.lessonId,
+            questions: questions,
+            selectedAnswers: Map<String, int>.from(_answers),
+            completedAt: attempt.completedAt,
+            attemptId: attemptId,
+          );
+      await ref.read(quizResultsFirestoreServiceProvider).markLearningActivity(
+            activityAt: attempt.completedAt,
+          );
+    } catch (e, st) {
+      debugPrint('Failed to save quiz analytics to Firestore: $e');
+      debugPrint('$st');
+    }
 
     if (!mounted) return;
     context.go('/lesson-quiz/result', extra: <String, dynamic>{
