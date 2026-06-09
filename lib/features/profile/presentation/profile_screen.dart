@@ -290,7 +290,10 @@ class _ProfileSummaryCard extends ConsumerWidget {
                         color: const Color(0x26FFFFFF),
                         borderRadius: BorderRadius.circular(999),
                       ),
-                      child: Text('Rank: Sentinel', style: AppTextStyles.chip),
+                      child: Text(
+                        _txt(context, ru: 'Ранг: Sentinel', kk: 'Дәреже: Sentinel', en: 'Rank: Sentinel'),
+                        style: AppTextStyles.chip,
+                      ),
                     ),
                   ],
                 ),
@@ -298,9 +301,13 @@ class _ProfileSummaryCard extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 12),
-          Text('Member since Jan 2026', style: AppTextStyles.secondary),
+          Text(
+            _txt(context, ru: 'В системе с янв. 2026', kk: 'Жүйеде: қаң. 2026', en: 'Member since Jan 2026'),
+            style: AppTextStyles.secondary,
+          ),
           const SizedBox(height: 10),
-          Text('Level 6 • 1240 XP', style: AppTextStyles.body),
+          Text(_txt(context, ru: 'Уровень 6 • 1240 XP', kk: 'Деңгей 6 • 1240 XP', en: 'Level 6 • 1240 XP'),
+              style: AppTextStyles.body),
           const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
@@ -323,7 +330,7 @@ class _ProfileSummaryCard extends ConsumerWidget {
                   builder: (_) => const EditProfileSheet(),
                 );
               },
-              child: const Text('Edit Profile'),
+              child: Text(_txt(context, ru: 'Редактировать профиль', kk: 'Профильді өңдеу', en: 'Edit Profile')),
             ),
           ),
         ],
@@ -338,12 +345,13 @@ class _StatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<MapEntry<String, String>> stats = <MapEntry<String, String>>[
-      const MapEntry<String, String>('XP earned', '1240'),
-      const MapEntry<String, String>('Badges', '18'),
-      const MapEntry<String, String>('Streak', '14 days'),
-      const MapEntry<String, String>('Rank', 'Sentinel'),
-      const MapEntry<String, String>('Threats stopped', '93'),
-      const MapEntry<String, String>('Certifications', '4'),
+      MapEntry<String, String>(_txt(context, ru: 'Получено XP', kk: 'Жиналған XP', en: 'XP earned'), '1240'),
+      MapEntry<String, String>(_txt(context, ru: 'Бейджи', kk: 'Бейдждер', en: 'Badges'), '18'),
+      MapEntry<String, String>(_txt(context, ru: 'Серия', kk: 'Серия', en: 'Streak'),
+          _txt(context, ru: '14 дней', kk: '14 күн', en: '14 days')),
+      MapEntry<String, String>(_txt(context, ru: 'Ранг', kk: 'Дәреже', en: 'Rank'), 'Sentinel'),
+      MapEntry<String, String>(_txt(context, ru: 'Остановлено угроз', kk: 'Тоқтатылған қауіптер', en: 'Threats stopped'), '93'),
+      MapEntry<String, String>(_txt(context, ru: 'Сертификаты', kk: 'Сертификаттар', en: 'Certifications'), '4'),
     ];
 
     return GridView.builder(

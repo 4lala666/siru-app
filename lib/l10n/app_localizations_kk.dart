@@ -9,28 +9,247 @@ class AppLocalizationsKk extends AppLocalizations {
   AppLocalizationsKk([String locale = 'kk']) : super(locale);
 
   @override
-  String get appTitle => 'Siru';
+  String get appTitle => 'Siru Admin';
 
   @override
-  String get chooseLanguageTitle => 'Тілді таңдаңыз';
+  String get overview => 'Шолу';
+
+  @override
+  String get users => 'Пайдаланушылар';
+
+  @override
+  String get modules => 'Модульдер';
+
+  @override
+  String get quizResults => 'Тест нәтижелері';
+
+  @override
+  String get wrongAnswers => 'Қателер';
+
+  @override
+  String get activity => 'Белсенділік';
+
+  @override
+  String get settings => 'Баптаулар';
+
+  @override
+  String get language => 'Тіл';
 
   @override
   String get russian => 'Русский';
 
   @override
-  String get kazakh => 'Қазақша';
-
-  @override
   String get english => 'English';
 
   @override
-  String get continueText => 'Жалғастыру';
+  String get kazakh => 'Қазақша';
 
   @override
-  String get authTitle => 'Авторизация';
+  String get notifications => 'Хабарламалар';
 
   @override
-  String get email => 'Пошта';
+  String get admin => 'Админ';
+
+  @override
+  String get totalUsers => 'Барлық пайдаланушылар';
+
+  @override
+  String get completedQuizzes => 'Өтілген тесттер';
+
+  @override
+  String get averageScore => 'Орташа балл';
+
+  @override
+  String get totalWrongAnswers => 'Барлық қателер';
+
+  @override
+  String get activeUsers => 'Белсенді пайдаланушылар';
+
+  @override
+  String get averageProgress => 'Орташа прогресс';
+
+  @override
+  String get quizCompletionsByDay => 'Күн бойынша тест тапсыру';
+
+  @override
+  String get averageScoreByModule => 'Модульдер бойынша орташа балл';
+
+  @override
+  String get mostDifficultModules => 'Ең қиын модульдер';
+
+  @override
+  String get recentActivity => 'Соңғы белсенділік';
+
+  @override
+  String get searchUsers => 'Пайдаланушыны аты немесе email арқылы іздеу';
+
+  @override
+  String get all => 'Барлығы';
+
+  @override
+  String get active => 'Белсенді';
+
+  @override
+  String get inactive => 'Белсенді емес';
+
+  @override
+  String get user => 'Пайдаланушы';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get completedModules => 'Аяқталған модульдер';
+
+  @override
+  String get lastActive => 'Соңғы белсенділік';
+
+  @override
+  String get status => 'Күйі';
+
+  @override
+  String get module => 'Модуль';
+
+  @override
+  String get subtopics => 'Ішкі тақырыптар';
+
+  @override
+  String get attempts => 'Талпыныстар';
+
+  @override
+  String get wrongAnswersCol => 'Қателер';
+
+  @override
+  String get completionRate => 'Аяқталу пайызы';
+
+  @override
+  String get mostPopularModules => 'Ең танымал модульдер';
+
+  @override
+  String get bestAverageScore => 'Ең жақсы орташа нәтиже';
+
+  @override
+  String get subtopic => 'Ішкі тақырып';
+
+  @override
+  String get score => 'Балл';
+
+  @override
+  String get correctAnswers => 'Дұрыс жауаптар';
+
+  @override
+  String get totalQuestions => 'Сұрақтар саны';
+
+  @override
+  String get percentage => 'Пайыз';
+
+  @override
+  String get completedAt => 'Аяқталған уақыты';
+
+  @override
+  String get filterByModule => 'Модуль';
+
+  @override
+  String get scoreRange => 'Балл диапазоны';
+
+  @override
+  String get dateRange => 'Күн аралығы';
+
+  @override
+  String get quizHistory => 'Тест тарихы';
+
+  @override
+  String get questionId => 'Сұрақ ID';
+
+  @override
+  String get questionText => 'Сұрақ мәтіні';
+
+  @override
+  String get wrongCount => 'Қате саны';
+
+  @override
+  String get correctAnswer => 'Дұрыс жауап';
+
+  @override
+  String get mostSelectedWrongAnswer => 'Ең жиі таңдалған қате жауап';
+
+  @override
+  String get difficulty => 'Қиындық';
+
+  @override
+  String get top10DifficultQuestions => 'Ең қиын 10 сұрақ';
+
+  @override
+  String get activityByDay => 'Күндік белсенділік';
+
+  @override
+  String get activeUsersThisWeek => 'Осы аптадағы белсенді пайдаланушылар';
+
+  @override
+  String get streakStats => 'Streak статистикасы (күндік орташа белсенділік)';
+
+  @override
+  String get completedLessonsByDay => 'Күн бойынша аяқталған сабақтар';
+
+  @override
+  String get settingsTitle => 'Баптаулар';
+
+  @override
+  String get adminProfile => 'Әкімші профилі';
+
+  @override
+  String get dashboardSettings => 'Дашборд баптаулары';
+
+  @override
+  String get dataSource => 'Дереккөз';
+
+  @override
+  String get mockRepository => 'MockRepository';
+
+  @override
+  String get firebaseStatus => 'Firebase қосылу күйі';
+
+  @override
+  String get notConnected => 'Әлі қосылмаған';
+
+  @override
+  String get futureIntegration => 'Келесі интеграция';
+
+  @override
+  String get firestoreRepo => 'FirestoreAnalyticsRepository';
+
+  @override
+  String get loading => 'Жүктелуде...';
+
+  @override
+  String get overviewLoaded => 'Overview көрініп тұр';
+
+  @override
+  String get difficultyEasy => 'Оңай';
+
+  @override
+  String get difficultyMedium => 'Орташа';
+
+  @override
+  String get difficultyHard => 'Қиын';
+
+  @override
+  String get homeTab => 'Басты';
+
+  @override
+  String get modulesTab => 'Модульдер';
+
+  @override
+  String get profileTab => 'Профиль';
+
+  @override
+  String get chooseLanguageTitle => 'Тілді таңдаңыз';
+
+  @override
+  String get login => 'Кіру';
+
+  @override
+  String get register => 'Тіркелу';
 
   @override
   String get password => 'Құпиясөз';
@@ -45,43 +264,13 @@ class AppLocalizationsKk extends AppLocalizations {
   String get repeatPassword => 'Құпиясөзді қайталаңыз';
 
   @override
-  String get passwordsDoNotMatch => 'Құпиясөздер сәйкес емес';
-
-  @override
-  String get login => 'Кіру';
-
-  @override
-  String get register => 'Тіркелу';
-
-  @override
   String get forgotPassword => 'Құпиясөзді ұмыттыңыз ба?';
 
   @override
-  String get resetPassword => 'Құпиясөзді қалпына келтіру';
+  String get orLoginVia => 'немесе кіру';
 
   @override
-  String get resetPasswordDialogTitle => 'Құпиясөзді қалпына келтіру';
-
-  @override
-  String get resetPasswordDialogHint => 'Аккаунт поштасын енгізіңіз, біз қалпына келтіру сілтемесін жібереміз.';
-
-  @override
-  String get sendResetEmail => 'Хат жіберу';
-
-  @override
-  String get cancel => 'Бас тарту';
-
-  @override
-  String get googleSignIn => 'Google арқылы кіру';
-
-  @override
-  String get appleSignIn => 'Apple арқылы кіру';
-
-  @override
-  String get orCreateVia => 'Немесе аккаунтты мына арқылы жасаңыз';
-
-  @override
-  String get orLoginVia => 'Немесе мына арқылы кіру';
+  String get orCreateVia => 'немесе тіркелу';
 
   @override
   String get noAccount => 'Аккаунт жоқ па? Тіркелу';
@@ -90,79 +279,25 @@ class AppLocalizationsKk extends AppLocalizations {
   String get hasProfile => 'Профиль бар ма? Кіру';
 
   @override
-  String get passwordResetSent => 'Құпиясөзді қалпына келтіру хаты жіберілді';
+  String get emailInvalid => 'Жарамды email енгізіңіз';
 
   @override
-  String get verifyEmailBanner => 'Поштаңыз әлі расталмаған.';
+  String get passwordInvalid => 'Құпиясөз кемінде 8 таңба болуы керек';
 
   @override
-  String get resendVerification => 'Растау хатын қайта жіберу';
+  String get passwordsDoNotMatch => 'Құпиясөздер сәйкес келмейді';
 
   @override
-  String get verificationEmailSent => 'Растау хаты жіберілді';
+  String get resetPassword => 'Құпиясөзді қалпына келтіру';
 
   @override
-  String get homeTab => 'Басты';
+  String get resetPasswordDialogHint => 'Аккаунт email-ін енгізіңіз, қалпына келтіру нұсқаулығын жібереміз';
 
   @override
-  String get modulesTab => 'Модульдер';
+  String get sendResetEmail => 'Қалпына келтіру хатын жіберу';
 
   @override
-  String get profileTab => 'Профиль';
-
-  @override
-  String get homePlaceholder => 'Басты (әзірше бос)';
-
-  @override
-  String get modulesPlaceholder => 'Модульдер (әзірше бос)';
-
-  @override
-  String get profilePlaceholder => 'Профиль (әзірше бос)';
-
-  @override
-  String get signOut => 'Шығу';
-
-  @override
-  String get authRequired => 'Жалғастыру үшін кіріңіз';
-
-  @override
-  String get emailInvalid => 'Дұрыс поштаны енгізіңіз';
-
-  @override
-  String get passwordInvalid => 'Құпиясөз кемінде 6 таңба болу керек';
-
-  @override
-  String get loading => 'Жүктелуде...';
-
-  @override
-  String get continueWithoutLogin => 'Кірусіз жалғастыру';
-
-  @override
-  String get verifyMailTitle => 'Поштаңызды тексеріңіз';
-
-  @override
-  String get sentCode => 'Код поштаңызға жіберілді';
-
-  @override
-  String get verify => 'Растау';
-
-  @override
-  String get resendCode => 'Кодты қайта жіберу';
-
-  @override
-  String get wrongCode => 'Код қате. Қайта көріңіз.';
-
-  @override
-  String get codeSent => 'Код жіберілді';
-
-  @override
-  String get resetHint => 'Есте сақтайтын құпиясөз енгізіңіз';
-
-  @override
-  String get newPassword => 'Жаңа құпиясөз';
-
-  @override
-  String get confirmNewPassword => 'Жаңа құпиясөзді растаңыз';
+  String get passwordResetSent => 'Қалпына келтіру хаты жіберілді';
 
   @override
   String get passwordChanged => 'Құпиясөз өзгертілді';
@@ -172,4 +307,31 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get backToLogin => 'Кіруге оралу';
+
+  @override
+  String get resetHint => 'Жаңа құпиясөз жасаңыз';
+
+  @override
+  String get newPassword => 'Жаңа құпиясөз';
+
+  @override
+  String get confirmNewPassword => 'Жаңа құпиясөзді растаңыз';
+
+  @override
+  String get verifyMailTitle => 'Поштаңызды тексеріңіз';
+
+  @override
+  String get sentCode => 'Код поштаңызға жіберілді';
+
+  @override
+  String get wrongCode => 'Қате код. Қайта көріңіз.';
+
+  @override
+  String get verify => 'Растау';
+
+  @override
+  String get codeSent => 'Код жіберілді';
+
+  @override
+  String get resendCode => 'Кодты қайта жіберу';
 }

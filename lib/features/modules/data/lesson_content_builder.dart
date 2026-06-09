@@ -145,10 +145,10 @@ class LessonContentBuilder {
           id: '${lesson.id}_selfcheck',
           type: LessonSectionType.selfCheck,
           title: _tr(lang, 'selfCheckTitle'),
-          question: quizQuestions.first.question,
-          options: quizQuestions.first.options.take(3).toList(),
+          question: quizQuestions.first.localizedQuestion(lang),
+          options: quizQuestions.first.localizedOptions(lang).take(3).toList(),
           correctIndex: quizQuestions.first.correctIndex < 3 ? quizQuestions.first.correctIndex : 0,
-          explanation: quizQuestions.first.explanation,
+          explanation: quizQuestions.first.localizedExplanation(lang),
         ),
     ];
 

@@ -42,6 +42,17 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
 
   @override
   Widget build(BuildContext context) {
+    String t(String ru, String kk, String en) {
+      switch (Localizations.localeOf(context).languageCode) {
+        case 'kk':
+          return kk;
+        case 'en':
+          return en;
+        default:
+          return ru;
+      }
+    }
+
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
       decoration: const BoxDecoration(
@@ -52,14 +63,14 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Edit Profile', style: AppTextStyles.cardTitle),
+          Text(t('Редактировать профиль', 'Профильді өңдеу', 'Edit Profile'), style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
           TextField(
             controller: _controller,
-            decoration: const InputDecoration(hintText: 'Username'),
+            decoration: InputDecoration(hintText: t('Имя пользователя', 'Пайдаланушы аты', 'Username')),
           ),
           const SizedBox(height: 12),
-          Text('Avatar', style: AppTextStyles.secondary),
+          Text(t('Аватар', 'Аватар', 'Avatar'), style: AppTextStyles.secondary),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
@@ -102,7 +113,7 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
                 if (!context.mounted) return;
                 Navigator.of(context).pop();
               },
-              child: const Text('Save'),
+              child: Text(t('Сохранить', 'Сақтау', 'Save')),
             ),
           ),
         ],

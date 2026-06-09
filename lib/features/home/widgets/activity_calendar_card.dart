@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
@@ -9,19 +9,18 @@ class ActivityCalendarCard extends StatelessWidget {
     required this.currentDate,
     required this.activeDates,
     required this.streakCount,
+    required this.lang,
   });
 
   final DateTime currentDate;
   final Set<DateTime> activeDates;
   final int streakCount;
+  final String lang;
 
   @override
   Widget build(BuildContext context) {
     final DateTime weekStart = _startOfWeek(currentDate);
-    final List<DateTime> days = List<DateTime>.generate(
-      7,
-      (int i) => weekStart.add(Duration(days: i)),
-    );
+    final List<DateTime> days = List<DateTime>.generate(7, (int i) => weekStart.add(Duration(days: i)));
 
     return Container(
       decoration: BoxDecoration(
@@ -35,27 +34,23 @@ class ActivityCalendarCard extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text('Активность', style: AppTextStyles.cardTitle),
+              Text(_t('activity'), style: AppTextStyles.cardTitle),
               const Spacer(),
               const Icon(Icons.bolt_rounded, size: 18, color: AppColors.accent),
               const SizedBox(width: 4),
-              Text(
-                '$streakCount дней подряд',
-                style: AppTextStyles.secondary.copyWith(color: AppColors.text),
-              ),
+              Text('$streakCount ${_t('dayStreak')}', style: AppTextStyles.secondary.copyWith(color: AppColors.text)),
             ],
           ),
           const SizedBox(height: 12),
           Row(
             children: days
-                .map((DateTime day) => Expanded(
-                      child: Center(
-                        child: Text(
-                          _weekdayLabel(day.weekday),
-                          style: AppTextStyles.secondary,
-                        ),
-                      ),
-                    ))
+                .map(
+                  (DateTime day) => Expanded(
+                    child: Center(
+                      child: Text(_weekdayLabel(day.weekday), style: AppTextStyles.secondary),
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           const SizedBox(height: 8),
@@ -72,9 +67,7 @@ class ActivityCalendarCard extends StatelessWidget {
                       color: isToday ? AppColors.accent : Colors.white.withValues(alpha: 0.06),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: isToday
-                            ? AppColors.accent
-                            : Colors.white.withValues(alpha: 0.08),
+                        color: isToday ? AppColors.accent : Colors.white.withValues(alpha: 0.08),
                       ),
                     ),
                     child: Stack(
@@ -87,11 +80,7 @@ class ActivityCalendarCard extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        if (isActive && !isToday)
-                          const Positioned(
-                            bottom: 4,
-                            child: _ActiveDot(),
-                          ),
+                        if (isActive && !isToday) const Positioned(bottom: 4, child: _ActiveDot()),
                       ],
                     ),
                   ),
@@ -115,23 +104,29 @@ class ActivityCalendarCard extends StatelessWidget {
   }
 
   String _weekdayLabel(int weekday) {
-    switch (weekday) {
-      case DateTime.monday:
-        return 'ПН';
-      case DateTime.tuesday:
-        return 'ВТ';
-      case DateTime.wednesday:
-        return 'СР';
-      case DateTime.thursday:
-        return 'ЧТ';
-      case DateTime.friday:
-        return 'ПТ';
-      case DateTime.saturday:
-        return 'СБ';
-      case DateTime.sunday:
-      default:
-        return 'ВС';
-    }
+    const Map<String, List<String>> labels = <String, List<String>>{
+      'ru': <String>['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
+      'en': <String>['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+      'kk': <String>['ДС', 'СС', 'СР', 'БС', 'ЖМ', 'СБ', 'ЖС'],
+    };
+    final List<String> list = labels[lang] ?? labels['ru']!;
+    return list[(weekday - 1).clamp(0, 6)];
+  }
+
+  String _t(String key) {
+    const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
+      'activity': <String, String>{
+        'ru': 'Активность',
+        'en': 'Activity',
+        'kk': 'Белсенділік',
+      },
+      'dayStreak': <String, String>{
+        'ru': 'дней подряд',
+        'en': 'day streak',
+        'kk': 'күн қатарынан',
+      },
+    };
+    return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
 }
 

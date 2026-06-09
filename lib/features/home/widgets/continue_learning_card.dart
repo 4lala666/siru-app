@@ -10,12 +10,14 @@ class ContinueLearningCard extends StatelessWidget {
     required this.subtitle,
     required this.progress,
     required this.onResume,
+    required this.resumeLabel,
   });
 
   final String courseTitle;
   final String subtitle;
   final double progress;
   final VoidCallback onResume;
+  final String resumeLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class ContinueLearningCard extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: onResume,
-              child: Text('Resume ->', style: AppTextStyles.body.copyWith(color: AppColors.accent)),
+              child: Text(resumeLabel, style: AppTextStyles.body.copyWith(color: AppColors.accent)),
             ),
           ),
         ],
@@ -55,4 +57,3 @@ class ContinueLearningCard extends StatelessWidget {
     );
   }
 }
-

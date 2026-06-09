@@ -52,6 +52,7 @@ class QuizResultsFirestoreService {
     required List<QuizQuestion> questions,
     required Map<String, int> selectedAnswers,
     required DateTime completedAt,
+    required String localeCode,
     String? attemptId,
   }) async {
     final User? user = _auth.currentUser;
@@ -66,10 +67,12 @@ class QuizResultsFirestoreService {
         continue;
       }
 
-      final String selectedAnswer =
-          selectedIndex >= 0 && selectedIndex < q.options.length ? q.options[selectedIndex] : '';
+      final List<String> localizedOptions = q.localizedOptions(localeCode);
+      final String selectedAnswer = selectedIndex >= 0 && selectedIndex < localizedOptions.length
+          ? localizedOptions[selectedIndex]
+          : '';
       final String correctAnswer =
-          q.correctIndex >= 0 && q.correctIndex < q.options.length ? q.options[q.correctIndex] : '';
+          q.correctIndex >= 0 && q.correctIndex < localizedOptions.length ? localizedOptions[q.correctIndex] : '';
 
       final DocumentReference<Map<String, dynamic>> doc =
           _firestore.collection('wrong_answers').doc();
@@ -81,14 +84,14 @@ class QuizResultsFirestoreService {
         'moduleId': moduleId,
         'subtopicId': subtopicId,
         'questionId': q.questionId,
-        'questionText': q.question,
+        'questionText': q.localizedQuestion(localeCode),
         'questionType': q.type,
         'difficulty': q.difficulty,
         'selectedAnswer': selectedAnswer,
         'selectedAnswerIndex': selectedIndex,
         'correctAnswer': correctAnswer,
         'correctAnswerIndex': q.correctIndex,
-        'explanation': q.explanation,
+        'explanation': q.localizedExplanation(localeCode),
         'createdAt': Timestamp.fromDate(completedAt),
         'resolved': false,
       });
@@ -134,6 +137,128 @@ class QuizResultsFirestoreService {
     } catch (e, st) {
       debugPrint('Failed to update learning_activity: $e');
       debugPrint('$st');
+    }
+  }
+
+  Future<void> updateModuleProgress({
+    required String moduleId,
+    required String subtopicId,
+    required double lastQuizScore,
+    required DateTime activityAt,
+    int? totalSubtopics,
+  }) async {
+    final User? user = _auth.currentUser;
+    if (user == null) {
+      debugPrint('[module_progress] skipped: user is null');
+      return;
+    }
+    debugPrint('[module_progress] user=${user.uid}');
+
+    final String documentId = '${user.uid}_$moduleId';
+    final DocumentReference<Map<String, dynamic>> docRef =
+        _firestore.collection('module_progress').doc(documentId);
+    debugPrint('[module_progress] docId=$documentId');
+
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> snap = await docRef.get();
+      final List<dynamic> previousCompleted =
+          (snap.data()?['completedSubtopicIds'] as List<dynamic>? ?? <dynamic>[]);
+      final Set<String> completedSet = previousCompleted.map((dynamic e) => '$e').toSet()
+        ..add(subtopicId);
+      final int completedSubtopics = completedSet.length;
+
+      int? resolvedTotalSubtopics = totalSubtopics;
+      final dynamic fromDoc = snap.data()?['totalSubtopics'];
+      if (resolvedTotalSubtopics == null && fromDoc is num) {
+        resolvedTotalSubtopics = fromDoc.toInt();
+      }
+
+      double? completionRate;
+      if (resolvedTotalSubtopics != null && resolvedTotalSubtopics > 0) {
+        completionRate = completedSubtopics / resolvedTotalSubtopics;
+      }
+
+      final bool isCompleted = completionRate != null ? completionRate >= 1.0 : false;
+
+      final Map<String, dynamic> payload = <String, dynamic>{
+        'userId': user.uid,
+        'userEmail': user.email,
+        'userName': user.displayName,
+        'moduleId': moduleId,
+        'completedSubtopics': completedSubtopics,
+        'completedSubtopicIds': FieldValue.arrayUnion(<String>[subtopicId]),
+        'lastSubtopicId': subtopicId,
+        'lastQuizScore': lastQuizScore,
+        'lastActivityAt': Timestamp.fromDate(activityAt),
+        'updatedAt': FieldValue.serverTimestamp(),
+        'isCompleted': isCompleted,
+      };
+
+      if (resolvedTotalSubtopics != null) {
+        payload['totalSubtopics'] = resolvedTotalSubtopics;
+      }
+      if (completionRate != null) {
+        payload['completionRate'] = completionRate;
+      }
+      debugPrint('[module_progress] writing data=$payload');
+
+      await docRef.set(payload, SetOptions(merge: true));
+    } catch (e, st) {
+      debugPrint('[module_progress] failed: $e');
+      debugPrintStack(stackTrace: st);
+    }
+  }
+
+  Future<void> updateUserStatsAfterQuiz({
+    required double score,
+    required int wrongAnswersCount,
+    required DateTime completedAt,
+  }) async {
+    final User? user = _auth.currentUser;
+    if (user == null) {
+      debugPrint('[user_stats] skipped: user is null');
+      return;
+    }
+
+    final DocumentReference<Map<String, dynamic>> userRef =
+        _firestore.collection('users').doc(user.uid);
+    final double percentageScore = score * 100.0;
+
+    try {
+      await _firestore.runTransaction((Transaction tx) async {
+        final DocumentSnapshot<Map<String, dynamic>> snap = await tx.get(userRef);
+        final Map<String, dynamic> oldData = snap.data() ?? <String, dynamic>{};
+
+        final int prevCompletedQuizzes = (oldData['completedQuizzes'] as num?)?.toInt() ?? 0;
+        final int nextCompletedQuizzes = prevCompletedQuizzes + 1;
+
+        final double prevTotalScoreSum = (oldData['totalScoreSum'] as num?)?.toDouble() ?? 0.0;
+        final double nextTotalScoreSum = prevTotalScoreSum + percentageScore;
+
+        final int prevWrongAnswers = (oldData['totalWrongAnswers'] as num?)?.toInt() ?? 0;
+        final int nextWrongAnswers = prevWrongAnswers + wrongAnswersCount;
+
+        final double nextAverageScore =
+            nextCompletedQuizzes == 0 ? 0 : (nextTotalScoreSum / nextCompletedQuizzes);
+
+        tx.set(
+          userRef,
+          <String, dynamic>{
+            'lastActiveAt': FieldValue.serverTimestamp(),
+            'completedQuizzes': nextCompletedQuizzes,
+            'totalWrongAnswers': nextWrongAnswers,
+            'totalScoreSum': nextTotalScoreSum,
+            'averageScore': nextAverageScore,
+            'lastQuizScore': percentageScore,
+            'lastQuizAt': Timestamp.fromDate(completedAt),
+            // TODO: completedSubtopicsCount, completedModulesCount, currentStreak, maxStreak.
+          },
+          SetOptions(merge: true),
+        );
+      });
+    } catch (e, st) {
+      debugPrint('[user_stats] failed to update users/{uid}: $e');
+      debugPrintStack(stackTrace: st);
     }
   }
 }

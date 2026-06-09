@@ -100,26 +100,62 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Siru'**
+  /// **'Siru Admin'**
   String get appTitle;
 
-  /// No description provided for @chooseLanguageTitle.
+  /// No description provided for @overview.
   ///
   /// In en, this message translates to:
-  /// **'Choose language'**
-  String get chooseLanguageTitle;
+  /// **'Overview'**
+  String get overview;
+
+  /// No description provided for @users.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get users;
+
+  /// No description provided for @modules.
+  ///
+  /// In en, this message translates to:
+  /// **'Modules'**
+  String get modules;
+
+  /// No description provided for @quizResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz Results'**
+  String get quizResults;
+
+  /// No description provided for @wrongAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong Answers'**
+  String get wrongAnswers;
+
+  /// No description provided for @activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get activity;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
 
   /// No description provided for @russian.
   ///
   /// In en, this message translates to:
-  /// **'Russian'**
+  /// **'Русский'**
   String get russian;
-
-  /// No description provided for @kazakh.
-  ///
-  /// In en, this message translates to:
-  /// **'Kazakh'**
-  String get kazakh;
 
   /// No description provided for @english.
   ///
@@ -127,23 +163,425 @@ abstract class AppLocalizations {
   /// **'English'**
   String get english;
 
-  /// No description provided for @continueText.
+  /// No description provided for @kazakh.
   ///
   /// In en, this message translates to:
-  /// **'Continue'**
-  String get continueText;
+  /// **'Қазақша'**
+  String get kazakh;
 
-  /// No description provided for @authTitle.
+  /// No description provided for @notifications.
   ///
   /// In en, this message translates to:
-  /// **'Authorization'**
-  String get authTitle;
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @admin.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin'**
+  String get admin;
+
+  /// No description provided for @totalUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Users'**
+  String get totalUsers;
+
+  /// No description provided for @completedQuizzes.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed Quizzes'**
+  String get completedQuizzes;
+
+  /// No description provided for @averageScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Score'**
+  String get averageScore;
+
+  /// No description provided for @totalWrongAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Wrong Answers'**
+  String get totalWrongAnswers;
+
+  /// No description provided for @activeUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Users'**
+  String get activeUsers;
+
+  /// No description provided for @averageProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Progress'**
+  String get averageProgress;
+
+  /// No description provided for @quizCompletionsByDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz completions by day'**
+  String get quizCompletionsByDay;
+
+  /// No description provided for @averageScoreByModule.
+  ///
+  /// In en, this message translates to:
+  /// **'Average score by module'**
+  String get averageScoreByModule;
+
+  /// No description provided for @mostDifficultModules.
+  ///
+  /// In en, this message translates to:
+  /// **'Most difficult modules'**
+  String get mostDifficultModules;
+
+  /// No description provided for @recentActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent activity'**
+  String get recentActivity;
+
+  /// No description provided for @searchUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Search user by name or email'**
+  String get searchUsers;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
 
   /// No description provided for @email.
   ///
   /// In en, this message translates to:
   /// **'Email'**
   String get email;
+
+  /// No description provided for @completedModules.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed Modules'**
+  String get completedModules;
+
+  /// No description provided for @lastActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Active'**
+  String get lastActive;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @module.
+  ///
+  /// In en, this message translates to:
+  /// **'Module'**
+  String get module;
+
+  /// No description provided for @subtopics.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtopics'**
+  String get subtopics;
+
+  /// No description provided for @attempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Attempts'**
+  String get attempts;
+
+  /// No description provided for @wrongAnswersCol.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong Answers'**
+  String get wrongAnswersCol;
+
+  /// No description provided for @completionRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion Rate'**
+  String get completionRate;
+
+  /// No description provided for @mostPopularModules.
+  ///
+  /// In en, this message translates to:
+  /// **'Most popular modules'**
+  String get mostPopularModules;
+
+  /// No description provided for @bestAverageScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Best average score'**
+  String get bestAverageScore;
+
+  /// No description provided for @subtopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtopic'**
+  String get subtopic;
+
+  /// No description provided for @score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score'**
+  String get score;
+
+  /// No description provided for @correctAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct Answers'**
+  String get correctAnswers;
+
+  /// No description provided for @totalQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Questions'**
+  String get totalQuestions;
+
+  /// No description provided for @percentage.
+  ///
+  /// In en, this message translates to:
+  /// **'Percentage'**
+  String get percentage;
+
+  /// No description provided for @completedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed At'**
+  String get completedAt;
+
+  /// No description provided for @filterByModule.
+  ///
+  /// In en, this message translates to:
+  /// **'Module'**
+  String get filterByModule;
+
+  /// No description provided for @scoreRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Score range'**
+  String get scoreRange;
+
+  /// No description provided for @dateRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Date range'**
+  String get dateRange;
+
+  /// No description provided for @quizHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz history'**
+  String get quizHistory;
+
+  /// No description provided for @questionId.
+  ///
+  /// In en, this message translates to:
+  /// **'Question ID'**
+  String get questionId;
+
+  /// No description provided for @questionText.
+  ///
+  /// In en, this message translates to:
+  /// **'Question Text'**
+  String get questionText;
+
+  /// No description provided for @wrongCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong Count'**
+  String get wrongCount;
+
+  /// No description provided for @correctAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct Answer'**
+  String get correctAnswer;
+
+  /// No description provided for @mostSelectedWrongAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Selected Wrong Answer'**
+  String get mostSelectedWrongAnswer;
+
+  /// No description provided for @difficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get difficulty;
+
+  /// No description provided for @top10DifficultQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Top 10 most difficult questions'**
+  String get top10DifficultQuestions;
+
+  /// No description provided for @activityByDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity by day'**
+  String get activityByDay;
+
+  /// No description provided for @activeUsersThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Active users this week'**
+  String get activeUsersThisWeek;
+
+  /// No description provided for @streakStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak statistics (avg daily active)'**
+  String get streakStats;
+
+  /// No description provided for @completedLessonsByDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed lessons by day'**
+  String get completedLessonsByDay;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @adminProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin profile'**
+  String get adminProfile;
+
+  /// No description provided for @dashboardSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard settings'**
+  String get dashboardSettings;
+
+  /// No description provided for @dataSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Data source'**
+  String get dataSource;
+
+  /// No description provided for @mockRepository.
+  ///
+  /// In en, this message translates to:
+  /// **'MockRepository'**
+  String get mockRepository;
+
+  /// No description provided for @firebaseStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Firebase connection status'**
+  String get firebaseStatus;
+
+  /// No description provided for @notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not connected yet'**
+  String get notConnected;
+
+  /// No description provided for @futureIntegration.
+  ///
+  /// In en, this message translates to:
+  /// **'Future integration'**
+  String get futureIntegration;
+
+  /// No description provided for @firestoreRepo.
+  ///
+  /// In en, this message translates to:
+  /// **'FirestoreAnalyticsRepository'**
+  String get firestoreRepo;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @overviewLoaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview is visible'**
+  String get overviewLoaded;
+
+  /// No description provided for @difficultyEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get difficultyEasy;
+
+  /// No description provided for @difficultyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get difficultyMedium;
+
+  /// No description provided for @difficultyHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get difficultyHard;
+
+  /// No description provided for @homeTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeTab;
+
+  /// No description provided for @modulesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Modules'**
+  String get modulesTab;
+
+  /// No description provided for @profileTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTab;
+
+  /// No description provided for @chooseLanguageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose language'**
+  String get chooseLanguageTitle;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get login;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
 
   /// No description provided for @password.
   ///
@@ -169,83 +607,23 @@ abstract class AppLocalizations {
   /// **'Repeat password'**
   String get repeatPassword;
 
-  /// No description provided for @passwordsDoNotMatch.
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords do not match'**
-  String get passwordsDoNotMatch;
-
-  /// No description provided for @login.
-  ///
-  /// In en, this message translates to:
-  /// **'Log in'**
-  String get login;
-
-  /// No description provided for @register.
-  ///
-  /// In en, this message translates to:
-  /// **'Register'**
-  String get register;
-
   /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:
   /// **'Forgot password?'**
   String get forgotPassword;
 
-  /// No description provided for @resetPassword.
+  /// No description provided for @orLoginVia.
   ///
   /// In en, this message translates to:
-  /// **'Reset password'**
-  String get resetPassword;
-
-  /// No description provided for @resetPasswordDialogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Password reset'**
-  String get resetPasswordDialogTitle;
-
-  /// No description provided for @resetPasswordDialogHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your account email and we will send a reset link.'**
-  String get resetPasswordDialogHint;
-
-  /// No description provided for @sendResetEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'Send reset email'**
-  String get sendResetEmail;
-
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// No description provided for @googleSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Google'**
-  String get googleSignIn;
-
-  /// No description provided for @appleSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Apple'**
-  String get appleSignIn;
+  /// **'or log in with'**
+  String get orLoginVia;
 
   /// No description provided for @orCreateVia.
   ///
   /// In en, this message translates to:
-  /// **'Or create an account via'**
+  /// **'or create account with'**
   String get orCreateVia;
-
-  /// No description provided for @orLoginVia.
-  ///
-  /// In en, this message translates to:
-  /// **'Or log in via'**
-  String get orLoginVia;
 
   /// No description provided for @noAccount.
   ///
@@ -259,142 +637,70 @@ abstract class AppLocalizations {
   /// **'Already have an account? Log in'**
   String get hasProfile;
 
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get emailInvalid;
+
+  /// No description provided for @passwordInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get passwordInvalid;
+
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPassword;
+
+  /// No description provided for @resetPasswordDialogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your account email and we will send reset instructions'**
+  String get resetPasswordDialogHint;
+
+  /// No description provided for @sendResetEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reset email'**
+  String get sendResetEmail;
+
   /// No description provided for @passwordResetSent.
   ///
   /// In en, this message translates to:
   /// **'Password reset email sent'**
   String get passwordResetSent;
 
-  /// No description provided for @verifyEmailBanner.
+  /// No description provided for @passwordChanged.
   ///
   /// In en, this message translates to:
-  /// **'Your email is not verified yet.'**
-  String get verifyEmailBanner;
+  /// **'Password changed'**
+  String get passwordChanged;
 
-  /// No description provided for @resendVerification.
+  /// No description provided for @passwordChangedSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Resend verification email'**
-  String get resendVerification;
+  /// **'Your password has been changed successfully'**
+  String get passwordChangedSubtitle;
 
-  /// No description provided for @verificationEmailSent.
+  /// No description provided for @backToLogin.
   ///
   /// In en, this message translates to:
-  /// **'Verification email sent'**
-  String get verificationEmailSent;
-
-  /// No description provided for @homeTab.
-  ///
-  /// In en, this message translates to:
-  /// **'Home'**
-  String get homeTab;
-
-  /// No description provided for @modulesTab.
-  ///
-  /// In en, this message translates to:
-  /// **'Modules'**
-  String get modulesTab;
-
-  /// No description provided for @profileTab.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get profileTab;
-
-  /// No description provided for @homePlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'Home (placeholder)'**
-  String get homePlaceholder;
-
-  /// No description provided for @modulesPlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'Modules (placeholder)'**
-  String get modulesPlaceholder;
-
-  /// No description provided for @profilePlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile (placeholder)'**
-  String get profilePlaceholder;
-
-  /// No description provided for @signOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign out'**
-  String get signOut;
-
-  /// No description provided for @authRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Please sign in to continue'**
-  String get authRequired;
-
-  /// No description provided for @emailInvalid.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a valid email'**
-  String get emailInvalid;
-
-  /// No description provided for @passwordInvalid.
-  ///
-  /// In en, this message translates to:
-  /// **'Password must be at least 6 characters'**
-  String get passwordInvalid;
-
-  /// No description provided for @loading.
-  ///
-  /// In en, this message translates to:
-  /// **'Loading...'**
-  String get loading;
-
-  /// No description provided for @continueWithoutLogin.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue without login'**
-  String get continueWithoutLogin;
-
-  /// No description provided for @verifyMailTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Please check your email'**
-  String get verifyMailTitle;
-
-  /// No description provided for @sentCode.
-  ///
-  /// In en, this message translates to:
-  /// **'We sent a code to your email'**
-  String get sentCode;
-
-  /// No description provided for @verify.
-  ///
-  /// In en, this message translates to:
-  /// **'Verify'**
-  String get verify;
-
-  /// No description provided for @resendCode.
-  ///
-  /// In en, this message translates to:
-  /// **'Send code again'**
-  String get resendCode;
-
-  /// No description provided for @wrongCode.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid code. Please try again.'**
-  String get wrongCode;
-
-  /// No description provided for @codeSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Code sent'**
-  String get codeSent;
+  /// **'Back to login'**
+  String get backToLogin;
 
   /// No description provided for @resetHint.
   ///
   /// In en, this message translates to:
-  /// **'Please enter a password you will remember'**
+  /// **'Please create a new password'**
   String get resetHint;
 
   /// No description provided for @newPassword.
@@ -409,23 +715,41 @@ abstract class AppLocalizations {
   /// **'Confirm new password'**
   String get confirmNewPassword;
 
-  /// No description provided for @passwordChanged.
+  /// No description provided for @verifyMailTitle.
   ///
   /// In en, this message translates to:
-  /// **'Password changed'**
-  String get passwordChanged;
+  /// **'Please check your email'**
+  String get verifyMailTitle;
 
-  /// No description provided for @passwordChangedSubtitle.
+  /// No description provided for @sentCode.
   ///
   /// In en, this message translates to:
-  /// **'Your password was changed successfully'**
-  String get passwordChangedSubtitle;
+  /// **'We sent a code to your email'**
+  String get sentCode;
 
-  /// No description provided for @backToLogin.
+  /// No description provided for @wrongCode.
   ///
   /// In en, this message translates to:
-  /// **'Back to login'**
-  String get backToLogin;
+  /// **'Invalid code. Please try again.'**
+  String get wrongCode;
+
+  /// No description provided for @verify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get verify;
+
+  /// No description provided for @codeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Code sent'**
+  String get codeSent;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get resendCode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

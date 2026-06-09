@@ -18,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
     ref.watch(profileBootstrapProvider);
     final String lang = Localizations.localeOf(context).languageCode;
     final String username = ref.watch(effectiveProfileNameProvider);
-    final AsyncValue<String> factAsync = ref.watch(factOfTheDayProvider);
+    final AsyncValue<String> factAsync = ref.watch(factOfTheDayProvider(lang));
     final DateTime now = DateTime.now();
 
     // Placeholder activity state. Prepared for future real progress wiring.
@@ -38,7 +38,7 @@ class HomeScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Hello, $username', style: AppTextStyles.screenTitle),
+                    Text('${_t(lang, 'hello')}, $username', style: AppTextStyles.screenTitle),
                     const SizedBox(height: 4),
                     Text(_t(lang, 'staySharp'), style: AppTextStyles.secondary),
                   ],
@@ -82,6 +82,7 @@ class HomeScreen extends ConsumerWidget {
             currentDate: now,
             activeDates: activeDates,
             streakCount: streakCount,
+            lang: lang,
           ),
           const SizedBox(height: 16),
           ContinueLearningCard(
@@ -89,6 +90,7 @@ class HomeScreen extends ConsumerWidget {
             subtitle: _t(lang, 'continueSubtitle'),
             progress: 0.42,
             onResume: () => context.go('/app/modules'),
+            resumeLabel: _t(lang, 'resume'),
           ),
           const SizedBox(height: 16),
           factAsync.when(
@@ -177,6 +179,16 @@ class HomeScreen extends ConsumerWidget {
         'ru': 'Быстрые действия',
         'en': 'Quick Actions',
         'kk': 'Жылдам әрекеттер',
+      },
+      'hello': <String, String>{
+        'ru': 'Привет',
+        'en': 'Hello',
+        'kk': 'Сәлем',
+      },
+      'resume': <String, String>{
+        'ru': 'Продолжить',
+        'en': 'Resume',
+        'kk': 'Жалғастыру',
       },
       'startQuiz': <String, String>{
         'ru': 'Начать тест',
@@ -375,3 +387,5 @@ class _QuickActions extends StatelessWidget {
     );
   }
 }
+
+

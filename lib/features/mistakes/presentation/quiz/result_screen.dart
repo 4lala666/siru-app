@@ -20,10 +20,11 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     final double ratio = total == 0 ? 0 : correct / total;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Result', style: AppTextStyles.cardTitle)),
+      appBar: AppBar(title: Text(_t(lang, 'result'), style: AppTextStyles.cardTitle)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Container(
@@ -38,9 +39,9 @@ class ResultScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Quiz finished', style: AppTextStyles.cardTitle),
+              Text(_t(lang, 'quizFinished'), style: AppTextStyles.cardTitle),
               const SizedBox(height: 8),
-              Text('Correct answers: $correct / $total', style: AppTextStyles.body),
+              Text('${_t(lang, 'correctAnswers')}: $correct / $total', style: AppTextStyles.body),
               const SizedBox(height: 12),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
@@ -65,5 +66,25 @@ class ResultScreen extends StatelessWidget {
       ),
     );
   }
-}
 
+  String _t(String lang, String key) {
+    const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
+      'result': <String, String>{
+        'ru': 'Результат',
+        'en': 'Result',
+        'kk': 'Нәтиже',
+      },
+      'quizFinished': <String, String>{
+        'ru': 'Тест завершён',
+        'en': 'Quiz finished',
+        'kk': 'Тест аяқталды',
+      },
+      'correctAnswers': <String, String>{
+        'ru': 'Правильные ответы',
+        'en': 'Correct answers',
+        'kk': 'Дұрыс жауаптар',
+      },
+    };
+    return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
+  }
+}

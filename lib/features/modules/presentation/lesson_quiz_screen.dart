@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -47,18 +47,19 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     final AsyncValue<List<QuizQuestion>> quizAsync = ref.watch(_lessonQuizProvider(widget.args));
 
     return quizAsync.when(
       data: (List<QuizQuestion> questions) {
         if (questions.isEmpty) {
           return Scaffold(
-            appBar: AppBar(title: Text('Тест', style: AppTextStyles.cardTitle)),
+            appBar: AppBar(title: Text(_t(lang, 'quiz'), style: AppTextStyles.cardTitle)),
             body: Center(
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Text(
-                  'Тест для этой подтемы пока готовится',
+                  _t(lang, 'quizPreparing'),
                   textAlign: TextAlign.center,
                   style: AppTextStyles.body,
                 ),
@@ -73,7 +74,10 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Вопрос ${_index + 1} из ${questions.length}', style: AppTextStyles.cardTitle),
+            title: Text(
+              '${_t(lang, 'question')} ${_index + 1} ${_t(lang, 'of')} ${questions.length}',
+              style: AppTextStyles.cardTitle,
+            ),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16),
@@ -89,10 +93,10 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(q.question, style: AppTextStyles.body),
+                      Text(q.localizedQuestion(lang), style: AppTextStyles.body),
                       const SizedBox(height: 10),
                       Text(
-                        '${_difficultyLabel(q.difficulty)} • ${_typeLabel(q.type)}',
+                        '${_difficultyLabel(lang, q.difficulty)} • ${_typeLabel(lang, q.type)}',
                         style: AppTextStyles.secondary,
                       ),
                     ],
@@ -102,7 +106,7 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
                 Expanded(
                   child: ListView(
                     children: <Widget>[
-                      for (int i = 0; i < q.options.length; i++)
+                      for (int i = 0; i < q.localizedOptions(lang).length; i++)
                         Padding(
                           padding: const EdgeInsets.only(bottom: 10),
                           child: ElevatedButton(
@@ -117,7 +121,7 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
                                 _answers[q.questionId] = i;
                               });
                             },
-                            child: Text(q.options[i]),
+                            child: Text(q.localizedOptions(lang)[i]),
                           ),
                         ),
                     ],
@@ -125,8 +129,8 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton(
-                  onPressed: hasAnswer ? () => _nextOrFinish(questions) : null,
-                  child: Text(_index == questions.length - 1 ? 'Завершить' : 'Далее'),
+                  onPressed: hasAnswer ? () => _nextOrFinish(questions, lang) : null,
+                  child: Text(_index == questions.length - 1 ? _t(lang, 'finish') : _t(lang, 'next')),
                 ),
               ],
             ),
@@ -137,18 +141,18 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
         body: Center(child: CircularProgressIndicator()),
       ),
       error: (Object e, _) => Scaffold(
-        appBar: AppBar(title: Text('Тест', style: AppTextStyles.cardTitle)),
+        appBar: AppBar(title: Text(_t(lang, 'quiz'), style: AppTextStyles.cardTitle)),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Text('Не удалось загрузить тест: $e', style: AppTextStyles.body),
+            child: Text('${_t(lang, 'quizLoadFailed')}: $e', style: AppTextStyles.body),
           ),
         ),
       ),
     );
   }
 
-  Future<void> _nextOrFinish(List<QuizQuestion> questions) async {
+  Future<void> _nextOrFinish(List<QuizQuestion> questions, String lang) async {
     if (_index < questions.length - 1) {
       setState(() {
         _index++;
@@ -164,9 +168,7 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
         correct++;
       } else {
         wrongQuestionIds.add(q.questionId);
-        ref
-            .read(mistakesServiceProvider.notifier)
-            .addMistake(q.questionId, q.moduleId, q.lessonId, q.difficulty);
+        ref.read(mistakesServiceProvider.notifier).addMistake(q.questionId, q.moduleId, q.lessonId, q.difficulty);
       }
     }
 
@@ -183,9 +185,7 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
       completedAt: DateTime.now(),
     );
 
-    await ref.read(quizAttemptStoreProvider).saveAttempt(
-          attempt,
-        );
+    await ref.read(quizAttemptStoreProvider).saveAttempt(attempt);
     String? attemptId;
     try {
       attemptId = await ref.read(quizResultsFirestoreServiceProvider).saveQuizAttempt(attempt);
@@ -196,9 +196,19 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
             selectedAnswers: Map<String, int>.from(_answers),
             completedAt: attempt.completedAt,
             attemptId: attemptId,
+            localeCode: lang,
           );
-      await ref.read(quizResultsFirestoreServiceProvider).markLearningActivity(
+      await ref.read(quizResultsFirestoreServiceProvider).markLearningActivity(activityAt: attempt.completedAt);
+      await ref.read(quizResultsFirestoreServiceProvider).updateModuleProgress(
+            moduleId: widget.args.moduleId,
+            subtopicId: widget.args.lessonId,
+            lastQuizScore: attempt.score,
             activityAt: attempt.completedAt,
+          );
+      await ref.read(quizResultsFirestoreServiceProvider).updateUserStatsAfterQuiz(
+            score: attempt.score,
+            wrongAnswersCount: wrongQuestionIds.length,
+            completedAt: attempt.completedAt,
           );
     } catch (e, st) {
       debugPrint('Failed to save quiz analytics to Firestore: $e');
@@ -210,35 +220,111 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
       'correct': correct,
       'total': total,
       'backRoute': '/app/modules',
-      'backLabel': 'Назад к модулям',
+      'backLabel': _t(lang, 'backToModules'),
     });
   }
 
-  String _difficultyLabel(String difficulty) {
+  String _difficultyLabel(String lang, String difficulty) {
     switch (difficulty) {
       case 'easy':
-        return 'Easy';
+        return _t(lang, 'easy');
       case 'medium':
-        return 'Medium';
+        return _t(lang, 'medium');
       case 'hard':
-        return 'Hard';
+        return _t(lang, 'hard');
       default:
         return difficulty;
     }
   }
 
-  String _typeLabel(String type) {
+  String _typeLabel(String lang, String type) {
     switch (type) {
       case 'single_choice':
       case 'multiple_choice':
-        return 'Multiple choice';
+        return _t(lang, 'multipleChoice');
       case 'true_false':
-        return 'True / False';
+        return _t(lang, 'trueFalse');
       case 'scenario':
       case 'mini_case':
-        return 'Scenario';
+        return _t(lang, 'scenario');
       default:
         return type;
     }
+  }
+
+  String _t(String lang, String key) {
+    const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
+      'quiz': <String, String>{
+        'ru': 'Тест',
+        'en': 'Quiz',
+        'kk': 'Тест',
+      },
+      'quizPreparing': <String, String>{
+        'ru': 'Тест для этой подтемы пока готовится',
+        'en': 'Quiz for this subtopic is in progress',
+        'kk': 'Бұл ішкі тақырыпқа тест әзірленіп жатыр',
+      },
+      'question': <String, String>{
+        'ru': 'Вопрос',
+        'en': 'Question',
+        'kk': 'Сұрақ',
+      },
+      'of': <String, String>{
+        'ru': 'из',
+        'en': 'of',
+        'kk': '/',
+      },
+      'next': <String, String>{
+        'ru': 'Далее',
+        'en': 'Next',
+        'kk': 'Келесі',
+      },
+      'finish': <String, String>{
+        'ru': 'Завершить',
+        'en': 'Finish',
+        'kk': 'Аяқтау',
+      },
+      'quizLoadFailed': <String, String>{
+        'ru': 'Не удалось загрузить тест',
+        'en': 'Failed to load quiz',
+        'kk': 'Тестті жүктеу мүмкін болмады',
+      },
+      'easy': <String, String>{
+        'ru': 'Лёгкий',
+        'en': 'Easy',
+        'kk': 'Жеңіл',
+      },
+      'medium': <String, String>{
+        'ru': 'Средний',
+        'en': 'Medium',
+        'kk': 'Орташа',
+      },
+      'hard': <String, String>{
+        'ru': 'Сложный',
+        'en': 'Hard',
+        'kk': 'Қиын',
+      },
+      'multipleChoice': <String, String>{
+        'ru': 'Выбор ответа',
+        'en': 'Multiple choice',
+        'kk': 'Жауап таңдау',
+      },
+      'trueFalse': <String, String>{
+        'ru': 'Верно / Неверно',
+        'en': 'True / False',
+        'kk': 'Дұрыс / Бұрыс',
+      },
+      'scenario': <String, String>{
+        'ru': 'Сценарий',
+        'en': 'Scenario',
+        'kk': 'Сценарий',
+      },
+      'backToModules': <String, String>{
+        'ru': 'Назад к модулям',
+        'en': 'Back to modules',
+        'kk': 'Модульдерге оралу',
+      },
+    };
+    return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
 }

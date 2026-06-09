@@ -32,6 +32,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final String lang = Localizations.localeOf(context).languageCode;
     final QuizQuestion q = widget.questions[_index];
     final bool hasAnswer = _answers.containsKey(q.questionId);
     final bool isRevealed = _revealed.contains(q.questionId);
@@ -41,7 +42,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Question ${_index + 1}/${widget.questions.length}',
+          '${_t(lang, 'question')} ${_index + 1}/${widget.questions.length}',
           style: AppTextStyles.cardTitle,
         ),
       ),
@@ -59,10 +60,10 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(q.question, style: AppTextStyles.body),
+                  Text(q.localizedQuestion(lang), style: AppTextStyles.body),
                   const SizedBox(height: 10),
                   Text(
-                    '${_difficultyLabel(q.difficulty)} • ${_typeLabel(q.type)}',
+                    '${_difficultyLabel(lang, q.difficulty)} • ${_typeLabel(lang, q.type)}',
                     style: AppTextStyles.secondary,
                   ),
                 ],
@@ -72,12 +73,13 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
             Expanded(
               child: ListView(
                 children: <Widget>[
-                  ..._buildQuestionOptions(q, isRevealed),
+                  ..._buildQuestionOptions(q, isRevealed, lang),
                   if (isRevealed) ...<Widget>[
                     const SizedBox(height: 6),
                     _ExplanationCard(
+                      lang: lang,
                       isCorrect: isCorrect,
-                      explanation: q.explanation,
+                      explanation: q.localizedExplanation(lang),
                       hint: q.hint,
                       source: q.source,
                     ),
@@ -94,8 +96,8 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
                       : () => _reveal(q.questionId),
               child: Text(
                 isRevealed
-                    ? (_index == widget.questions.length - 1 ? 'Finish' : 'Next')
-                    : 'Check answer',
+                    ? (_index == widget.questions.length - 1 ? _t(lang, 'finish') : _t(lang, 'next'))
+                    : _t(lang, 'checkAnswer'),
               ),
             ),
           ],
@@ -104,11 +106,11 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
     );
   }
 
-  List<Widget> _buildQuestionOptions(QuizQuestion question, bool isRevealed) {
+  List<Widget> _buildQuestionOptions(QuizQuestion question, bool isRevealed, String lang) {
     switch (question.type) {
       case 'true_false':
       case 'single_choice':
-        return _buildChoiceButtons(question, isRevealed);
+        return _buildChoiceButtons(question, isRevealed, lang);
       case 'matching':
       case 'mini_case':
       default:
@@ -120,20 +122,18 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: Colors.orangeAccent.withValues(alpha: 0.55)),
             ),
-            child: Text(
-              'This question type is not fully implemented yet. A temporary single-choice fallback is shown below.',
-              style: AppTextStyles.body,
-            ),
+            child: Text(_t(lang, 'fallbackType'), style: AppTextStyles.body),
           ),
           const SizedBox(height: 12),
-          ..._buildChoiceButtons(question, isRevealed),
+          ..._buildChoiceButtons(question, isRevealed, lang),
         ];
     }
   }
 
-  List<Widget> _buildChoiceButtons(QuizQuestion q, bool isRevealed) {
+  List<Widget> _buildChoiceButtons(QuizQuestion q, bool isRevealed, String lang) {
+    final List<String> options = q.localizedOptions(lang);
     return <Widget>[
-      for (int i = 0; i < q.options.length; i++)
+      for (int i = 0; i < options.length; i++)
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: ElevatedButton(
@@ -149,7 +149,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
                       _answers[q.questionId] = i;
                     });
                   },
-            child: Text(q.options[i]),
+            child: Text(options[i]),
           ),
         ),
     ];
@@ -175,29 +175,31 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
     return AppColors.cardBackground;
   }
 
-  String _difficultyLabel(String difficulty) {
+  String _difficultyLabel(String lang, String difficulty) {
     switch (difficulty) {
       case 'easy':
-        return 'Easy';
+        return _t(lang, 'easy');
       case 'medium':
-        return 'Medium';
+        return _t(lang, 'medium');
       case 'hard':
-        return 'Hard';
+        return _t(lang, 'hard');
       default:
         return difficulty;
     }
   }
 
-  String _typeLabel(String type) {
+  String _typeLabel(String lang, String type) {
     switch (type) {
       case 'single_choice':
-        return 'Single choice';
+      case 'multiple_choice':
+        return _t(lang, 'multipleChoice');
       case 'true_false':
-        return 'True / False';
+        return _t(lang, 'trueFalse');
       case 'matching':
-        return 'Matching';
+        return _t(lang, 'matching');
       case 'mini_case':
-        return 'Mini case';
+      case 'scenario':
+        return _t(lang, 'scenario');
       default:
         return type;
     }
@@ -215,9 +217,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
       if (selected == q.correctIndex) {
         correct++;
       } else {
-        ref
-            .read(mistakesServiceProvider.notifier)
-            .addMistake(q.questionId, q.moduleId, q.lessonId, q.difficulty);
+        ref.read(mistakesServiceProvider.notifier).addMistake(q.questionId, q.moduleId, q.lessonId, q.difficulty);
       }
     }
 
@@ -228,16 +228,44 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
       'backLabel': widget.resultBackLabel,
     });
   }
+
+  String _t(String lang, String key) {
+    const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
+      'question': <String, String>{'ru': 'Вопрос', 'en': 'Question', 'kk': 'Сұрақ'},
+      'finish': <String, String>{'ru': 'Завершить', 'en': 'Finish', 'kk': 'Аяқтау'},
+      'next': <String, String>{'ru': 'Далее', 'en': 'Next', 'kk': 'Келесі'},
+      'checkAnswer': <String, String>{'ru': 'Проверить ответ', 'en': 'Check answer', 'kk': 'Жауапты тексеру'},
+      'fallbackType': <String, String>{
+        'ru': 'Этот тип вопроса пока реализован частично. Ниже показан временный формат single-choice.',
+        'en': 'This question type is not fully implemented yet. A temporary single-choice fallback is shown below.',
+        'kk': 'Бұл сұрақ түрі әзірге толық іске асырылмаған. Төменде уақытша single-choice форматы көрсетілген.',
+      },
+      'easy': <String, String>{'ru': 'Лёгкий', 'en': 'Easy', 'kk': 'Жеңіл'},
+      'medium': <String, String>{'ru': 'Средний', 'en': 'Medium', 'kk': 'Орташа'},
+      'hard': <String, String>{'ru': 'Сложный', 'en': 'Hard', 'kk': 'Қиын'},
+      'multipleChoice': <String, String>{'ru': 'Выбор ответа', 'en': 'Multiple choice', 'kk': 'Жауап таңдау'},
+      'trueFalse': <String, String>{'ru': 'Верно / Неверно', 'en': 'True / False', 'kk': 'Дұрыс / Бұрыс'},
+      'matching': <String, String>{'ru': 'Сопоставление', 'en': 'Matching', 'kk': 'Сәйкестендіру'},
+      'scenario': <String, String>{'ru': 'Сценарий', 'en': 'Scenario', 'kk': 'Сценарий'},
+      'correctAnswer': <String, String>{'ru': 'Верный ответ', 'en': 'Correct answer', 'kk': 'Дұрыс жауап'},
+      'wrongAnswer': <String, String>{'ru': 'Неверный ответ', 'en': 'Wrong answer', 'kk': 'Қате жауап'},
+      'hint': <String, String>{'ru': 'Подсказка', 'en': 'Hint', 'kk': 'Кеңес'},
+      'source': <String, String>{'ru': 'Источник', 'en': 'Source', 'kk': 'Дереккөз'},
+    };
+    return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
+  }
 }
 
 class _ExplanationCard extends StatelessWidget {
   const _ExplanationCard({
+    required this.lang,
     required this.isCorrect,
     required this.explanation,
     required this.hint,
     required this.source,
   });
 
+  final String lang;
   final bool isCorrect;
   final String explanation;
   final String hint;
@@ -251,9 +279,7 @@ class _ExplanationCard extends StatelessWidget {
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isCorrect
-              ? Colors.greenAccent.withValues(alpha: 0.7)
-              : Colors.redAccent.withValues(alpha: 0.7),
+          color: isCorrect ? Colors.greenAccent.withValues(alpha: 0.7) : Colors.redAccent.withValues(alpha: 0.7),
         ),
       ),
       child: Column(
@@ -261,28 +287,22 @@ class _ExplanationCard extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(
-                isCorrect ? Icons.check_circle_outline : Icons.cancel_outlined,
-                color: isCorrect ? Colors.greenAccent : Colors.redAccent,
-              ),
+              Icon(isCorrect ? Icons.check_circle_outline : Icons.cancel_outlined, color: isCorrect ? Colors.greenAccent : Colors.redAccent),
               const SizedBox(width: 8),
-              Text(
-                isCorrect ? 'Correct answer' : 'Wrong answer',
-                style: AppTextStyles.cardTitle,
-              ),
+              Text(isCorrect ? _t('correctAnswer') : _t('wrongAnswer'), style: AppTextStyles.cardTitle),
             ],
           ),
           const SizedBox(height: 12),
           Text(explanation, style: AppTextStyles.body),
           if (hint.isNotEmpty) ...<Widget>[
             const SizedBox(height: 12),
-            Text('Hint', style: AppTextStyles.cardTitle),
+            Text(_t('hint'), style: AppTextStyles.cardTitle),
             const SizedBox(height: 6),
             Text(hint, style: AppTextStyles.body),
           ],
           if (source != null && source!.title.isNotEmpty) ...<Widget>[
             const SizedBox(height: 12),
-            Text('Source', style: AppTextStyles.cardTitle),
+            Text(_t('source'), style: AppTextStyles.cardTitle),
             const SizedBox(height: 6),
             Text(source!.title, style: AppTextStyles.body),
             if (source!.url.isNotEmpty) ...<Widget>[
@@ -293,5 +313,15 @@ class _ExplanationCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _t(String key) {
+    const Map<String, Map<String, String>> dict = <String, Map<String, String>>{
+      'correctAnswer': <String, String>{'ru': 'Верный ответ', 'en': 'Correct answer', 'kk': 'Дұрыс жауап'},
+      'wrongAnswer': <String, String>{'ru': 'Неверный ответ', 'en': 'Wrong answer', 'kk': 'Қате жауап'},
+      'hint': <String, String>{'ru': 'Подсказка', 'en': 'Hint', 'kk': 'Кеңес'},
+      'source': <String, String>{'ru': 'Источник', 'en': 'Source', 'kk': 'Дереккөз'},
+    };
+    return dict[key]?[lang] ?? dict[key]?['ru'] ?? key;
   }
 }
