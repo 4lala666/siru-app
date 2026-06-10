@@ -107,5 +107,41 @@
   "wrongCode": "Неверный код. Попробуйте снова.",
   "verify": "Подтвердить",
   "codeSent": "Код отправлен",
-  "resendCode": "Отправить код еще раз"
+  "resendCode": "Отправить код еще раз",
+  "checkYourEmailTitle": "Проверьте вашу почту",
+  "checkYourEmailBody": "Мы отправили на {email} письмо со ссылкой для сброса пароля.",
+  "@checkYourEmailBody": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "openResetLinkHint": "Откройте ссылку из письма, чтобы продолжить смену пароля в приложении.",
+  "resendResetEmail": "Отправить письмо повторно",
+  "checkingResetLink": "Проверяем ссылку для сброса...",
+  "invalidResetLink": "Ссылка для сброса пароля недействительна или срок ее действия истек.",
+  "xpLabel": "XP",
+  "levelLabel": "Уровень",
+  "earnedBadges": "Полученные бейджи",
+  "noBadgesYet": "Пока нет бейджей",
+  "progressToNextLevel": "Прогресс до следующего уровня",
+  "badgesLabel": "Бейджи",
+  "streakLabel": "Серия",
+  "xpEarnedMessage": "XP начислен",
+  "xpAlreadyEarnedMessage": "XP уже был начислен",
+  "badgeFirstTestTitle": "Первый тест",
+  "badgeFirstTestDescription": "Выдаётся после завершения первого теста.",
+  "badgeFirstSubtopicTitle": "Первая подтема",
+  "badgeFirstSubtopicDescription": "Выдаётся после получения XP за первую подтему.",
+  "badgeModuleMasterTitle": "Мастер модуля",
+  "badgeModuleMasterDescription": "Выдаётся за получение XP за все подтемы хотя бы одного модуля.",
+  "badgeNoMistakeTitle": "Без ошибок",
+  "badgeNoMistakeDescription": "Выдаётся за прохождение теста на 100%.",
+  "badgeStreak3Title": "Серия 3 дня",
+  "badgeStreak3Description": "Выдаётся за обучение три дня подряд.",
+  "badgeStreak7Title": "Серия 7 дней",
+  "badgeStreak7Description": "Выдаётся за обучение семь дней подряд.",
+  "badgeXp1000Title": "1000 XP",
+  "badgeXp1000Description": "Выдаётся за достижение 1000 XP.",
+  "badgeXp3000Title": "3000 XP",
+  "badgeXp3000Description": "Выдаётся за достижение 3000 XP."
 }

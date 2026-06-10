@@ -1,4 +1,3 @@
-﻿import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -112,19 +111,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     ),
                     onTap: isLoading ? null : _handleGoogle,
                   ),
-                  const SizedBox(width: 18),
-                  _SocialButton(
-                    icon: SvgPicture.asset(
-                      'assets/images/apple_logo.svg',
-                      width: 24,
-                      height: 24,
-                    ),
-                    onTap: isLoading
-                        ? null
-                        : ((!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS)
-                            ? _handleApple
-                            : null),
-                  ),
                 ],
               ),
               const SizedBox(height: 42),
@@ -198,17 +184,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   Future<void> _handleGoogle() async {
     final String? error =
         await ref.read(authControllerProvider.notifier).signInWithGoogle();
-    if (!mounted) return;
-    if (error != null) {
-      _showSnack(error);
-      return;
-    }
-    context.go('/app');
-  }
-
-  Future<void> _handleApple() async {
-    final String? error =
-        await ref.read(authControllerProvider.notifier).signInWithApple();
     if (!mounted) return;
     if (error != null) {
       _showSnack(error);

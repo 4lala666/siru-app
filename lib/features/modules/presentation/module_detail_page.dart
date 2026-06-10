@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
-import '../data/lesson_content_builder.dart';
+import '../data/module_progress_repository.dart';
 import '../data/modules_provider.dart';
 import '../domain/lesson_content.dart';
 import '../domain/module_models.dart';
@@ -25,6 +25,7 @@ class ModuleDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final String lang = ref.watch(languageProvider);
     final AsyncValue<List<Module>> modulesAsync = ref.watch(modulesProvider);
+    final ModuleProgressRecord moduleProgress = ref.watch(moduleProgressForModuleProvider(moduleId));
 
     return modulesAsync.when(
       data: (List<Module> modules) {
@@ -64,13 +65,15 @@ class ModuleDetailScreen extends ConsumerWidget {
               ...module.lessons.asMap().entries.map((MapEntry<int, Lesson> entry) {
                 final int index = entry.key;
                 final Lesson lesson = entry.value;
-                final LessonTopicStatus status = LessonContentBuilder.inferStatus(
+                final LessonTopicStatus status = _statusForLesson(
+                  module: module,
                   lesson: lesson,
                   lessonIndex: index,
+                  progress: moduleProgress,
                 );
-                final double progress = switch (status) {
+                final double lessonProgress = switch (status) {
                   LessonTopicStatus.completed => 1,
-                  LessonTopicStatus.inProgress => 0.4,
+                  LessonTopicStatus.inProgress => 0.5,
                   LessonTopicStatus.locked => 0,
                   LessonTopicStatus.notStarted => 0,
                 };
@@ -83,7 +86,7 @@ class ModuleDetailScreen extends ConsumerWidget {
                     minutes: lesson.durationMin,
                     steps: lesson.stepsCount,
                     status: status,
-                    progress: progress,
+                    progress: lessonProgress,
                     onTap: status == LessonTopicStatus.locked
                         ? null
                         : () {
@@ -158,6 +161,30 @@ class ModuleDetailScreen extends ConsumerWidget {
       return _t(lang, 'ciaLessonTitle');
     }
     return _clean(tr(lesson.title, lang));
+  }
+
+  LessonTopicStatus _statusForLesson({
+    required Module module,
+    required Lesson lesson,
+    required int lessonIndex,
+    required ModuleProgressRecord progress,
+  }) {
+    if (progress.containsLesson(lesson.id)) {
+      return LessonTopicStatus.completed;
+    }
+
+    if ((progress.lastSubtopicId == lesson.id) && !progress.containsLesson(lesson.id)) {
+      return LessonTopicStatus.inProgress;
+    }
+
+    final int firstUncompletedIndex = module.lessons.indexWhere(
+      (Lesson item) => !progress.containsLesson(item.id),
+    );
+    if (progress.hasStarted && firstUncompletedIndex == lessonIndex) {
+      return LessonTopicStatus.inProgress;
+    }
+
+    return LessonTopicStatus.notStarted;
   }
 
   String _t(String lang, String key) {

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
+import '../data/module_progress_repository.dart';
 import '../data/modules_provider.dart';
 import '../domain/module_models.dart';
 import '../widgets/module_card.dart';
@@ -22,15 +23,31 @@ class _ModulesScreenState extends ConsumerState<ModulesScreen> {
   Widget build(BuildContext context) {
     final String lang = ref.watch(languageProvider);
     final AsyncValue<List<Module>> modulesAsync = ref.watch(modulesProvider);
+    final Map<String, ModuleProgressRecord> progressMap = ref.watch(userModuleProgressProvider).maybeWhen(
+          data: (Map<String, ModuleProgressRecord> data) => data,
+          orElse: () => const <String, ModuleProgressRecord>{},
+        );
 
     return SafeArea(
       child: modulesAsync.when(
         data: (List<Module> modules) {
-          final int completed = modules.where((Module m) => _progressFor(m.id) >= 1).length;
+          final int completed = modules.where((Module m) => _progressFor(m, progressMap) >= 1).length;
           final int inProgress = modules.where((Module m) {
-            final double p = _progressFor(m.id);
+            final double p = _progressFor(m, progressMap);
             return p > 0 && p < 1;
           }).length;
+          final List<MapEntry<int, Module>> filteredModules = modules.asMap().entries.where((MapEntry<int, Module> entry) {
+            final double progress = _progressFor(entry.value, progressMap);
+            switch (_selectedFilter) {
+              case 'completed':
+                return progress >= 1;
+              case 'inProgress':
+                return progress > 0 && progress < 1;
+              case 'all':
+              default:
+                return true;
+            }
+          }).toList();
 
           return ListView(
             padding: const EdgeInsets.all(16),
@@ -45,7 +62,7 @@ class _ModulesScreenState extends ConsumerState<ModulesScreen> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: <String>['all', 'inProgress', 'completed', 'locked']
+                children: <String>['all', 'inProgress', 'completed']
                     .map((String key) => ChoiceChip(
                           label: Text(_t(lang, key), style: AppTextStyles.chip),
                           selected: _selectedFilter == key,
@@ -54,13 +71,13 @@ class _ModulesScreenState extends ConsumerState<ModulesScreen> {
                     .toList(),
               ),
               const SizedBox(height: 16),
-              ...modules.asMap().entries.map((MapEntry<int, Module> entry) => Padding(
+              ...filteredModules.map((MapEntry<int, Module> entry) => Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: ModuleCard(
                       module: entry.value,
                       moduleNumber: entry.key + 1,
                       lang: lang,
-                      progress: _progressFor(entry.value.id),
+                      progress: _progressFor(entry.value, progressMap),
                       onTap: () => context.push('/module/${entry.value.id}'),
                     ),
                   )),
@@ -78,10 +95,10 @@ class _ModulesScreenState extends ConsumerState<ModulesScreen> {
     );
   }
 
-  double _progressFor(String id) {
-    final int hash = id.codeUnits.fold<int>(0, (int a, int b) => a + b);
-    final int percent = hash % 101;
-    return percent / 100;
+  double _progressFor(Module module, Map<String, ModuleProgressRecord> progressMap) {
+    final ModuleProgressRecord record =
+        progressMap[module.id] ?? ModuleProgressRecord.empty(module.id);
+    return record.progressFor(totalLessons: module.lessons.length);
   }
 
   String _t(String lang, String key) {
@@ -105,11 +122,6 @@ class _ModulesScreenState extends ConsumerState<ModulesScreen> {
         'ru': 'Все',
         'en': 'All',
         'kk': 'Барлығы',
-      },
-      'locked': <String, String>{
-        'ru': 'Закрытые',
-        'en': 'Locked',
-        'kk': 'Құлыпталған',
       },
       'failedToLoadModules': <String, String>{
         'ru': 'Не удалось загрузить модули',

@@ -6,6 +6,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/localization/language_provider.dart';
 import '../../auth/auth_controller.dart';
+import '../../rewards/data/rewards_service.dart';
 import '../../../l10n/app_localizations.dart';
 import '../profile_state.dart';
 import 'edit_profile_sheet.dart';
@@ -22,6 +23,7 @@ class ProfileScreen extends ConsumerWidget {
     final String username = ref.watch(effectiveProfileNameProvider);
     final IconData avatar = ref.watch(profileAvatarProvider);
     final bool authLoading = ref.watch(authControllerProvider).isLoading;
+    final UserRewards rewards = ref.watch(userRewardsProvider).valueOrNull ?? UserRewards.empty();
     final AppLocalizations s = AppLocalizations.of(context)!;
 
     return SafeArea(
@@ -39,17 +41,16 @@ class ProfileScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 16),
-          _ProfileSummaryCard(username: username, avatar: avatar),
+          _ProfileSummaryCard(username: username, avatar: avatar, rewards: rewards),
           const SizedBox(height: 16),
           Text(_txt(context, ru: 'Кибер статистика', kk: 'Кибер статистика', en: 'Cyber Statistics'),
               style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
-          const _StatsGrid(),
+          _StatsGrid(rewards: rewards),
           const SizedBox(height: 16),
-          Text(_txt(context, ru: 'Последние бейджи', kk: 'Соңғы бейдждер', en: 'Recent Badges'),
-              style: AppTextStyles.cardTitle),
+          Text(s.earnedBadges, style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
-          const _RecentBadges(),
+          _RecentBadges(rewards: rewards),
           const SizedBox(height: 16),
           Text(_txt(context, ru: 'Настройки', kk: 'Баптаулар', en: 'Settings'), style: AppTextStyles.cardTitle),
           const SizedBox(height: 12),
@@ -253,13 +254,19 @@ class _ToggleDot extends StatelessWidget {
 }
 
 class _ProfileSummaryCard extends ConsumerWidget {
-  const _ProfileSummaryCard({required this.username, required this.avatar});
+  const _ProfileSummaryCard({
+    required this.username,
+    required this.avatar,
+    required this.rewards,
+  });
 
   final String username;
   final IconData avatar;
+  final UserRewards rewards;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final AppLocalizations s = AppLocalizations.of(context)!;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -291,7 +298,7 @@ class _ProfileSummaryCard extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        _txt(context, ru: 'Ранг: Sentinel', kk: 'Дәреже: Sentinel', en: 'Rank: Sentinel'),
+                        '${s.levelLabel}: ${rewards.level}',
                         style: AppTextStyles.chip,
                       ),
                     ),
@@ -302,21 +309,25 @@ class _ProfileSummaryCard extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            _txt(context, ru: 'В системе с янв. 2026', kk: 'Жүйеде: қаң. 2026', en: 'Member since Jan 2026'),
+            _memberSinceLabel(context, rewards.createdAt),
             style: AppTextStyles.secondary,
           ),
           const SizedBox(height: 10),
-          Text(_txt(context, ru: 'Уровень 6 • 1240 XP', kk: 'Деңгей 6 • 1240 XP', en: 'Level 6 • 1240 XP'),
-              style: AppTextStyles.body),
+          Text('${s.levelLabel} ${rewards.level} • ${rewards.totalXp} XP', style: AppTextStyles.body),
           const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: const LinearProgressIndicator(
-              value: 0.62,
+            child: LinearProgressIndicator(
+              value: rewards.progressToNextLevel.clamp(0.0, 1.0),
               minHeight: 8,
-              backgroundColor: Color(0x33FFFFFF),
-              valueColor: AlwaysStoppedAnimation<Color>(AppColors.accent),
+              backgroundColor: const Color(0x33FFFFFF),
+              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
             ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '${s.progressToNextLevel}: ${(rewards.progressToNextLevel * 100).round()}%',
+            style: AppTextStyles.secondary,
           ),
           const SizedBox(height: 12),
           SizedBox(
@@ -337,21 +348,46 @@ class _ProfileSummaryCard extends ConsumerWidget {
       ),
     );
   }
+
+  String _memberSinceLabel(BuildContext context, DateTime? createdAt) {
+    if (createdAt == null) {
+      return _txt(
+        context,
+        ru: 'В системе недавно',
+        kk: 'Жүйеде жуырда',
+        en: 'Recently joined',
+      );
+    }
+
+    final String month = createdAt.month.toString().padLeft(2, '0');
+    final String year = createdAt.year.toString();
+    return _txt(
+      context,
+      ru: 'В системе с $month.$year',
+      kk: 'Жүйеде: $month.$year',
+      en: 'Member since $month.$year',
+    );
+  }
 }
 
 class _StatsGrid extends StatelessWidget {
-  const _StatsGrid();
+  const _StatsGrid({required this.rewards});
+
+  final UserRewards rewards;
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations s = AppLocalizations.of(context)!;
     final List<MapEntry<String, String>> stats = <MapEntry<String, String>>[
-      MapEntry<String, String>(_txt(context, ru: 'Получено XP', kk: 'Жиналған XP', en: 'XP earned'), '1240'),
-      MapEntry<String, String>(_txt(context, ru: 'Бейджи', kk: 'Бейдждер', en: 'Badges'), '18'),
-      MapEntry<String, String>(_txt(context, ru: 'Серия', kk: 'Серия', en: 'Streak'),
-          _txt(context, ru: '14 дней', kk: '14 күн', en: '14 days')),
-      MapEntry<String, String>(_txt(context, ru: 'Ранг', kk: 'Дәреже', en: 'Rank'), 'Sentinel'),
-      MapEntry<String, String>(_txt(context, ru: 'Остановлено угроз', kk: 'Тоқтатылған қауіптер', en: 'Threats stopped'), '93'),
-      MapEntry<String, String>(_txt(context, ru: 'Сертификаты', kk: 'Сертификаттар', en: 'Certifications'), '4'),
+      MapEntry<String, String>(s.xpLabel, '${rewards.totalXp}'),
+      MapEntry<String, String>(s.levelLabel, '${rewards.level}'),
+      MapEntry<String, String>(s.badgesLabel, '${rewards.badgeCount}'),
+      MapEntry<String, String>(s.completedQuizzes, '${rewards.completedQuizzes}'),
+      MapEntry<String, String>(s.averageScore, '${rewards.averageScore.toStringAsFixed(0)}%'),
+      MapEntry<String, String>(
+        s.streakLabel,
+        _txt(context, ru: '${rewards.currentStreak} дней', kk: '${rewards.currentStreak} күн', en: '${rewards.currentStreak} days'),
+      ),
     ];
 
     return GridView.builder(
@@ -388,14 +424,29 @@ class _StatsGrid extends StatelessWidget {
 }
 
 class _RecentBadges extends StatelessWidget {
-  const _RecentBadges();
+  const _RecentBadges({required this.rewards});
+
+  final UserRewards rewards;
 
   @override
   Widget build(BuildContext context) {
-    const badges = <String>['Phishing Hunter', 'MFA Expert', 'Blue Teamer', 'Cloud Guard'];
+    final AppLocalizations s = AppLocalizations.of(context)!;
+    final List<String> badges = rewards.badges;
+
+    if (badges.isEmpty) {
+      return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.cardBackground,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Text(s.noBadgesYet, style: AppTextStyles.secondary),
+      );
+    }
 
     return SizedBox(
-      height: 90,
+      height: 176,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: badges.length,
@@ -410,14 +461,106 @@ class _RecentBadges extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Icon(Icons.workspace_premium_outlined, color: AppColors.accent),
+              Icon(_badgeMeta(context, badges[i]).icon, color: AppColors.accent),
               const SizedBox(height: 8),
-              Text(badges[i], style: AppTextStyles.chip),
+              Tooltip(
+                message: _badgeMeta(context, badges[i]).title,
+                child: Text(
+                  _badgeMeta(context, badges[i]).title,
+                  style: AppTextStyles.chip,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Expanded(
+                child: Tooltip(
+                  message: _badgeMeta(context, badges[i]).description,
+                  child: Text(
+                    _badgeMeta(context, badges[i]).description,
+                    style: AppTextStyles.secondary,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class _BadgeMeta {
+  const _BadgeMeta({
+    required this.icon,
+    required this.title,
+    required this.description,
+  });
+
+  final IconData icon;
+  final String title;
+  final String description;
+}
+
+_BadgeMeta _badgeMeta(BuildContext context, String badgeId) {
+  final AppLocalizations s = AppLocalizations.of(context)!;
+  switch (badgeId) {
+    case 'first_test_completed':
+      return _BadgeMeta(
+        icon: Icons.flag_outlined,
+        title: s.badgeFirstTestTitle,
+        description: s.badgeFirstTestDescription,
+      );
+    case 'first_subtopic_completed':
+      return _BadgeMeta(
+        icon: Icons.school_outlined,
+        title: s.badgeFirstSubtopicTitle,
+        description: s.badgeFirstSubtopicDescription,
+      );
+    case 'xp_1000':
+      return _BadgeMeta(
+        icon: Icons.bolt_outlined,
+        title: s.badgeXp1000Title,
+        description: s.badgeXp1000Description,
+      );
+    case 'xp_3000':
+      return _BadgeMeta(
+        icon: Icons.auto_awesome_outlined,
+        title: s.badgeXp3000Title,
+        description: s.badgeXp3000Description,
+      );
+    case 'module_master':
+      return _BadgeMeta(
+        icon: Icons.workspace_premium_outlined,
+        title: s.badgeModuleMasterTitle,
+        description: s.badgeModuleMasterDescription,
+      );
+    case 'no_mistake_quiz':
+      return _BadgeMeta(
+        icon: Icons.verified_outlined,
+        title: s.badgeNoMistakeTitle,
+        description: s.badgeNoMistakeDescription,
+      );
+    case 'streak_3':
+      return _BadgeMeta(
+        icon: Icons.local_fire_department_outlined,
+        title: s.badgeStreak3Title,
+        description: s.badgeStreak3Description,
+      );
+    case 'streak_7':
+      return _BadgeMeta(
+        icon: Icons.whatshot_outlined,
+        title: s.badgeStreak7Title,
+        description: s.badgeStreak7Description,
+      );
+    default:
+      return _BadgeMeta(
+        icon: Icons.workspace_premium_outlined,
+        title: s.badgesLabel,
+        description: '',
+      );
   }
 }
 

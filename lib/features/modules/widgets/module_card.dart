@@ -35,7 +35,7 @@ class ModuleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int lessonsCount = module.lessons.length;
-    final int xp = lessonsCount * 25;
+    final int xp = lessonsCount * 200;
 
     return Material(
       color: Colors.transparent,

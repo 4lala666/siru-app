@@ -9,7 +9,6 @@
     required this.estimatedMinutes,
     required this.difficulty,
     required this.totalSteps,
-    required this.currentProgress,
     required this.heroIcon,
     required this.status,
     required this.sections,
@@ -27,7 +26,6 @@
   final int estimatedMinutes;
   final String difficulty;
   final int totalSteps;
-  final double currentProgress;
   final String heroIcon;
   final LessonTopicStatus status;
   final List<LessonSection> sections;

@@ -6,6 +6,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../mistakes/data/mistakes_service.dart';
 import '../../mistakes/domain/mistake.dart';
+import '../../rewards/data/rewards_service.dart';
 import '../data/quiz_attempt_store.dart';
 import '../data/quiz_results_firestore_service.dart';
 
@@ -208,6 +209,14 @@ class _LessonQuizScreenState extends ConsumerState<LessonQuizScreen> {
       await ref.read(quizResultsFirestoreServiceProvider).updateUserStatsAfterQuiz(
             score: attempt.score,
             wrongAnswersCount: wrongQuestionIds.length,
+            completedAt: attempt.completedAt,
+          );
+      await ref.read(rewardsServiceProvider).awardSubtopicXp(
+            moduleId: widget.args.moduleId,
+            subtopicId: widget.args.lessonId,
+            score: attempt.score,
+            correctAnswers: correct,
+            totalQuestions: total,
             completedAt: attempt.completedAt,
           );
     } catch (e, st) {

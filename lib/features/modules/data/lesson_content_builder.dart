@@ -44,11 +44,6 @@ class LessonContentBuilder {
       estimatedMinutes: lesson.durationMin,
       difficulty: module.difficulty,
       totalSteps: sections.where((LessonSection s) => s.type != LessonSectionType.sources).length,
-      currentProgress: status == LessonTopicStatus.completed
-          ? 1
-          : status == LessonTopicStatus.inProgress
-              ? 0.4
-              : 0,
       heroIcon: _heroIconForModule(module.icon),
       status: status,
       sections: sections,
@@ -173,7 +168,6 @@ class LessonContentBuilder {
       estimatedMinutes: 5,
       difficulty: 'easy',
       totalSteps: 7,
-      currentProgress: 0.35,
       heroIcon: 'triad',
       status: inferStatus(lesson: lesson, lessonIndex: lessonIndex),
       sections: <LessonSection>[

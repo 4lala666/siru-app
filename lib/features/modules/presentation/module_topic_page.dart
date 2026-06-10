@@ -29,7 +29,7 @@ class ModuleTopicArgs {
   final int lessonIndex;
 }
 
-class ModuleTopicPage extends ConsumerWidget {
+class ModuleTopicPage extends ConsumerStatefulWidget {
   const ModuleTopicPage({
     super.key,
     required this.args,
@@ -38,20 +38,32 @@ class ModuleTopicPage extends ConsumerWidget {
   final ModuleTopicArgs args;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ModuleTopicPage> createState() => _ModuleTopicPageState();
+}
+
+class _ModuleTopicPageState extends ConsumerState<ModuleTopicPage> {
+  int _currentStepIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
     final String lang = Localizations.localeOf(context).languageCode;
-    final AsyncValue<List<QuizQuestion>> quizAsync = ref.watch(_lessonQuizProvider(args.lesson.id));
+    final AsyncValue<List<QuizQuestion>> quizAsync = ref.watch(_lessonQuizProvider(widget.args.lesson.id));
 
     return quizAsync.when(
       data: (List<QuizQuestion> quizQuestions) {
         final LessonContent content = LessonContentBuilder.build(
-          module: args.module,
-          lesson: args.lesson,
+          module: widget.args.module,
+          lesson: widget.args.lesson,
           lang: lang,
           quizQuestions: quizQuestions,
-          lessonIndex: args.lessonIndex,
+          lessonIndex: widget.args.lessonIndex,
         );
         final bool quizEnabled = content.hasRealContent && quizQuestions.isNotEmpty;
+        final int totalSteps = content.sections.length;
+        final int safeStepIndex = totalSteps == 0 ? 0 : _currentStepIndex.clamp(0, totalSteps - 1);
+        final int currentStep = totalSteps == 0 ? 0 : safeStepIndex + 1;
+        final bool isLastStep = totalSteps > 0 && safeStepIndex == totalSteps - 1;
+        final LessonSection? activeSection = totalSteps == 0 ? null : content.sections[safeStepIndex];
 
         return Scaffold(
           backgroundColor: AppColors.background,
@@ -64,19 +76,25 @@ class ModuleTopicPage extends ConsumerWidget {
           ),
           bottomNavigationBar: content.hasRealContent
               ? StartQuizStickyButton(
-                  label: _t(lang, 'quizCtaLabel'),
-                  enabledLabel: _t(lang, 'startQuiz'),
-                  disabledLabel: _t(lang, 'quizSoon'),
-                  enabled: quizEnabled,
-                  onPressed: quizEnabled
-                      ? () => context.push(
-                            '/lesson-quiz/${args.module.id}/${args.lesson.id}',
-                            extra: LessonQuizArgs(
-                              moduleId: args.module.id,
-                              lessonId: args.lesson.id,
-                            ),
-                          )
-                      : null,
+                  label: isLastStep ? _t(lang, 'quizCtaLabel') : _t(lang, 'nextStepLabel'),
+                  enabledLabel: isLastStep ? _t(lang, 'startQuiz') : _t(lang, 'nextStep'),
+                  disabledLabel: isLastStep ? _t(lang, 'quizSoon') : _t(lang, 'nextStep'),
+                  enabled: isLastStep ? quizEnabled : totalSteps > 0,
+                  onPressed: isLastStep
+                      ? (quizEnabled
+                          ? () => context.push(
+                                '/lesson-quiz/${widget.args.module.id}/${widget.args.lesson.id}',
+                                extra: LessonQuizArgs(
+                                  moduleId: widget.args.module.id,
+                                  lessonId: widget.args.lesson.id,
+                                ),
+                              )
+                          : null)
+                      : () {
+                          setState(() {
+                            _currentStepIndex = (_currentStepIndex + 1).clamp(0, totalSteps - 1);
+                          });
+                        },
                 )
               : null,
           body: SafeArea(
@@ -91,18 +109,35 @@ class ModuleTopicPage extends ConsumerWidget {
                   icon: _heroIcon(content.heroIcon),
                   metaLabels: <String>[
                     _lessonMinutesMeta(lang, content.estimatedMinutes),
-                    _lessonStepsMeta(lang, content.totalSteps),
+                    _lessonStepsMeta(lang, totalSteps),
                     content.difficulty,
                   ],
                 ),
                 const SizedBox(height: 14),
                 if (content.hasRealContent) ...<Widget>[
                   LessonProgressCard(
-                    progress: content.currentProgress,
-                    totalSteps: content.totalSteps,
+                    currentStep: currentStep,
+                    totalSteps: totalSteps,
                   ),
                   const SizedBox(height: 14),
-                  ..._buildSections(content.sections),
+                  if (activeSection != null) ...<Widget>[
+                    ..._buildSections(<LessonSection>[activeSection]),
+                    const SizedBox(height: 14),
+                    _LessonStepNavigation(
+                      canGoBack: safeStepIndex > 0,
+                      currentStep: currentStep,
+                      totalSteps: totalSteps,
+                      previousLabel: _t(lang, 'previousStep'),
+                      nextLabel: isLastStep ? _t(lang, 'finalStepReached') : _t(lang, 'nextStep'),
+                      onBack: safeStepIndex > 0
+                          ? () {
+                              setState(() {
+                                _currentStepIndex--;
+                              });
+                            }
+                          : null,
+                    ),
+                  ],
                 ] else
                   EmptyLessonState(
                     title: _t(lang, 'emptyStateTitle'),
@@ -149,6 +184,26 @@ class ModuleTopicPage extends ConsumerWidget {
         'ru': 'Тест для этой подтемы пока готовится',
         'en': 'Quiz for this subtopic is in progress',
         'kk': 'Бұл ішкі тақырыпқа тест әзірленіп жатыр',
+      },
+      'nextStepLabel': <String, String>{
+        'ru': 'Следующий шаг урока',
+        'en': 'Next lesson step',
+        'kk': 'Сабақтың келесі қадамы',
+      },
+      'nextStep': <String, String>{
+        'ru': 'Далее',
+        'en': 'Next',
+        'kk': 'Келесі',
+      },
+      'previousStep': <String, String>{
+        'ru': 'Назад',
+        'en': 'Back',
+        'kk': 'Артқа',
+      },
+      'finalStepReached': <String, String>{
+        'ru': 'Финальный шаг',
+        'en': 'Final step',
+        'kk': 'Соңғы қадам',
       },
       'emptyStateTitle': <String, String>{
         'ru': 'Контент готовится',
@@ -255,3 +310,47 @@ class ModuleTopicPage extends ConsumerWidget {
 final _lessonQuizProvider = FutureProvider.family<List<QuizQuestion>, String>((Ref ref, String lessonId) {
   return ref.read(mistakesServiceProvider.notifier).getQuestionsForLesson(lessonId);
 });
+
+class _LessonStepNavigation extends StatelessWidget {
+  const _LessonStepNavigation({
+    required this.canGoBack,
+    required this.currentStep,
+    required this.totalSteps,
+    required this.previousLabel,
+    required this.nextLabel,
+    required this.onBack,
+  });
+
+  final bool canGoBack;
+  final int currentStep;
+  final int totalSteps;
+  final String previousLabel;
+  final String nextLabel;
+  final VoidCallback? onBack;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        if (canGoBack)
+          TextButton.icon(
+            onPressed: onBack,
+            icon: const Icon(Icons.arrow_back_rounded),
+            label: Text(previousLabel),
+          )
+        else
+          const SizedBox.shrink(),
+        const Spacer(),
+        Text(
+          totalSteps == 0 ? '' : '$currentStep / $totalSteps',
+          style: AppTextStyles.secondary,
+        ),
+        const Spacer(),
+        Text(
+          nextLabel,
+          style: AppTextStyles.secondary,
+        ),
+      ],
+    );
+  }
+}

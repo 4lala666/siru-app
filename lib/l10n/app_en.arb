@@ -107,5 +107,41 @@
   "wrongCode": "Invalid code. Please try again.",
   "verify": "Verify",
   "codeSent": "Code sent",
-  "resendCode": "Resend code"
+  "resendCode": "Resend code",
+  "checkYourEmailTitle": "Check your email",
+  "checkYourEmailBody": "We sent a password reset email to {email}.",
+  "@checkYourEmailBody": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "openResetLinkHint": "Open the link in the email to continue resetting your password in the app.",
+  "resendResetEmail": "Send email again",
+  "checkingResetLink": "Checking reset link...",
+  "invalidResetLink": "This password reset link is invalid or has expired.",
+  "xpLabel": "XP",
+  "levelLabel": "Level",
+  "earnedBadges": "Earned badges",
+  "noBadgesYet": "No badges yet",
+  "progressToNextLevel": "Progress to next level",
+  "badgesLabel": "Badges",
+  "streakLabel": "Streak",
+  "xpEarnedMessage": "XP earned",
+  "xpAlreadyEarnedMessage": "XP already earned",
+  "badgeFirstTestTitle": "First test",
+  "badgeFirstTestDescription": "Awarded after completing your first quiz.",
+  "badgeFirstSubtopicTitle": "First subtopic",
+  "badgeFirstSubtopicDescription": "Awarded after earning XP for the first subtopic.",
+  "badgeModuleMasterTitle": "Module master",
+  "badgeModuleMasterDescription": "Awarded for earning XP for every subtopic in one module.",
+  "badgeNoMistakeTitle": "No mistakes",
+  "badgeNoMistakeDescription": "Awarded for completing a quiz with a perfect score.",
+  "badgeStreak3Title": "3-day streak",
+  "badgeStreak3Description": "Awarded for studying three days in a row.",
+  "badgeStreak7Title": "7-day streak",
+  "badgeStreak7Description": "Awarded for studying seven days in a row.",
+  "badgeXp1000Title": "1000 XP",
+  "badgeXp1000Description": "Awarded for reaching 1000 XP.",
+  "badgeXp3000Title": "3000 XP",
+  "badgeXp3000Description": "Awarded for reaching 3000 XP."
 }

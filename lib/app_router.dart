@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 
 import 'features/app_shell/app_shell.dart';
 import 'features/auth/auth_screen.dart';
+import 'features/auth/check_email_screen.dart';
 import 'features/auth/forgot_password_screen.dart';
 import 'features/auth/password_changed_screen.dart';
 import 'features/auth/reset_password_screen.dart';
 import 'features/auth/start_gate.dart';
-import 'features/auth/verify_code_screen.dart';
 import 'features/home/home_screen.dart';
 import 'features/language/language_screen.dart';
 import 'features/mistakes/domain/mistake.dart';
@@ -49,8 +49,19 @@ class AppRouter {
       GoRoute(path: '/survey', builder: (_, __) => const SurveyScreen()),
       GoRoute(path: '/auth', builder: (_, __) => const AuthScreen()),
       GoRoute(path: '/auth/forgot', builder: (_, __) => const ForgotPasswordScreen()),
-      GoRoute(path: '/auth/verify', builder: (_, __) => const VerifyCodeScreen()),
-      GoRoute(path: '/auth/reset', builder: (_, __) => const ResetPasswordScreen()),
+      GoRoute(
+        path: '/auth/checkEmail',
+        builder: (_, GoRouterState state) => CheckEmailScreen(
+          email: state.uri.queryParameters['email'] ?? '',
+        ),
+      ),
+      GoRoute(path: '/auth/verify', redirect: (_, __) => '/auth/checkEmail'),
+      GoRoute(
+        path: '/auth/reset/:code',
+        builder: (_, GoRouterState state) => ResetPasswordScreen(
+          code: Uri.decodeComponent(state.pathParameters['code'] ?? ''),
+        ),
+      ),
       GoRoute(path: '/auth/success', builder: (_, __) => const PasswordChangedScreen()),
       GoRoute(path: '/change-password', builder: (_, __) => const ChangePasswordPage()),
       GoRoute(

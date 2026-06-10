@@ -107,5 +107,41 @@
   "wrongCode": "Қате код. Қайта көріңіз.",
   "verify": "Растау",
   "codeSent": "Код жіберілді",
-  "resendCode": "Кодты қайта жіберу"
+  "resendCode": "Кодты қайта жіберу",
+  "checkYourEmailTitle": "Поштаңызды тексеріңіз",
+  "checkYourEmailBody": "Құпиясөзді қалпына келтіру сілтемесі бар хат {email} поштасына жіберілді.",
+  "@checkYourEmailBody": {
+    "placeholders": {
+      "email": {}
+    }
+  },
+  "openResetLinkHint": "Құпиясөзді қолданба ішінде ауыстыруды жалғастыру үшін хаттағы сілтемені ашыңыз.",
+  "resendResetEmail": "Хатты қайта жіберу",
+  "checkingResetLink": "Қалпына келтіру сілтемесі тексерілуде...",
+  "invalidResetLink": "Құпиясөзді қалпына келтіру сілтемесі жарамсыз немесе мерзімі өтіп кеткен.",
+  "xpLabel": "XP",
+  "levelLabel": "Деңгей",
+  "earnedBadges": "Алынған бейдждер",
+  "noBadgesYet": "Әзірге бейдждер жоқ",
+  "progressToNextLevel": "Келесі деңгейге дейінгі прогресс",
+  "badgesLabel": "Бейдждер",
+  "streakLabel": "Серия",
+  "xpEarnedMessage": "XP берілді",
+  "xpAlreadyEarnedMessage": "XP бұрын берілген",
+  "badgeFirstTestTitle": "Бірінші тест",
+  "badgeFirstTestDescription": "Алғашқы тестті аяқтағаннан кейін беріледі.",
+  "badgeFirstSubtopicTitle": "Бірінші ішкі тақырып",
+  "badgeFirstSubtopicDescription": "Бірінші ішкі тақырып үшін XP алғаннан кейін беріледі.",
+  "badgeModuleMasterTitle": "Модуль шебері",
+  "badgeModuleMasterDescription": "Кемінде бір модульдің барлық ішкі тақырыптары үшін XP алған кезде беріледі.",
+  "badgeNoMistakeTitle": "Қатесіз",
+  "badgeNoMistakeDescription": "Тестті 100% нәтижемен аяқтағаны үшін беріледі.",
+  "badgeStreak3Title": "3 күндік серия",
+  "badgeStreak3Description": "Үш күн қатарынан оқығаны үшін беріледі.",
+  "badgeStreak7Title": "7 күндік серия",
+  "badgeStreak7Description": "Жеті күн қатарынан оқығаны үшін беріледі.",
+  "badgeXp1000Title": "1000 XP",
+  "badgeXp1000Description": "1000 XP жеткені үшін беріледі.",
+  "badgeXp3000Title": "3000 XP",
+  "badgeXp3000Description": "3000 XP жеткені үшін беріледі."
 }

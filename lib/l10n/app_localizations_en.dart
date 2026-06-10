@@ -334,4 +334,99 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resendCode => 'Resend code';
+
+  @override
+  String get checkYourEmailTitle => 'Check your email';
+
+  @override
+  String checkYourEmailBody(Object email) {
+    return 'We sent a password reset email to $email.';
+  }
+
+  @override
+  String get openResetLinkHint => 'Open the link in the email to continue resetting your password in the app.';
+
+  @override
+  String get resendResetEmail => 'Send email again';
+
+  @override
+  String get checkingResetLink => 'Checking reset link...';
+
+  @override
+  String get invalidResetLink => 'This password reset link is invalid or has expired.';
+
+  @override
+  String get xpLabel => 'XP';
+
+  @override
+  String get levelLabel => 'Level';
+
+  @override
+  String get earnedBadges => 'Earned badges';
+
+  @override
+  String get noBadgesYet => 'No badges yet';
+
+  @override
+  String get progressToNextLevel => 'Progress to next level';
+
+  @override
+  String get badgesLabel => 'Badges';
+
+  @override
+  String get streakLabel => 'Streak';
+
+  @override
+  String get xpEarnedMessage => 'XP earned';
+
+  @override
+  String get xpAlreadyEarnedMessage => 'XP already earned';
+
+  @override
+  String get badgeFirstTestTitle => 'First test';
+
+  @override
+  String get badgeFirstTestDescription => 'Awarded after completing your first quiz.';
+
+  @override
+  String get badgeFirstSubtopicTitle => 'First subtopic';
+
+  @override
+  String get badgeFirstSubtopicDescription => 'Awarded after earning XP for the first subtopic.';
+
+  @override
+  String get badgeModuleMasterTitle => 'Module master';
+
+  @override
+  String get badgeModuleMasterDescription => 'Awarded for earning XP for every subtopic in one module.';
+
+  @override
+  String get badgeNoMistakeTitle => 'No mistakes';
+
+  @override
+  String get badgeNoMistakeDescription => 'Awarded for completing a quiz with a perfect score.';
+
+  @override
+  String get badgeStreak3Title => '3-day streak';
+
+  @override
+  String get badgeStreak3Description => 'Awarded for studying three days in a row.';
+
+  @override
+  String get badgeStreak7Title => '7-day streak';
+
+  @override
+  String get badgeStreak7Description => 'Awarded for studying seven days in a row.';
+
+  @override
+  String get badgeXp1000Title => '1000 XP';
+
+  @override
+  String get badgeXp1000Description => 'Awarded for reaching 1000 XP.';
+
+  @override
+  String get badgeXp3000Title => '3000 XP';
+
+  @override
+  String get badgeXp3000Description => 'Awarded for reaching 3000 XP.';
 }

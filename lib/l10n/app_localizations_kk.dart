@@ -334,4 +334,99 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get resendCode => 'Кодты қайта жіберу';
+
+  @override
+  String get checkYourEmailTitle => 'Поштаңызды тексеріңіз';
+
+  @override
+  String checkYourEmailBody(Object email) {
+    return 'Құпиясөзді қалпына келтіру сілтемесі бар хат $email поштасына жіберілді.';
+  }
+
+  @override
+  String get openResetLinkHint => 'Құпиясөзді қолданба ішінде ауыстыруды жалғастыру үшін хаттағы сілтемені ашыңыз.';
+
+  @override
+  String get resendResetEmail => 'Хатты қайта жіберу';
+
+  @override
+  String get checkingResetLink => 'Қалпына келтіру сілтемесі тексерілуде...';
+
+  @override
+  String get invalidResetLink => 'Құпиясөзді қалпына келтіру сілтемесі жарамсыз немесе мерзімі өтіп кеткен.';
+
+  @override
+  String get xpLabel => 'XP';
+
+  @override
+  String get levelLabel => 'Деңгей';
+
+  @override
+  String get earnedBadges => 'Алынған бейдждер';
+
+  @override
+  String get noBadgesYet => 'Әзірге бейдждер жоқ';
+
+  @override
+  String get progressToNextLevel => 'Келесі деңгейге дейінгі прогресс';
+
+  @override
+  String get badgesLabel => 'Бейдждер';
+
+  @override
+  String get streakLabel => 'Серия';
+
+  @override
+  String get xpEarnedMessage => 'XP берілді';
+
+  @override
+  String get xpAlreadyEarnedMessage => 'XP бұрын берілген';
+
+  @override
+  String get badgeFirstTestTitle => 'Бірінші тест';
+
+  @override
+  String get badgeFirstTestDescription => 'Алғашқы тестті аяқтағаннан кейін беріледі.';
+
+  @override
+  String get badgeFirstSubtopicTitle => 'Бірінші ішкі тақырып';
+
+  @override
+  String get badgeFirstSubtopicDescription => 'Бірінші ішкі тақырып үшін XP алғаннан кейін беріледі.';
+
+  @override
+  String get badgeModuleMasterTitle => 'Модуль шебері';
+
+  @override
+  String get badgeModuleMasterDescription => 'Кемінде бір модульдің барлық ішкі тақырыптары үшін XP алған кезде беріледі.';
+
+  @override
+  String get badgeNoMistakeTitle => 'Қатесіз';
+
+  @override
+  String get badgeNoMistakeDescription => 'Тестті 100% нәтижемен аяқтағаны үшін беріледі.';
+
+  @override
+  String get badgeStreak3Title => '3 күндік серия';
+
+  @override
+  String get badgeStreak3Description => 'Үш күн қатарынан оқығаны үшін беріледі.';
+
+  @override
+  String get badgeStreak7Title => '7 күндік серия';
+
+  @override
+  String get badgeStreak7Description => 'Жеті күн қатарынан оқығаны үшін беріледі.';
+
+  @override
+  String get badgeXp1000Title => '1000 XP';
+
+  @override
+  String get badgeXp1000Description => '1000 XP жеткені үшін беріледі.';
+
+  @override
+  String get badgeXp3000Title => '3000 XP';
+
+  @override
+  String get badgeXp3000Description => '3000 XP жеткені үшін беріледі.';
 }

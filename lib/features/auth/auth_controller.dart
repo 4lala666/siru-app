@@ -51,9 +51,34 @@ class AuthController extends StateNotifier<AuthUiState> {
     });
   }
 
-  Future<String?> sendPasswordReset(String email) async {
+  Future<String?> sendPasswordReset(
+    String email, {
+    ActionCodeSettings? settings,
+  }) async {
     return _runGuarded(() async {
-      await _auth.sendPasswordResetEmail(email: email.trim());
+      if (settings == null) {
+        await _auth.sendPasswordResetEmail(email: email.trim());
+        return;
+      }
+      await _auth.sendPasswordResetEmail(
+        email: email.trim(),
+        actionCodeSettings: settings,
+      );
+    });
+  }
+
+  Future<String?> verifyResetCode(String code) async {
+    return _runGuarded(() async {
+      await _auth.verifyPasswordResetCode(code);
+    });
+  }
+
+  Future<String?> confirmPasswordReset(String code, String newPassword) async {
+    return _runGuarded(() async {
+      await _auth.confirmPasswordReset(
+        code: code,
+        newPassword: newPassword,
+      );
     });
   }
 

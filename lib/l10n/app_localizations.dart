@@ -750,6 +750,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Resend code'**
   String get resendCode;
+
+  /// No description provided for @checkYourEmailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email'**
+  String get checkYourEmailTitle;
+
+  /// No description provided for @checkYourEmailBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a password reset email to {email}.'**
+  String checkYourEmailBody(Object email);
+
+  /// No description provided for @openResetLinkHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the link in the email to continue resetting your password in the app.'**
+  String get openResetLinkHint;
+
+  /// No description provided for @resendResetEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Send email again'**
+  String get resendResetEmail;
+
+  /// No description provided for @checkingResetLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking reset link...'**
+  String get checkingResetLink;
+
+  /// No description provided for @invalidResetLink.
+  ///
+  /// In en, this message translates to:
+  /// **'This password reset link is invalid or has expired.'**
+  String get invalidResetLink;
+
+  /// No description provided for @xpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'XP'**
+  String get xpLabel;
+
+  /// No description provided for @levelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get levelLabel;
+
+  /// No description provided for @earnedBadges.
+  ///
+  /// In en, this message translates to:
+  /// **'Earned badges'**
+  String get earnedBadges;
+
+  /// No description provided for @noBadgesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No badges yet'**
+  String get noBadgesYet;
+
+  /// No description provided for @progressToNextLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress to next level'**
+  String get progressToNextLevel;
+
+  /// No description provided for @badgesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Badges'**
+  String get badgesLabel;
+
+  /// No description provided for @streakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get streakLabel;
+
+  /// No description provided for @xpEarnedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'XP earned'**
+  String get xpEarnedMessage;
+
+  /// No description provided for @xpAlreadyEarnedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'XP already earned'**
+  String get xpAlreadyEarnedMessage;
+
+  /// No description provided for @badgeFirstTestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First test'**
+  String get badgeFirstTestTitle;
+
+  /// No description provided for @badgeFirstTestDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded after completing your first quiz.'**
+  String get badgeFirstTestDescription;
+
+  /// No description provided for @badgeFirstSubtopicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First subtopic'**
+  String get badgeFirstSubtopicTitle;
+
+  /// No description provided for @badgeFirstSubtopicDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded after earning XP for the first subtopic.'**
+  String get badgeFirstSubtopicDescription;
+
+  /// No description provided for @badgeModuleMasterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Module master'**
+  String get badgeModuleMasterTitle;
+
+  /// No description provided for @badgeModuleMasterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded for earning XP for every subtopic in one module.'**
+  String get badgeModuleMasterDescription;
+
+  /// No description provided for @badgeNoMistakeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No mistakes'**
+  String get badgeNoMistakeTitle;
+
+  /// No description provided for @badgeNoMistakeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded for completing a quiz with a perfect score.'**
+  String get badgeNoMistakeDescription;
+
+  /// No description provided for @badgeStreak3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'3-day streak'**
+  String get badgeStreak3Title;
+
+  /// No description provided for @badgeStreak3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded for studying three days in a row.'**
+  String get badgeStreak3Description;
+
+  /// No description provided for @badgeStreak7Title.
+  ///
+  /// In en, this message translates to:
+  /// **'7-day streak'**
+  String get badgeStreak7Title;
+
+  /// No description provided for @badgeStreak7Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded for studying seven days in a row.'**
+  String get badgeStreak7Description;
+
+  /// No description provided for @badgeXp1000Title.
+  ///
+  /// In en, this message translates to:
+  /// **'1000 XP'**
+  String get badgeXp1000Title;
+
+  /// No description provided for @badgeXp1000Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded for reaching 1000 XP.'**
+  String get badgeXp1000Description;
+
+  /// No description provided for @badgeXp3000Title.
+  ///
+  /// In en, this message translates to:
+  /// **'3000 XP'**
+  String get badgeXp3000Title;
+
+  /// No description provided for @badgeXp3000Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded for reaching 3000 XP.'**
+  String get badgeXp3000Description;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

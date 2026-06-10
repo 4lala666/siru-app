@@ -334,4 +334,99 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get resendCode => 'Отправить код еще раз';
+
+  @override
+  String get checkYourEmailTitle => 'Проверьте вашу почту';
+
+  @override
+  String checkYourEmailBody(Object email) {
+    return 'Мы отправили на $email письмо со ссылкой для сброса пароля.';
+  }
+
+  @override
+  String get openResetLinkHint => 'Откройте ссылку из письма, чтобы продолжить смену пароля в приложении.';
+
+  @override
+  String get resendResetEmail => 'Отправить письмо повторно';
+
+  @override
+  String get checkingResetLink => 'Проверяем ссылку для сброса...';
+
+  @override
+  String get invalidResetLink => 'Ссылка для сброса пароля недействительна или срок ее действия истек.';
+
+  @override
+  String get xpLabel => 'XP';
+
+  @override
+  String get levelLabel => 'Уровень';
+
+  @override
+  String get earnedBadges => 'Полученные бейджи';
+
+  @override
+  String get noBadgesYet => 'Пока нет бейджей';
+
+  @override
+  String get progressToNextLevel => 'Прогресс до следующего уровня';
+
+  @override
+  String get badgesLabel => 'Бейджи';
+
+  @override
+  String get streakLabel => 'Серия';
+
+  @override
+  String get xpEarnedMessage => 'XP начислен';
+
+  @override
+  String get xpAlreadyEarnedMessage => 'XP уже был начислен';
+
+  @override
+  String get badgeFirstTestTitle => 'Первый тест';
+
+  @override
+  String get badgeFirstTestDescription => 'Выдаётся после завершения первого теста.';
+
+  @override
+  String get badgeFirstSubtopicTitle => 'Первая подтема';
+
+  @override
+  String get badgeFirstSubtopicDescription => 'Выдаётся после получения XP за первую подтему.';
+
+  @override
+  String get badgeModuleMasterTitle => 'Мастер модуля';
+
+  @override
+  String get badgeModuleMasterDescription => 'Выдаётся за получение XP за все подтемы хотя бы одного модуля.';
+
+  @override
+  String get badgeNoMistakeTitle => 'Без ошибок';
+
+  @override
+  String get badgeNoMistakeDescription => 'Выдаётся за прохождение теста на 100%.';
+
+  @override
+  String get badgeStreak3Title => 'Серия 3 дня';
+
+  @override
+  String get badgeStreak3Description => 'Выдаётся за обучение три дня подряд.';
+
+  @override
+  String get badgeStreak7Title => 'Серия 7 дней';
+
+  @override
+  String get badgeStreak7Description => 'Выдаётся за обучение семь дней подряд.';
+
+  @override
+  String get badgeXp1000Title => '1000 XP';
+
+  @override
+  String get badgeXp1000Description => 'Выдаётся за достижение 1000 XP.';
+
+  @override
+  String get badgeXp3000Title => '3000 XP';
+
+  @override
+  String get badgeXp3000Description => 'Выдаётся за достижение 3000 XP.';
 }

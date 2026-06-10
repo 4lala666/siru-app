@@ -6,17 +6,18 @@ import '../../../../core/constants/app_text_styles.dart';
 class LessonProgressCard extends StatelessWidget {
   const LessonProgressCard({
     super.key,
-    required this.progress,
+    required this.currentStep,
     required this.totalSteps,
   });
 
-  final double progress;
+  final int currentStep;
   final int totalSteps;
 
   @override
   Widget build(BuildContext context) {
     final String lang = Localizations.localeOf(context).languageCode;
-    final int currentStep = totalSteps == 0 ? 0 : (progress * totalSteps).ceil().clamp(1, totalSteps);
+    final int safeCurrentStep = totalSteps == 0 ? 0 : currentStep.clamp(1, totalSteps);
+    final double progress = totalSteps == 0 ? 0 : safeCurrentStep / totalSteps;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -45,7 +46,7 @@ class LessonProgressCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text(_stepLabel(lang, currentStep, totalSteps), style: AppTextStyles.secondary),
+          Text(_stepLabel(lang, safeCurrentStep, totalSteps), style: AppTextStyles.secondary),
           const SizedBox(height: 10),
           Row(
             children: List<Widget>.generate(
@@ -55,7 +56,7 @@ class LessonProgressCard extends StatelessWidget {
                   margin: EdgeInsets.only(right: index == totalSteps - 1 ? 0 : 6),
                   height: 6,
                   decoration: BoxDecoration(
-                    color: index < currentStep
+                    color: index < safeCurrentStep
                         ? AppColors.accent
                         : Colors.white.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(999),
